@@ -37,9 +37,9 @@ export function HeroSection() {
 
           <motion.p
             variants={fadeUp}
-            className="mt-3 font-mono-tech text-sm tracking-[0.12em] text-foreground"
+            className="mt-3 font-mono-tech text-xl font-semibold tracking-[0.14em] text-foreground sm:text-2xl"
           >
-            I&apos;M LISANEGEBRIEL ABAY
+            LISANEGEBRIEL ABAY
           </motion.p>
 
           {/* Headline */}
@@ -107,11 +107,10 @@ export function HeroSection() {
           variants={fadeUp}
           className="hidden self-center border border-border bg-card/25 p-6 backdrop-blur-sm lg:block"
         >
-          <div className="font-mono-tech text-[10px] tracking-[0.18em] text-muted-foreground">// RIGHT PANEL</div>
           <div className="mt-4 space-y-4">
             <div className="border border-border/70 p-4">
               <div className="font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground">ACHIEVEMENTS</div>
-              <div className="mt-2 font-mono-tech text-sm text-foreground">1,000+ Algorithmic Challenges</div>
+              <div className="mt-2 font-mono-tech text-sm text-foreground">Advanced Algorithmic Problem Solving</div>
             </div>
             <div className="border border-border/70 p-4">
               <div className="font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground">CURRENT FOCUS</div>
