@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronDown, Linkedin, Send, Code2, Twitter, Trophy } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 const transition = { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
@@ -8,12 +8,14 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, transition },
 };
 
-const heroLinks = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/lisanegebriel-abay", icon: Linkedin, external: true },
-  { label: "Telegram", href: "https://t.me/ligator", icon: Send, external: true },
-  { label: "LeetCode", href: "https://leetcode.com/u/lisanx/", icon: Code2, external: true },
-  { label: "X", href: "https://x.com/lisanabay", icon: Twitter, external: true },
-  { label: "Achievements", href: "#about", icon: Trophy, external: false },
+const heroSocials = [
+  { label: "GitHub", href: "https://github.com/lisan-5", external: true },
+  { label: "LinkedIn", href: "https://linkedin.com/in/lisanegebriel-abay", external: true },
+  { label: "Email", href: "mailto:lisan5abay@gmail.com", external: false },
+  { label: "Telegram", href: "https://t.me/ligator", external: true },
+  { label: "LeetCode", href: "https://leetcode.com/u/lisanx/", external: true },
+  { label: "X", href: "https://x.com/lisanabay", external: true },
+  { label: "Phone", href: "tel:+251964011087", external: false },
 ] as const;
 
 export function HeroSection() {
@@ -26,16 +28,30 @@ export function HeroSection() {
         variants={stagger}
       >
         <div>
+          <motion.div
+            variants={fadeUp}
+            className="font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground"
+          >
+            ADDIS ABABA // BUILDING SYSTEMS THAT SCALE
+          </motion.div>
+
+          <motion.p
+            variants={fadeUp}
+            className="mt-3 font-mono-tech text-sm tracking-[0.12em] text-foreground"
+          >
+            I&apos;M LISANEGEBRIEL ABAY
+          </motion.p>
+
           {/* Headline */}
           <motion.h1
             variants={fadeUp}
-            className="max-w-4xl text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[0.95] tracking-tight text-foreground"
+            className="mt-6 max-w-4xl text-[clamp(2.4rem,6.8vw,5.6rem)] font-bold leading-[0.95] tracking-tight text-foreground"
           >
-            ENGINEERING
+            I DESIGN AND BUILD
             <br />
-            <span className="text-gradient-cyber">THE INTELLIGENCE</span>
+            <span className="text-gradient-cyber">HIGH-PERFORMANCE SOFTWARE</span>
             <br />
-            LAYER<span className="text-cyber">.</span>
+            SYSTEMS<span className="text-cyber">.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -43,9 +59,9 @@ export function HeroSection() {
             variants={fadeUp}
             className="mt-6 max-w-2xl font-mono-tech text-sm leading-relaxed text-slate-mid"
           >
-            AI-Driven Full-Stack Engineer | Specialized in LLM Orchestration
+            Full-stack engineer focused on AI-powered systems,
             <br />
-            & Scalable Architectures.
+            real-time architectures, and performance-critical applications.
           </motion.p>
 
           {/* CTAs */}
@@ -56,7 +72,7 @@ export function HeroSection() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              VIEW SYSTEMS & CASE STUDIES
+              → VIEW PROJECTS
             </motion.button>
             <motion.a
               href="https://drive.google.com/file/d/1btRjzUlrhZ5pcyDA1fpfHC-3uJymNGKR/view?usp=sharing"
@@ -66,13 +82,13 @@ export function HeroSection() {
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              DOWNLOAD TECHNICAL RESUME
+              → DOWNLOAD RESUME
             </motion.a>
           </motion.div>
 
           {/* Social links */}
-          <motion.div variants={fadeUp} className="mt-6 flex flex-wrap items-center gap-3">
-            {heroLinks.map((link) => (
+          <motion.div variants={fadeUp} className="mt-8 flex max-w-4xl flex-wrap items-center gap-3">
+            {heroSocials.map((link) => (
               <motion.a
                 key={link.label}
                 href={link.href}
@@ -82,7 +98,6 @@ export function HeroSection() {
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <link.icon className="h-3.5 w-3.5" />
                 <span>{link.label}</span>
               </motion.a>
             ))}
