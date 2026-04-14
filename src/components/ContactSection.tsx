@@ -31,18 +31,18 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-32 px-8 lg:px-16">
+    <section id="contact" className="relative px-4 py-20 sm:px-6 sm:py-24 lg:px-16 lg:py-32">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
-        className="mx-auto max-w-4xl"
+        className="mx-auto w-full max-w-6xl"
       >
         <motion.div variants={fadeUp} className="mb-2 font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">
           // ESTABLISH CONNECTION
         </motion.div>
-        <motion.h2 variants={fadeUp} className="mb-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+        <motion.h2 variants={fadeUp} className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
           Let's build something<br />
           <span className="text-gradient-cyber">extraordinary</span><span className="text-cyber">.</span>
         </motion.h2>

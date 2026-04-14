@@ -76,7 +76,7 @@ export function TerminalConsole() {
       {!open && (
         <motion.button
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 left-6 z-[100] flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:border-cyber hover:text-cyber"
+          className="fixed bottom-4 left-4 z-[100] flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:border-cyber hover:text-cyber sm:bottom-6 sm:left-6"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -92,7 +92,7 @@ export function TerminalConsole() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" as const }}
-            className="fixed bottom-6 left-6 z-[100] w-[420px] max-w-[calc(100vw-3rem)] overflow-hidden rounded-lg border border-border bg-obsidian/95 backdrop-blur-md"
+            className="fixed bottom-4 left-4 z-[100] w-[420px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-border bg-obsidian/95 backdrop-blur-md sm:bottom-6 sm:left-6 sm:max-w-[calc(100vw-3rem)]"
           >
             <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
               <div className="flex items-center gap-2">

@@ -24,7 +24,7 @@ export function MobileNav() {
     <div className="lg:hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="fixed right-6 top-6 z-[60] flex flex-col gap-1.5 rounded-lg border border-border bg-background/80 p-2.5 backdrop-blur-sm"
+        className="fixed right-4 top-4 z-[60] flex flex-col gap-1.5 rounded-lg border border-border bg-background/80 p-2.5 backdrop-blur-sm sm:right-6 sm:top-6"
       >
         <span className={`block h-px w-5 bg-foreground transition-all duration-200 ${open ? "translate-y-[5px] rotate-45" : ""}`} />
         <span className={`block h-px w-5 bg-foreground transition-all duration-200 ${open ? "opacity-0" : ""}`} />

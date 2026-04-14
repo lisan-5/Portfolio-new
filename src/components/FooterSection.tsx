@@ -7,15 +7,16 @@ const fadeUp = {
 
 export function FooterSection() {
   return (
-    <footer className="border-t border-border py-12 px-8 lg:px-16">
+    <footer className="border-t border-border px-4 py-10 sm:px-6 sm:py-12 lg:px-16">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
         variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+        className="mx-auto w-full max-w-6xl"
       >
         <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-between gap-6">
-          <div className="flex flex-wrap gap-8">
+          <div className="flex flex-wrap gap-6 sm:gap-8">
             <div>
               <span className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">GPA</span>
               <div className="font-mono-tech text-sm text-foreground">3.8/4.0</div>
@@ -32,7 +33,7 @@ export function FooterSection() {
           <div className="flex items-center gap-2">
             <div className="pulse-dot" />
             <span className="font-mono-tech text-[10px] tracking-wider text-muted-foreground">
-              © 2026 LISANEGEBRIEL ABAY KEBEDEW
+              (c) 2026 LISANEGEBRIEL ABAY KEBEDEW
             </span>
           </div>
         </motion.div>

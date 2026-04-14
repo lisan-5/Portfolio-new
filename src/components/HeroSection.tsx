@@ -18,9 +18,9 @@ const heroLinks = [
 
 export function HeroSection() {
   return (
-    <section id="hero" className="relative flex min-h-screen items-center overflow-hidden">
+    <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden px-4 py-24 sm:px-6 lg:px-16">
       <motion.div
-        className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 px-8 text-left lg:grid-cols-[minmax(0,1fr)_300px]"
+        className="relative z-10 mx-auto grid w-full max-w-6xl gap-12 text-left lg:grid-cols-[minmax(0,1fr)_300px]"
         initial="hidden"
         animate="visible"
         variants={stagger}
@@ -60,7 +60,7 @@ export function HeroSection() {
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-start gap-4">
             <motion.button
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="border border-foreground bg-foreground px-8 py-3.5 font-mono-tech text-xs tracking-[0.15em] text-primary-foreground transition-all duration-200 hover:bg-transparent hover:text-foreground"
+              className="w-full border border-foreground bg-foreground px-5 py-3.5 font-mono-tech text-xs tracking-[0.15em] text-primary-foreground transition-all duration-200 hover:bg-transparent hover:text-foreground sm:w-auto sm:px-8"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -68,7 +68,7 @@ export function HeroSection() {
             </motion.button>
             <motion.a
               href="mailto:lisan5abay@gmail.com"
-              className="border border-border px-8 py-3.5 font-mono-tech text-xs tracking-[0.15em] text-muted-foreground transition-all duration-200 hover:border-cyber hover:text-cyber"
+              className="w-full border border-border px-5 py-3.5 font-mono-tech text-xs tracking-[0.15em] text-muted-foreground transition-all duration-200 hover:border-cyber hover:text-cyber sm:w-auto sm:px-8"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >

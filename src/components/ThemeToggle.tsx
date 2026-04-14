@@ -28,7 +28,7 @@ export function ThemeToggle() {
   return (
     <motion.button
       onClick={toggle}
-      className="fixed right-6 bottom-6 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur-sm transition-colors hover:border-cyber hover:text-cyber"
+      className="fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur-sm transition-colors hover:border-cyber hover:text-cyber sm:bottom-6 sm:right-6"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}

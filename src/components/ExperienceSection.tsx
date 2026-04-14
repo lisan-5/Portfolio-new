@@ -48,12 +48,13 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="py-32 px-8 lg:px-16">
+    <section id="experience" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-16 lg:py-32">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        className="mx-auto w-full max-w-6xl"
       >
         <motion.div variants={fadeUp} className="mb-2 font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">
           // PROFESSIONAL TRAJECTORY

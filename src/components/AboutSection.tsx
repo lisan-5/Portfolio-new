@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -7,13 +7,13 @@ const fadeUp = {
 
 export function AboutSection() {
   return (
-    <section id="about" className="relative py-32 px-8 lg:px-16">
+    <section id="about" className="relative px-4 py-20 sm:px-6 sm:py-24 lg:px-16 lg:py-32">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-        className="mx-auto max-w-3xl"
+        className="mx-auto w-full max-w-6xl"
       >
         <motion.div variants={fadeUp} className="mb-2 font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">
           // EXECUTIVE SUMMARY
@@ -33,7 +33,7 @@ export function AboutSection() {
         </motion.p>
 
         {/* Animated stats bar */}
-        <motion.div variants={fadeUp} className="mt-10 grid grid-cols-3 gap-4">
+        <motion.div variants={fadeUp} className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { label: "Years Building", value: "3+" },
             { label: "Production Systems", value: "10+" },

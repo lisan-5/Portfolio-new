@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -112,12 +111,13 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-32 px-8 lg:px-16">
+    <section id="projects" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-16 lg:py-32">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        className="mx-auto w-full max-w-6xl"
       >
         <motion.div variants={fadeUp} className="mb-2 font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">
           // SELECTED IMPACT
