@@ -32,7 +32,7 @@ export function HeroSection() {
             variants={fadeUp}
             className="font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground"
           >
-            ADDIS ABABA // BUILDING SYSTEMS THAT SCALE
+            // BUILDING SYSTEMS THAT SCALE
           </motion.div>
 
           <motion.p
@@ -45,13 +45,11 @@ export function HeroSection() {
           {/* Headline */}
           <motion.h1
             variants={fadeUp}
-            className="mt-6 max-w-4xl text-[clamp(2.4rem,6.8vw,5.6rem)] font-bold leading-[0.95] tracking-tight text-foreground"
+            className="mt-6 max-w-3xl text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.02] tracking-tight text-foreground"
           >
-            I DESIGN AND BUILD
-            <br />
-            <span className="text-gradient-cyber">HIGH-PERFORMANCE SOFTWARE</span>
-            <br />
-            SYSTEMS<span className="text-cyber">.</span>
+            I DESIGN AND BUILD{" "}
+            <span className="text-gradient-cyber">HIGH-PERFORMANCE</span>{" "}
+            SOFTWARE SYSTEMS<span className="text-cyber">.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -103,22 +101,6 @@ export function HeroSection() {
             ))}
           </motion.div>
 
-          {/* Technical metadata */}
-          <motion.div
-            variants={fadeUp}
-            className="mt-16 flex max-w-2xl flex-wrap justify-start gap-8 border-t border-border pt-6"
-          >
-            {[
-              { label: "CHALLENGES SOLVED", value: "1,000+" },
-              { label: "LATENCY REDUCTION", value: "50%" },
-              { label: "SYSTEM UPTIME", value: "99.9%" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-left">
-                <div className="font-mono-tech text-2xl font-bold text-foreground">{stat.value}</div>
-                <div className="font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
 
         <motion.aside
