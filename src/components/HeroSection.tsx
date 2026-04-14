@@ -26,14 +26,6 @@ export function HeroSection() {
         variants={stagger}
       >
         <div>
-          {/* Status badge */}
-          <motion.div variants={fadeUp} className="mb-8 inline-flex items-center gap-3 rounded-full border border-border px-4 py-2 backdrop-blur-sm">
-            <div className="pulse-dot" />
-            <span className="font-mono-tech text-[11px] tracking-[0.15em] text-terminal-green">
-              AVAILABLE FOR COLLABORATION
-            </span>
-          </motion.div>
-
           {/* Headline */}
           <motion.h1
             variants={fadeUp}
@@ -67,7 +59,9 @@ export function HeroSection() {
               VIEW SYSTEMS & CASE STUDIES
             </motion.button>
             <motion.a
-              href="mailto:lisan5abay@gmail.com"
+              href="https://drive.google.com/file/d/1btRjzUlrhZ5pcyDA1fpfHC-3uJymNGKR/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full border border-border px-5 py-3.5 font-mono-tech text-xs tracking-[0.15em] text-muted-foreground transition-all duration-200 hover:border-cyber hover:text-cyber sm:w-auto sm:px-8"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}

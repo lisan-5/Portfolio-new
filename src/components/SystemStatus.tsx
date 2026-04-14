@@ -20,16 +20,10 @@ export function SystemStatus() {
   }, []);
 
   return (
-    <div className="fixed right-6 top-6 z-50 hidden items-center gap-4 lg:flex">
+    <div className="fixed right-6 top-6 z-50 hidden items-center lg:flex">
       <span className="font-mono-tech text-[10px] tracking-wider text-muted-foreground">
         ADDIS ABABA // {time}
       </span>
-      <div className="flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-1.5 backdrop-blur-sm">
-        <div className="pulse-dot" />
-        <span className="font-mono-tech text-[10px] tracking-wider text-terminal-green">
-          SYSTEM OPTIMIZED
-        </span>
-      </div>
     </div>
   );
 }
