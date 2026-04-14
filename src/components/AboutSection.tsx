@@ -21,34 +21,22 @@ export function AboutSection() {
         <motion.h2 variants={fadeUp} className="mb-8 text-3xl font-bold tracking-tight text-foreground">
           ABOUT<span className="text-cyber">.</span>
         </motion.h2>
+
         <motion.p variants={fadeUp} className="text-base leading-[1.8] text-slate-mid">
-          I bridge the gap between robust software engineering and applied Artificial Intelligence. 
-          With a foundational background in competitive programming—solving over{" "}
-          <span className="font-mono-tech font-semibold text-foreground">1,000</span> algorithmic challenges—I 
-          build production-grade systems where performance is a feature, not an afterthought.
+          I&apos;m a Full-Stack AI Engineer focused on building scalable, production-ready systems that combine software engineering with applied artificial intelligence.
         </motion.p>
         <motion.p variants={fadeUp} className="mt-4 text-base leading-[1.8] text-slate-mid">
-          My experience spans national-scale health platforms to AI-assisted logistics, always with 
-          a focus on reducing latency, improving maintainability, and delivering measurable ROI.
+          I specialize in designing backend systems, APIs, and AI-driven workflows especially around LLM integration, real-time systems, and performance optimization.
         </motion.p>
-
-        {/* Animated stats bar */}
-        <motion.div variants={fadeUp} className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {[
-            { label: "Years Building", value: "3+" },
-            { label: "Production Systems", value: "10+" },
-            { label: "Team Collaboration", value: "Global" },
-          ].map((stat) => (
-            <motion.div
-              key={stat.label}
-              className="border border-border bg-card/30 p-4 text-center backdrop-blur-sm transition-colors hover:border-cyber/30"
-              whileHover={{ y: -2, transition: { duration: 0.2 } }}
-            >
-              <div className="font-mono-tech text-xl font-bold text-foreground">{stat.value}</div>
-              <div className="mt-1 font-mono-tech text-[9px] tracking-[0.15em] text-muted-foreground">{stat.label.toUpperCase()}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+        <motion.p variants={fadeUp} className="mt-4 text-base leading-[1.8] text-slate-mid">
+          Over the past 3+ years, I&apos;ve built and contributed to production systems across healthcare, logistics, and developer tools, focusing on reliability, scalability, and measurable impact.
+        </motion.p>
+        <motion.p variants={fadeUp} className="mt-4 text-base leading-[1.8] text-slate-mid">
+          My foundation in algorithms and problem-solving (1,000+ challenges solved) shapes how I design systems always optimized for performance, edge cases, and long-term maintainability.
+        </motion.p>
+        <motion.p variants={fadeUp} className="mt-4 text-base leading-[1.8] text-slate-mid">
+          Right now, I&apos;m focused on building intelligent systems that move beyond prototypes and actually work in real-world production environments.
+        </motion.p>
       </motion.div>
     </section>
   );

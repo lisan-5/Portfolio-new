@@ -18,16 +18,36 @@ const socials = [
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Construct mailto link
-    const subject = encodeURIComponent(`Portfolio Contact from ${formData.name}`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
-    window.open(`mailto:lisan5abay@gmail.com?subject=${subject}&body=${body}`);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setSubmitting(true);
+    try {
+      const res = await fetch("https://formspree.io/f/mnnqjkkb", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Form submission failed");
+
+      setSubmitted(true);
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch {
+      setSubmitted(false);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -55,6 +75,8 @@ export function ContactSection() {
           <motion.form
             variants={fadeUp}
             onSubmit={handleSubmit}
+            action="https://formspree.io/f/mnnqjkkb"
+            method="POST"
             className="space-y-4"
           >
             <div>
@@ -92,11 +114,14 @@ export function ContactSection() {
             </div>
             <motion.button
               type="submit"
+              disabled={submitting}
               className="group flex items-center gap-2 border border-foreground bg-foreground px-6 py-3 font-mono-tech text-xs tracking-[0.15em] text-primary-foreground transition-all duration-200 hover:bg-transparent hover:text-foreground"
               whileHover={{ x: 2 }}
               whileTap={{ scale: 0.98 }}
             >
-              {submitted ? (
+              {submitting ? (
+                <>SENDING...</>
+              ) : submitted ? (
                 <>
                   <CheckCircle className="h-3.5 w-3.5" />
                   SENT
@@ -132,9 +157,9 @@ export function ContactSection() {
             </div>
 
             <div className="mt-8 border-t border-border pt-4">
-              <a href="mailto:lisan5abay@gmail.com" className="font-mono-tech text-sm text-cyber transition-opacity hover:opacity-80">
+              <span className="font-mono-tech text-sm text-cyber">
                 lisan5abay@gmail.com
-              </a>
+              </span>
             </div>
           </motion.div>
         </div>
