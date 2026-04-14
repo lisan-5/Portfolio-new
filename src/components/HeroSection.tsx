@@ -37,9 +37,9 @@ export function HeroSection() {
 
           <motion.p
             variants={fadeUp}
-            className="mt-3 font-mono-tech text-xl font-semibold tracking-[0.14em] text-foreground sm:text-2xl"
+            className="mt-3 font-mono-tech text-base tracking-[0.14em] text-foreground sm:text-lg"
           >
-            LISANEGEBRIEL ABAY
+            I&apos;M <span className="text-3xl font-bold sm:text-4xl">LISANEGEBRIEL ABAY</span>
           </motion.p>
 
           {/* Headline */}
