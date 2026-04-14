@@ -30,7 +30,6 @@ const html = `<!doctype html>
     <title>Lisanegebriel Abay</title>
   </head>
   <body>
-    <div id="root"></div>
     <script type="module" src="/assets/${entryFile}"></script>
   </body>
 </html>
