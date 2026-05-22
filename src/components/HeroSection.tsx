@@ -108,21 +108,21 @@ export function HeroSection() {
           </motion.div>
 
           {/* Social links */}
-          <motion.div variants={fadeUp} className="mt-8 grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
+          <motion.div variants={fadeUp} className="mt-8 grid max-w-4xl grid-cols-4 gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-7">
             {heroSocials.map((link) => (
               <motion.a
                 key={link.label}
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className={`group flex items-center gap-3 border border-border bg-card/40 px-3 py-3 text-left text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(120,200,220,0.08)] ${link.accent}`}
+                className={`group flex items-center justify-center gap-3 border border-border bg-card/40 px-2 py-2 text-left text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(120,200,220,0.08)] sm:justify-start sm:px-3 sm:py-3 ${link.accent}`}
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <link.icon className="h-4 w-4 shrink-0" />
-                <span className="min-w-0">
-                  <span className="block font-mono-tech text-[11px] font-bold tracking-[0.14em] text-foreground group-hover:text-inherit">{link.label}</span>
-                  <span className="block font-mono-tech text-[9px] tracking-[0.16em] text-muted-foreground">{link.hint}</span>
+                <span className="min-w-0 text-center sm:text-left">
+                  <span className="hidden font-mono-tech text-[11px] font-bold tracking-[0.14em] text-foreground group-hover:text-inherit sm:block">{link.label}</span>
+                  <span className="hidden font-mono-tech text-[9px] tracking-[0.16em] text-muted-foreground sm:block">{link.hint}</span>
                 </span>
               </motion.a>
             ))}
