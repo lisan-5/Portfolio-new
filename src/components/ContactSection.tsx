@@ -51,7 +51,8 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative px-4 py-20 sm:px-6 sm:py-24 lg:px-16 lg:py-32">
+    <section id="contact" className="relative overflow-hidden px-4 py-20 sm:px-6 sm:py-24 lg:px-16 lg:py-32">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(120,200,220,0.08),transparent_30%)]" />
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -67,7 +68,7 @@ export function ContactSection() {
           <span className="text-gradient-cyber">extraordinary</span><span className="text-cyber">.</span>
         </motion.h2>
         <motion.p variants={fadeUp} className="mb-12 max-w-lg text-sm leading-relaxed text-slate-mid">
-          Have a project in mind or want to discuss AI-driven solutions? Drop me a message.
+          Use the form on the left to send a message directly, or pick a contact channel on the right.
         </motion.p>
 
         <div className="grid gap-12 md:grid-cols-2">
@@ -77,38 +78,42 @@ export function ContactSection() {
             onSubmit={handleSubmit}
             action="https://formspree.io/f/mnnqjkkb"
             method="POST"
-            className="space-y-4"
+            className="space-y-4 border border-border bg-card/40 p-6 backdrop-blur-sm"
           >
+            <div className="mb-2 border-b border-border pb-3">
+              <div className="font-mono-tech text-[10px] tracking-[0.2em] text-cyber">DIRECT MESSAGE FORM</div>
+              <div className="mt-1 text-sm text-slate-mid">Fill out the fields below and hit send.</div>
+            </div>
             <div>
-              <label className="mb-1.5 block font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground">NAME</label>
+              <label className="mb-1.5 block font-mono-tech text-[10px] tracking-[0.15em] text-foreground">NAME</label>
               <input
                 type="text"
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full border border-border bg-transparent px-4 py-3 font-mono-tech text-sm text-foreground outline-none transition-colors focus:border-cyber"
+                className="w-full border border-border bg-background/60 px-4 py-3 font-mono-tech text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-cyber focus:ring-1 focus:ring-cyber/30"
                 placeholder="Your name"
               />
             </div>
             <div>
-              <label className="mb-1.5 block font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground">EMAIL</label>
+              <label className="mb-1.5 block font-mono-tech text-[10px] tracking-[0.15em] text-foreground">EMAIL</label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full border border-border bg-transparent px-4 py-3 font-mono-tech text-sm text-foreground outline-none transition-colors focus:border-cyber"
+                className="w-full border border-border bg-background/60 px-4 py-3 font-mono-tech text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-cyber focus:ring-1 focus:ring-cyber/30"
                 placeholder="you@example.com"
               />
             </div>
             <div>
-              <label className="mb-1.5 block font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground">MESSAGE</label>
+              <label className="mb-1.5 block font-mono-tech text-[10px] tracking-[0.15em] text-foreground">MESSAGE</label>
               <textarea
                 required
                 rows={4}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full resize-none border border-border bg-transparent px-4 py-3 font-mono-tech text-sm text-foreground outline-none transition-colors focus:border-cyber"
+                className="w-full resize-none border border-border bg-background/60 px-4 py-3 font-mono-tech text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-cyber focus:ring-1 focus:ring-cyber/30"
                 placeholder="Tell me about your project..."
               />
             </div>
@@ -137,7 +142,7 @@ export function ContactSection() {
 
           {/* Social Links */}
           <motion.div variants={fadeUp} className="space-y-4">
-            <div className="font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">// CONNECT</div>
+            <div className="font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">// QUICK CONTACT</div>
             <div className="space-y-2">
               {socials.map((s) => (
                 <motion.a
@@ -145,8 +150,8 @@ export function ContactSection() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 border border-border px-4 py-3 font-mono-tech text-[11px] tracking-wider text-slate-mid transition-all duration-200 hover:border-cyber hover:text-cyber"
-                  whileHover={{ x: 4 }}
+                  className="group flex items-center gap-3 border border-border bg-card/30 px-4 py-3 font-mono-tech text-[11px] tracking-wider text-slate-mid transition-all duration-200 hover:border-cyber hover:bg-card/60 hover:text-cyber"
+                  whileHover={{ x: 6, scale: 1.01 }}
                 >
                   {s.icon && <s.icon className="h-4 w-4" />}
                   {!s.icon && <span className="h-4 w-4 text-center text-[10px] font-bold">{s.label.slice(0, 2).toUpperCase()}</span>}
@@ -157,6 +162,7 @@ export function ContactSection() {
             </div>
 
             <div className="mt-8 border-t border-border pt-4">
+              <div className="mb-2 font-mono-tech text-[10px] tracking-[0.2em] text-cyber">EMAIL</div>
               <span className="font-mono-tech text-sm text-cyber">
                 lisan5abay@gmail.com
               </span>

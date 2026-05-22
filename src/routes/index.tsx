@@ -18,10 +18,10 @@ import { ScrollProgress } from "../components/ScrollProgress";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lisanegebriel Abay — AI-Driven Full-Stack Engineer" },
-      { name: "description", content: "Engineering scalable intelligence. AI-Driven Full-Stack Engineer specializing in LLM orchestration & high-performance web architectures." },
-      { property: "og:title", content: "Lisanegebriel Abay — Engineering the Intelligence Layer" },
-      { property: "og:description", content: "AI-Driven Full-Stack Engineer specializing in LLM orchestration & scalable architectures." },
+      { title: "Lisanegebriel Abay — Full-Stack & AI Engineer" },
+      { name: "description", content: "Full-Stack & AI Engineer building scalable backend systems, LLM applications, intelligent automation, and production-grade software." },
+      { property: "og:title", content: "Lisanegebriel Abay — Full-Stack & AI Engineer" },
+      { property: "og:description", content: "Building scalable backend systems, AI-powered applications, REST APIs, and high-performance web platforms." },
     ],
   }),
   component: Index,
@@ -40,9 +40,9 @@ function Index() {
       <main className="relative z-10 transition-[margin] duration-300">
         <HeroSection />
         <AboutSection />
+        <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
-        <ExperienceSection />
         <EducationSection />
         <ContactSection />
         <FooterSection />

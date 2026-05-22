@@ -24,20 +24,24 @@ const COMMANDS: Record<string, string[]> = {
   projects: [
     "// FEATURED PROJECTS",
     "[01] Snowlink    - AI Agent | Snowflake Sync",
-    "[02] Spotter     - AI Logistics & Routing",
-    "[03] Teninete    - National Health Platform",
+    "[02] ApplyMate   - AI Scholarship Workspace",
+    "[03] Spotter     - AI Logistics & Routing",
+    "[04] Lingo Abyssinia - Language Learning",
+    "[05] Story AI    - Travel Story Albums",
   ],
   skills: [
     "// LOADED MODULES",
-    "AI:   LLM Integration, Prompt Engineering, NLP",
-    "Core: TypeScript, Next.js, Node.js, Python, Java",
-    "Ops:  Docker, CI/CD, System Design, PostgreSQL",
+    "Backend: Python, TypeScript, Node.js, FastAPI, Laravel",
+    "AI:      LLM Integration, Prompt Engineering, NLP, ML",
+    "Data:    PostgreSQL, MySQL, Firebase, Pandas, NumPy",
+    "Ops:     Docker, GitHub, Linux, CI/CD, Postman",
   ],
   about: [
     "// LISANEGEBRIEL ABAY",
-    "AI-Driven Full-Stack Engineer",
+    "Software Engineer | AI & Full-Stack Developer",
     "1,000+ algorithmic challenges solved",
-    "BSc CS @ Addis Ababa University (3.8/4.0)",
+    "BSc Computer Science @ Addis Ababa University",
+    "Focused on scalable backend systems and intelligent automation",
   ],
 };
 
@@ -76,7 +80,7 @@ export function TerminalConsole() {
       {!open && (
         <motion.button
           onClick={() => setOpen(true)}
-          className="fixed bottom-4 left-4 z-[100] flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-2 font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:border-cyber hover:text-cyber sm:bottom-6 sm:left-6 lg:left-10"
+          className="fixed bottom-4 left-4 z-[100] flex items-center gap-2 rounded-full border border-border bg-background/80 px-3 py-2 font-mono-tech text-[10px] tracking-[0.12em] text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:border-cyber hover:text-cyber sm:bottom-6 sm:left-6 sm:px-4 sm:tracking-[0.15em] lg:left-10"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -102,7 +106,7 @@ export function TerminalConsole() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.2, ease: "easeOut" as const }}
-              className="fixed bottom-4 left-4 z-[100] w-[420px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-border bg-obsidian/95 backdrop-blur-md sm:bottom-6 sm:left-6 sm:max-w-[calc(100vw-3rem)] lg:left-10"
+              className="fixed inset-x-3 bottom-4 z-[100] max-h-[72svh] overflow-hidden rounded-lg border border-border bg-obsidian/95 backdrop-blur-md sm:inset-x-auto sm:bottom-6 sm:left-6 sm:w-[420px] sm:max-w-[calc(100vw-3rem)] lg:left-10"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
@@ -118,7 +122,7 @@ export function TerminalConsole() {
                 </div>
               </div>
 
-              <div ref={scrollRef} className="h-52 overflow-y-auto p-3">
+              <div ref={scrollRef} className="h-44 overflow-y-auto p-3 sm:h-52">
                 {lines.map((line, i) => (
                   <div key={i} className="font-mono-tech text-[11px] leading-5 text-slate-mid">
                     {line}

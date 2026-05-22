@@ -12,29 +12,71 @@ const projects = [
     title: "SNOWLINK",
     subtitle: "AI Agent | Snowflake Sync | LLM Schema Extraction",
     challenge: "Eliminating manual documentation drift between Snowflake metadata and Jira/Confluence.",
-    solution: "Engineered a Python agent using LLMs to autonomously extract schemas and generate dbt models and ER diagrams.",
-    outcome: "Automated documentation accuracy across enterprise environments, saving hundreds of engineering hours.",
+    solution: "Built a Python-based AI agent that synchronizes Jira and Confluence with Snowflake metadata.",
+    outcome: "Eliminated manual documentation workflows by extracting schemas, generating dbt models, and producing ER diagrams with production-grade reliability.",
+    details: "Includes incremental updates, error handling, schema extraction, dbt model generation, and automated ER diagram production for documentation-heavy data teams.",
+    href: "https://github.com/lisan-5/Snowlink",
     stack: ["PYTHON", "LLM", "SNOWFLAKE", "DBT", "JIRA"],
-    metric: "100s hrs saved",
+    metric: "AI docs sync",
   },
   {
     id: "02",
-    title: "SPOTTER ATLAS",
-    subtitle: "AI Logistics & Real-time Routing",
-    challenge: "Managing complex freight routing with strict 100% Hours of Service (HOS) compliance.",
-    solution: "Developed a real-time routing platform integrating ML-assisted heuristics for dynamic optimization.",
-    outcome: "Reduced manual planning time by ~60% and cut route calculation time by ~50%.",
-    stack: ["NEXT.JS", "FASTAPI", "MONGODB", "ML"],
-    metric: "60% faster",
+    title: "APPLYMATE",
+    subtitle: "AI Scholarship Workspace | Dashboards | Application Insights",
+    challenge: "Helping students manage scholarship deadlines, application progress, and scattered requirements in one workspace.",
+    solution: "Built a full-stack AI-powered workspace with structured dashboards and AI-assisted scholarship parsing.",
+    outcome: "Improved application clarity, reduced missed deadlines, and generated useful insights for scholarship planning.",
+    details: "Organizes applications, deadlines, status, requirements, and AI-generated insights into one focused workflow for students applying to multiple programs.",
+    href: "https://applymate-new.vercel.app/",
+    stack: ["REACT", "TYPESCRIPT", "AI", "DASHBOARDS"],
+    metric: "AI workspace",
   },
   {
     id: "03",
+    title: "SPOTTER ATLAS",
+    subtitle: "AI Logistics & Real-time Routing",
+    challenge: "Planning freight routes while meeting 11h/14h/30m Hours of Service constraints across live trip workflows.",
+    solution: "Developed synchronized backend modules for maps, logs, trip state, itinerary generation, and compliance tracking.",
+    outcome: "Reduced route planning time by ~50% and manual dispatch workload by ~60% while improving operational safety.",
+    details: "Supports live route visualization, HOS-compliant scheduling, itinerary generation, compliance snapshots, and operational planning workflows.",
+    href: "https://eld-trip-planner-drab.vercel.app/",
+    stack: ["REACT", "LARAVEL", "ROUTING", "MAPS"],
+    metric: "60% less work",
+  },
+  {
+    id: "04",
+    title: "LINGO ABYSSINIA",
+    subtitle: "Language Learning | Gamified Lessons | Mobile-first UX",
+    challenge: "Making Amharic, Afan Oromoo, and Tigrinya learning accessible through short daily sessions.",
+    solution: "Developed modular lessons with XP tracking, progress analytics, and a gamified learning flow.",
+    outcome: "Created a lightweight mobile-first platform designed for scalable lesson expansion and daily 5-minute learning.",
+    details: "Built around short lessons, XP progression, structured content delivery, and a mobile-first interface for consistent language practice.",
+    href: "https://lingoeth.netlify.app/",
+    stack: ["REACT", "TYPESCRIPT", "UX", "ANALYTICS"],
+    metric: "3 languages",
+  },
+  {
+    id: "05",
+    title: "STORY AI",
+    subtitle: "Travel Media | AI Albums | Hospitality Workflows",
+    challenge: "Turning raw guest photos and videos into structured, branded, shareable travel narratives.",
+    solution: "Designed an AI-powered content pipeline for media ingestion, tagging, auto-chapter generation, and story assembly.",
+    outcome: "Enabled hospitality-focused workflows that transform scattered media into cohesive guest memory outputs.",
+    details: "Combines media ingestion, AI tagging, chapter generation, branded album output, and shareable story experiences for hospitality teams.",
+    href: "https://story-ai-new.vercel.app/",
+    stack: ["AI", "MEDIA", "PIPELINES", "STORYTELLING"],
+    metric: "AI albums",
+  },
+  {
+    id: "06",
     title: "TENINETE",
-    subtitle: "National Health Platform | High-Availability System",
-    challenge: "Scaling a national medical records system for high-traffic environments.",
-    solution: "Re-architected database schemas and CI/CD workflows using React and Laravel.",
-    outcome: "Achieved a 50% reduction in data access latency and maintained 99.9% uptime.",
-    stack: ["REACT", "LARAVEL", "POSTGRESQL", "DOCKER"],
+    subtitle: "Healthcare Platform | React | Laravel | High Availability",
+    challenge: "Scaling a national healthcare platform for thousands of daily users and high-traffic production workflows.",
+    solution: "Developed core features, optimized frontend-backend integration, and helped re-architect database and CI/CD workflows.",
+    outcome: "Reduced data access latency by ~50% and supported 99.9% uptime across production systems.",
+    details: "Production healthcare platform work focused on React/Laravel delivery, database performance, CI/CD maintainability, and reliable high-traffic user flows.",
+    href: "https://haddisart.com/",
+    stack: ["REACT", "LARAVEL", "CI/CD", "DATABASES"],
     metric: "99.9% uptime",
   },
 ];
@@ -43,12 +85,15 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <motion.div
+    <motion.a
+      href={project.href}
+      target="_blank"
+      rel="noopener noreferrer"
       variants={fadeUp}
-      className="group relative overflow-hidden border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:border-cyber/50 hover:shadow-[0_0_30px_rgba(120,200,220,0.05)]"
+      className="group relative block overflow-hidden border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:z-10 hover:border-cyber/60 hover:bg-card/75 hover:shadow-[0_24px_70px_rgba(120,200,220,0.10)]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -8, scale: 1.025 }}
     >
       {/* Top accent line */}
       <motion.div
@@ -86,14 +131,15 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
           </div>
         </div>
 
-        {/* Stack reveal on hover */}
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: hovered ? 1 : 0, height: hovered ? "auto" : 0 }}
-          transition={{ duration: 0.2, ease: "easeOut" as const }}
+          transition={{ duration: 0.28, ease: "easeOut" as const }}
           className="overflow-hidden"
         >
           <div className="mt-4 border-t border-border pt-4">
+            <div className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">MORE DETAIL</div>
+            <p className="mt-2 text-sm leading-relaxed text-slate-mid">{project.details}</p>
             <div className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">ARCHITECTURE</div>
             <div className="mt-2 flex flex-wrap gap-2">
               {project.stack.map((tech) => (
@@ -102,10 +148,13 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
                 </span>
               ))}
             </div>
+            <div className="mt-4 inline-flex border border-cyber/50 px-3 py-2 font-mono-tech text-[10px] tracking-[0.16em] text-cyber transition-colors group-hover:bg-cyber group-hover:text-background">
+              OPEN PROJECT ↗
+            </div>
           </div>
         </motion.div>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
@@ -126,7 +175,7 @@ export function ProjectsSection() {
           LOGS<span className="text-cyber">.</span>
         </motion.h2>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

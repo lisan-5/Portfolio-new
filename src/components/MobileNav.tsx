@@ -5,9 +5,10 @@ const navItems = [
   { num: "01", label: "INDEX", target: "hero" },
   { num: "02", label: "ABOUT", target: "about" },
   { num: "03", label: "STACK", target: "skills" },
-  { num: "04", label: "LOGS", target: "projects" },
+  { num: "04", label: "PROJECTS", target: "projects" },
   { num: "05", label: "EXPERIENCE", target: "experience" },
-  { num: "06", label: "CONTACT", target: "contact" },
+  { num: "06", label: "EDUCATION", target: "education" },
+  { num: "07", label: "CONTACT", target: "contact" },
 ];
 
 export function MobileNav() {
@@ -40,7 +41,7 @@ export function MobileNav() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background/90"
           >
-            <nav className="flex flex-col gap-6">
+            <nav className="flex max-h-[80svh] flex-col gap-5 overflow-y-auto px-6 py-4 text-center sm:gap-6">
               {navItems.map((item, i) => (
                 <motion.button
                   key={item.target}
