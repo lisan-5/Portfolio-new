@@ -9,6 +9,30 @@ const fadeUp = {
 const projects = [
   {
     id: "01",
+    title: "ZSIGNAL",
+    subtitle: "Independent News Platform | Live Briefings | Editorial UX",
+    challenge: "Creating a premium news experience that feels trustworthy, focused, and fast in an era of noisy feeds.",
+    solution: "Built a responsive editorial platform with live-style ticker, category navigation, featured investigations, and newsletter capture.",
+    outcome: "Delivers a polished global-news homepage with opinion, data spotlight, and daily briefing flows ready for API-backed headlines.",
+    details: "Includes breaking-news ticker, section filters, featured story layouts, perspective cards, data modules, newsletter CTA, and GNews API integration guidance.",
+    href: "https://zsignal.netlify.app/",
+    stack: ["REACT", "TYPESCRIPT", "NEWS UX", "API"],
+    metric: "Live edition",
+  },
+  {
+    id: "02",
+    title: "SONIQUE",
+    subtitle: "Mood-to-Music Generator | Playlist UX | Creative Search",
+    challenge: "Turning vague moods, memories, scenes, and aesthetics into music discovery that feels immediate and expressive.",
+    solution: "Built an interactive mood prompt experience with example vibes, famous-song seeds, poster browsing, and curated atmospheric track outputs.",
+    outcome: "Creates a playful playlist discovery flow where users describe a feeling and receive original-feeling music recommendations.",
+    details: "Supports mood prompts, example chips, famous vibe seeds, cover interactions, curated fictional tracks, and a polished music-first landing experience.",
+    href: "https://soniquemusic.netlify.app/",
+    stack: ["REACT", "NETLIFY", "MUSIC UX", "PROMPTS"],
+    metric: "Mood music",
+  },
+  {
+    id: "03",
     title: "SNOWLINK",
     subtitle: "AI Agent | Snowflake Sync | LLM Schema Extraction",
     challenge: "Eliminating manual documentation drift between Snowflake metadata and Jira/Confluence.",
@@ -20,7 +44,19 @@ const projects = [
     metric: "AI docs sync",
   },
   {
-    id: "02",
+    id: "04",
+    title: "SHEMACH SHOP",
+    subtitle: "E-commerce | Next.js | Checkout UX",
+    challenge: "Building a scalable commerce storefront with product discovery, cart flows, and secure checkout foundations.",
+    solution: "Developed a Next.js commerce system focused on performance, reusable UI, typed data, and a clean shopping journey.",
+    outcome: "Created a production-ready store experience optimized for speed, scalability, and real-world usability.",
+    details: "Features storefront architecture, product browsing, cart state, reusable components, responsive layout, and checkout-oriented user flows.",
+    href: "https://shemachshop.vercel.app/",
+    stack: ["NEXT.JS", "TYPESCRIPT", "COMMERCE", "UX"],
+    metric: "Storefront",
+  },
+  {
+    id: "05",
     title: "APPLYMATE",
     subtitle: "AI Scholarship Workspace | Dashboards | Application Insights",
     challenge: "Helping students manage scholarship deadlines, application progress, and scattered requirements in one workspace.",
@@ -32,7 +68,7 @@ const projects = [
     metric: "AI workspace",
   },
   {
-    id: "03",
+    id: "06",
     title: "SPOTTER ATLAS",
     subtitle: "AI Logistics & Real-time Routing",
     challenge: "Planning freight routes while meeting 11h/14h/30m Hours of Service constraints across live trip workflows.",
@@ -44,7 +80,7 @@ const projects = [
     metric: "60% less work",
   },
   {
-    id: "04",
+    id: "07",
     title: "LINGO ABYSSINIA",
     subtitle: "Language Learning | Gamified Lessons | Mobile-first UX",
     challenge: "Making Amharic, Afan Oromoo, and Tigrinya learning accessible through short daily sessions.",
@@ -56,7 +92,31 @@ const projects = [
     metric: "3 languages",
   },
   {
-    id: "05",
+    id: "08",
+    title: "LEARNABLEE",
+    subtitle: "Learning Platform | Auth Flow | Student Workspace",
+    challenge: "Making course access and learning workflows feel simple from the first login.",
+    solution: "Built a clean learning-platform entry experience with authentication-first navigation and modern product UX.",
+    outcome: "Provides a focused foundation for learners to access content, manage sessions, and move quickly into study workflows.",
+    details: "Covers login-first routing, responsive interface patterns, account entry points, and a scalable product surface for education features.",
+    href: "https://learnablee.vercel.app/login",
+    stack: ["REACT", "VERCEL", "AUTH", "EDTECH"],
+    metric: "Learning UX",
+  },
+  {
+    id: "09",
+    title: "YEDERA MART",
+    subtitle: "Local Business Website | Ethiopian Market | Location UX",
+    challenge: "Helping customers discover authentic Ethiopian groceries, coffee, cultural goods, hours, and location details quickly.",
+    solution: "Built a warm storefront website with product sections, gallery storytelling, coffee ceremony highlights, and visit-focused CTAs.",
+    outcome: "Gives the store a polished online presence that turns product discovery into calls, directions, and in-person visits.",
+    details: "Includes product category cards, store gallery, hours, location details, phone CTA, Yelp link, and mobile-friendly navigation.",
+    href: "https://yedera.netlify.app/",
+    stack: ["REACT", "NETLIFY", "LOCAL SEO", "UX"],
+    metric: "Store site",
+  },
+  {
+    id: "10",
     title: "STORY AI",
     subtitle: "Travel Media | AI Albums | Hospitality Workflows",
     challenge: "Turning raw guest photos and videos into structured, branded, shareable travel narratives.",
@@ -68,7 +128,7 @@ const projects = [
     metric: "AI albums",
   },
   {
-    id: "06",
+    id: "11",
     title: "TENINETE",
     subtitle: "Healthcare Platform | React | Laravel | High Availability",
     challenge: "Scaling a national healthcare platform for thousands of daily users and high-traffic production workflows.",
@@ -81,15 +141,20 @@ const projects = [
   },
 ];
 
-function ProjectCard({ project }: { project: typeof projects[0] }) {
+const INITIAL_PROJECT_COUNT = 6;
+
+function ProjectCard({ project, revealMarker = false }: { project: typeof projects[0]; revealMarker?: boolean }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.a
+      id={revealMarker ? "project-more-start" : undefined}
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      variants={fadeUp}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" as const }}
       className="group relative block overflow-hidden border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:z-10 hover:border-cyber/60 hover:bg-card/75 hover:shadow-[0_24px_70px_rgba(120,200,220,0.10)]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -148,8 +213,12 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
                 </span>
               ))}
             </div>
-            <div className="mt-4 inline-flex border border-cyber/50 px-3 py-2 font-mono-tech text-[10px] tracking-[0.16em] text-cyber transition-colors group-hover:bg-cyber group-hover:text-background">
-              OPEN PROJECT ↗
+            <div className="group/cta relative mt-4 inline-flex overflow-hidden rounded-xl border border-cyan-700/70 bg-gradient-to-r from-cyan-700 via-cyan-600 to-sky-600 px-4 py-2.5 font-mono-tech text-[10px] font-black tracking-[0.16em] text-white shadow-[0_12px_32px_rgba(14,116,144,0.18)] transition-all duration-300 hover:border-cyan-500 hover:shadow-[0_16px_40px_rgba(14,116,144,0.24)] dark:border-cyan-100/45 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:text-slate-950">
+              <span className="pointer-events-none absolute inset-x-2 top-0 h-px bg-white/55 dark:bg-white/80" />
+              <span className="relative z-10 flex items-center gap-2">
+                <span className="transition-transform duration-300 group-hover/cta:translate-x-0.5">{"\u2192"}</span>
+                OPEN PROJECT
+              </span>
             </div>
           </div>
         </motion.div>
@@ -159,6 +228,23 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 }
 
 export function ProjectsSection() {
+  const [visibleProjectCount, setVisibleProjectCount] = useState(INITIAL_PROJECT_COUNT);
+  const visibleProjects = projects.slice(0, visibleProjectCount);
+  const hasMoreProjects = visibleProjectCount < projects.length;
+  const hiddenProjectCount = Math.max(projects.length - visibleProjectCount, 0);
+
+  const handleProjectToggle = () => {
+    if (hasMoreProjects) {
+      setVisibleProjectCount(projects.length);
+      window.setTimeout(() => {
+        document.getElementById("project-more-start")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+      return;
+    }
+
+    setVisibleProjectCount(INITIAL_PROJECT_COUNT);
+  };
+
   return (
     <section id="projects" className="px-4 py-20 sm:px-6 sm:py-24 lg:px-16 lg:py-32">
       <motion.div
@@ -176,11 +262,32 @@ export function ProjectsSection() {
         </motion.h2>
 
         <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {visibleProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} revealMarker={index === INITIAL_PROJECT_COUNT} />
           ))}
         </div>
+
+        {projects.length > INITIAL_PROJECT_COUNT && (
+          <motion.div variants={fadeUp} className="mt-10 flex justify-center">
+            <motion.button
+              type="button"
+              onClick={handleProjectToggle}
+              className="group relative w-full overflow-hidden rounded-xl border border-cyan-700/70 bg-gradient-to-r from-cyan-700 via-cyan-600 to-sky-600 px-6 py-4 font-mono-tech text-xs font-black tracking-[0.18em] text-white shadow-[0_14px_40px_rgba(14,116,144,0.22)] transition-all duration-300 hover:border-cyan-500 hover:shadow-[0_18px_48px_rgba(14,116,144,0.28)] focus:outline-none focus:ring-4 focus:ring-cyan-300/35 dark:border-cyan-100/45 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:text-slate-950 dark:shadow-[0_14px_40px_rgba(125,211,252,0.14)] sm:w-auto sm:px-9"
+              whileHover={{ y: -3, scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/55 dark:bg-white/80" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5">{"\u2192"}</span>
+                {hasMoreProjects ? "SHOW MORE" : "SHOW LESS"}
+                {hasMoreProjects && <span className="rounded-full border border-current/30 px-2 py-0.5 text-[10px]">+{hiddenProjectCount}</span>}
+              </span>
+            </motion.button>
+          </motion.div>
+        )}
       </motion.div>
     </section>
   );
 }
+
+

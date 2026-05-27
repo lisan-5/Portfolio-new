@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { num: "01", label: "INDEX", target: "hero" },
   { num: "02", label: "ABOUT", target: "about" },
-  { num: "03", label: "STACK", target: "skills" },
-  { num: "04", label: "PROJECTS", target: "projects" },
-  { num: "05", label: "EXPERIENCE", target: "experience" },
+  { num: "03", label: "EXPERIENCE", target: "experience" },
+  { num: "04", label: "STACK", target: "skills" },
+  { num: "05", label: "PROJECTS", target: "projects" },
   { num: "06", label: "EDUCATION", target: "education" },
   { num: "07", label: "CONTACT", target: "contact" },
 ];
@@ -17,7 +17,7 @@ export function MobileNav() {
   const scrollTo = (target: string) => {
     setOpen(false);
     setTimeout(() => {
-      document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 200);
   };
 

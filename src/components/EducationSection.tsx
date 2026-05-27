@@ -41,7 +41,7 @@ export function EducationSection() {
             <div className="font-mono-tech text-[10px] tracking-[0.2em] text-cyber">DEGREE</div>
             <h3 className="mt-2 text-lg font-bold text-foreground">BSc. in Computer Science</h3>
             <p className="mt-1 text-sm text-slate-mid">Addis Ababa University</p>
-            <div className="mt-3 font-mono-tech text-sm text-muted-foreground">09/2022 - 06/2026 · Addis Ababa, Ethiopia</div>
+            <div className="mt-3 font-mono-tech text-sm text-muted-foreground">Addis Ababa, Ethiopia</div>
             <p className="mt-4 text-sm leading-relaxed text-slate-mid">
               Built a strong foundation in algorithms, systems, databases, networking, and end-to-end software design through hands-on coursework and engineering projects.
             </p>

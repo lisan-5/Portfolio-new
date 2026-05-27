@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown, Code2, Github, Linkedin, Mail, Phone, Send, Twitter } from "lucide-react";
+import { ChevronDown, Code2, Download, Github, Linkedin, Mail, Phone, Send, Twitter } from "lucide-react";
 
 const transition = { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const };
 const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
@@ -89,21 +89,29 @@ export function HeroSection() {
           <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-start gap-4">
             <motion.button
               onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
-              className="w-full border border-cyan-700 bg-cyan-700 px-5 py-3.5 font-mono-tech text-xs tracking-[0.15em] text-white shadow-[0_0_32px_rgba(14,116,144,0.16)] transition-all duration-200 hover:bg-transparent hover:text-cyan-700 dark:border-cyan-100 dark:bg-cyan-50 dark:text-background dark:shadow-[0_0_32px_rgba(125,211,252,0.16)] dark:hover:bg-transparent dark:hover:text-cyan-100 sm:w-auto sm:px-8"
-              whileHover={{ y: -2 }}
+              className="group relative w-full overflow-hidden rounded-xl border border-cyan-700/70 bg-gradient-to-r from-cyan-700 via-cyan-600 to-sky-600 px-6 py-4 font-mono-tech text-xs font-black tracking-[0.18em] text-white shadow-[0_14px_40px_rgba(14,116,144,0.22)] transition-all duration-300 hover:border-cyan-500 hover:shadow-[0_18px_48px_rgba(14,116,144,0.28)] focus:outline-none focus:ring-4 focus:ring-cyan-300/35 dark:border-cyan-100/45 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:text-slate-950 dark:shadow-[0_14px_40px_rgba(125,211,252,0.14)] sm:w-auto sm:px-9"
+              whileHover={{ y: -3, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
             >
-              → VIEW PROJECTS
+              <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/55 dark:bg-white/80" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5">{"\u2192"}</span>
+                VIEW PROJECTS
+              </span>
             </motion.button>
             <motion.a
               href="https://drive.google.com/file/d/1YuVKDNcG2NE4Xr_lJsZkHIBEF9SBDV41/view?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full border border-cyan-700/30 bg-cyan-700/5 px-5 py-3.5 font-mono-tech text-xs tracking-[0.15em] text-cyan-800 transition-all duration-200 hover:border-cyan-700 hover:bg-cyan-700/10 hover:text-cyan-950 dark:border-cyan-200/25 dark:bg-cyan-300/5 dark:text-cyan-100/75 dark:hover:border-cyan-200 dark:hover:bg-cyan-200/10 dark:hover:text-cyan-50 sm:w-auto sm:px-8"
-              whileHover={{ y: -2 }}
+              className="group relative w-full overflow-hidden rounded-xl border border-cyan-700/45 bg-cyan-50 px-6 py-4 font-mono-tech text-xs font-black tracking-[0.18em] text-cyan-950 shadow-[0_14px_40px_rgba(14,116,144,0.18)] ring-1 ring-cyan-900/5 transition-all duration-300 hover:border-cyan-600/70 hover:bg-white hover:shadow-[0_18px_48px_rgba(14,116,144,0.22)] focus:outline-none focus:ring-4 focus:ring-cyan-300/35 dark:border-cyan-100/55 dark:bg-cyan-50 dark:text-slate-950 dark:shadow-[0_14px_40px_rgba(125,211,252,0.14)] dark:hover:bg-white sm:w-auto sm:px-9"
+              whileHover={{ y: -3, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
             >
-              → DOWNLOAD RESUME
+              <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/80" />
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <Download className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
+                {"\u2192"} DOWNLOAD RESUME
+              </span>
             </motion.a>
           </motion.div>
 
@@ -142,3 +150,7 @@ export function HeroSection() {
     </section>
   );
 }
+
+
+
+
