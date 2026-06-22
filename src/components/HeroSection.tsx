@@ -32,16 +32,27 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden px-4 py-20 sm:px-6 sm:py-24 lg:px-16">
+    <section
+      id="hero"
+      className="relative flex min-h-[100svh] items-center overflow-hidden px-4 py-20 sm:px-6 sm:py-24 lg:px-16"
+    >
       <motion.div
         className="pointer-events-none absolute left-1/2 top-20 h-72 w-72 -translate-x-1/2 rounded-full bg-cyan-300/10 blur-3xl"
         animate={{ scale: [1, 1.18, 1], opacity: [0.45, 0.75, 0.45] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" as const }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut" as const,
+        }}
       />
       <motion.div
         className="pointer-events-none absolute -right-24 bottom-24 h-80 w-80 rounded-full bg-blue-400/10 blur-3xl"
         animate={{ x: [0, -24, 0], y: [0, 18, 0], opacity: [0.35, 0.65, 0.35] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" as const }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut" as const,
+        }}
       />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(125,211,252,0.10),transparent_32%),radial-gradient(circle_at_70%_70%,rgba(59,130,246,0.08),transparent_36%)]" />
       <motion.div
@@ -62,7 +73,12 @@ export function HeroSection() {
             variants={fadeUp}
             className="mt-3 font-mono-tech text-sm tracking-[0.14em] text-foreground sm:text-base lg:text-lg"
           >
-            I&apos;M <span className={`text-3xl font-bold sm:text-4xl ${isLightTheme ? "text-black" : "text-white"}`}>LISANEGEBRIEL ABAY</span>
+            I&apos;M{" "}
+            <span
+              className={`text-3xl font-bold sm:text-4xl ${isLightTheme ? "text-black" : "text-white"}`}
+            >
+              LISANEGEBRIEL ABAY
+            </span>
           </motion.p>
 
           {/* Headline */}
@@ -70,9 +86,14 @@ export function HeroSection() {
             variants={fadeUp}
             className="mt-6 max-w-3xl text-[clamp(1.9rem,7vw,4rem)] font-bold leading-[1.04] tracking-tight sm:text-[clamp(2.2rem,6vw,4rem)]"
           >
-            <span className="bg-gradient-to-br from-slate-950 via-cyan-800 to-cyan-600 bg-clip-text text-transparent dark:from-white dark:via-sky-100 dark:to-cyan-300">AI ENGINEER</span>{" "}
+            <span className="bg-gradient-to-br from-slate-950 via-cyan-800 to-cyan-600 bg-clip-text text-transparent dark:from-white dark:via-sky-100 dark:to-cyan-300">
+              FULL-STACK DEVELOPER
+            </span>{" "}
             <span className="text-foreground/85">&</span>{" "}
-            <span className="bg-gradient-to-br from-cyan-700 via-blue-700 to-slate-950 bg-clip-text text-transparent dark:from-cyan-100 dark:via-blue-200 dark:to-white">FULL-STACK DEVELOPER</span><span className="text-cyber">.</span>
+            <span className="bg-gradient-to-br from-cyan-700 via-blue-700 to-slate-950 bg-clip-text text-transparent dark:from-cyan-100 dark:via-blue-200 dark:to-white">
+              AI ENGINEER
+            </span>
+            <span className="text-cyber">.</span>
           </motion.h1>
 
           {/* Subheadline */}
@@ -80,22 +101,33 @@ export function HeroSection() {
             variants={fadeUp}
             className="mt-6 max-w-2xl font-mono-tech text-sm leading-relaxed text-slate-mid dark:text-cyan-50/70 sm:text-[15px]"
           >
-            Software Engineer | AI & Full-Stack Developer focused on scalable APIs,
+            Software Engineer | Full-Stack & AI Developer focused on scalable
+           Systems,
             <br />
-            LLM applications, intelligent automation, and high-performance web platforms.
+            LLM applications, intelligent automation, and high-performance
+            platforms
           </motion.p>
 
           {/* CTAs */}
-          <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-start gap-4">
+          <motion.div
+            variants={fadeUp}
+            className="mt-10 flex flex-wrap justify-start gap-4"
+          >
             <motion.button
-              onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() =>
+                document
+                  .getElementById("projects")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
               className="group relative w-full overflow-hidden rounded-xl border border-cyan-700/70 bg-gradient-to-r from-cyan-700 via-cyan-600 to-sky-600 px-6 py-4 font-mono-tech text-xs font-black tracking-[0.18em] text-white shadow-[0_14px_40px_rgba(14,116,144,0.22)] transition-all duration-300 hover:border-cyan-500 hover:shadow-[0_18px_48px_rgba(14,116,144,0.28)] focus:outline-none focus:ring-4 focus:ring-cyan-300/35 dark:border-cyan-100/45 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:text-slate-950 dark:shadow-[0_14px_40px_rgba(125,211,252,0.14)] sm:w-auto sm:px-9"
               whileHover={{ y: -3, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
             >
               <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/55 dark:bg-white/80" />
               <span className="relative z-10 flex items-center justify-center gap-2">
-                <span className="transition-transform duration-300 group-hover:translate-x-0.5">{"\u2192"}</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  {"\u2192"}
+                </span>
                 VIEW PROJECTS
               </span>
             </motion.button>
@@ -116,7 +148,10 @@ export function HeroSection() {
           </motion.div>
 
           {/* Social links */}
-          <motion.div variants={fadeUp} className="mt-8 grid max-w-4xl grid-cols-4 gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-7">
+          <motion.div
+            variants={fadeUp}
+            className="mt-8 grid max-w-4xl grid-cols-4 gap-2 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 lg:grid-cols-7"
+          >
             {heroSocials.map((link) => (
               <motion.a
                 key={link.label}
@@ -129,13 +164,16 @@ export function HeroSection() {
               >
                 <link.icon className="h-4 w-4 shrink-0" />
                 <span className="min-w-0 text-center sm:text-left">
-                  <span className="hidden font-mono-tech text-[11px] font-bold tracking-[0.14em] text-foreground group-hover:text-inherit sm:block">{link.label}</span>
-                  <span className="hidden font-mono-tech text-[9px] tracking-[0.16em] text-muted-foreground sm:block">{link.hint}</span>
+                  <span className="hidden font-mono-tech text-[11px] font-bold tracking-[0.14em] text-foreground group-hover:text-inherit sm:block">
+                    {link.label}
+                  </span>
+                  <span className="hidden font-mono-tech text-[9px] tracking-[0.16em] text-muted-foreground sm:block">
+                    {link.hint}
+                  </span>
                 </span>
               </motion.a>
             ))}
           </motion.div>
-
         </div>
       </motion.div>
 
@@ -143,7 +181,11 @@ export function HeroSection() {
       <motion.div
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
         animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" as const }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut" as const,
+        }}
       >
         <ChevronDown className="h-5 w-5 text-muted-foreground" />
       </motion.div>

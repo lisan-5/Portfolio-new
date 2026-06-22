@@ -7,7 +7,7 @@ const fadeUp = {
 
 const experiences = [
   {
-    role: "AI Backend Engineer",
+    role: "Software Engineer",
     company: "Theseus Group",
     href: "https://adaptwith.us/",
     period: "11/2025 - Present",
