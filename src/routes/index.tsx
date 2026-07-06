@@ -7,6 +7,7 @@ import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectsSection";
 import { ExperienceSection } from "../components/ExperienceSection";
 import { EducationSection } from "../components/EducationSection";
+import { TestimonialsSection } from "../components/TestimonialsSection";
 import { ContactSection } from "../components/ContactSection";
 import { FooterSection } from "../components/FooterSection";
 import { TerminalConsole } from "../components/TerminalConsole";
@@ -44,6 +45,7 @@ function Index() {
         <SkillsSection />
         <ProjectsSection />
         <EducationSection />
+        <TestimonialsSection />
         <ContactSection />
         <FooterSection />
       </main>
