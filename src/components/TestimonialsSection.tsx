@@ -66,26 +66,28 @@ const deckPose = (position: number, direction: number, reduceMotion: boolean | n
 
   if (reduceMotion) {
     return {
-      opacity: depth === 0 ? 1 : 0.45,
-      x: depth * 16,
-      y: depth * 18,
+      opacity: depth === 0 ? 1 : 0.62 - depth * 0.1,
+      x: depth * 22,
+      y: depth * 16,
       z: 0,
-      scale: 1 - depth * 0.055,
+      scale: 1 - depth * 0.025,
+      rotateX: 0,
       rotateY: 0,
-      rotateZ: depth * 1.4,
+      rotateZ: depth * 1.8,
       filter: "blur(0px)",
     };
   }
 
   return {
-    opacity: [1, 0.46, 0.24][depth],
-    x: depth * 30 * side,
-    y: depth * 28,
-    z: 80 - depth * 80,
-    scale: 1 - depth * 0.07,
-    rotateY: depth * -9 * side,
-    rotateZ: depth * 2.5 * side,
-    filter: `blur(${depth * 0.35}px)`,
+    opacity: [1, 0.68, 0.44][depth],
+    x: [0, 44, 76][depth] * side,
+    y: [0, 24, 46][depth],
+    z: [70, -35, -120][depth],
+    scale: [1, 0.98, 0.95][depth],
+    rotateX: [0, 2.5, 5][depth],
+    rotateY: [0, -12, -19][depth] * side,
+    rotateZ: [0, 2.8, 5][depth] * side,
+    filter: `blur(${depth * 0.15}px)`,
   };
 };
 
