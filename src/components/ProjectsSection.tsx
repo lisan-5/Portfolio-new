@@ -9,6 +9,18 @@ const fadeUp = {
 const projects = [
   {
     id: "01",
+    title: "NEXUS",
+    subtitle: "Real-time Data Infrastructure | Event Pipelines | Reliable Delivery",
+    challenge: "Giving engineering teams one reliable layer to capture, transform, route, and deliver event data across a growing stack.",
+    solution: "Built a polished real-time data infrastructure platform that presents event capture, transformation, routing, and delivery as a clear operational workflow.",
+    outcome: "Creates a focused product experience for teams building dependable event pipelines across their services and destinations.",
+    details: "A Next.js and TypeScript platform interface for real-time event-data infrastructure, designed around data movement, transformations, routing controls, and reliable delivery workflows.",
+    href: "https://nexussx.netlify.app/",
+    stack: ["NEXT.JS", "TYPESCRIPT", "EVENT DATA", "INFRASTRUCTURE"],
+    metric: "Real-time data",
+  },
+  {
+    id: "02",
     title: "ZSIGNAL",
     subtitle: "Independent News Platform | Live Briefings | Editorial UX",
     challenge: "Creating a premium news experience that feels trustworthy, focused, and fast in an era of noisy feeds.",
@@ -20,7 +32,7 @@ const projects = [
     metric: "Live edition",
   },
   {
-    id: "02",
+    id: "03",
     title: "SONIQUE",
     subtitle: "Mood-to-Music Generator | Playlist UX | Creative Search",
     challenge: "Turning vague moods, memories, scenes, and aesthetics into music discovery that feels immediate and expressive.",
@@ -32,7 +44,7 @@ const projects = [
     metric: "Mood music",
   },
   {
-    id: "03",
+    id: "04",
     title: "SNOWLINK",
     subtitle: "AI Agent | Snowflake Sync | LLM Schema Extraction",
     challenge: "Eliminating manual documentation drift between Snowflake metadata and Jira/Confluence.",
@@ -44,7 +56,7 @@ const projects = [
     metric: "AI docs sync",
   },
   {
-    id: "04",
+    id: "05",
     title: "SHEMACH SHOP",
     subtitle: "E-commerce | Next.js | Checkout UX",
     challenge: "Building a scalable commerce storefront with product discovery, cart flows, and secure checkout foundations.",
@@ -56,7 +68,7 @@ const projects = [
     metric: "Storefront",
   },
   {
-    id: "05",
+    id: "06",
     title: "APPLYMATE",
     subtitle: "AI Scholarship Workspace | Dashboards | Application Insights",
     challenge: "Helping students manage scholarship deadlines, application progress, and scattered requirements in one workspace.",
@@ -68,7 +80,7 @@ const projects = [
     metric: "AI workspace",
   },
   {
-    id: "06",
+    id: "07",
     title: "SPOTTER ATLAS",
     subtitle: "AI Logistics & Real-time Routing",
     challenge: "Planning freight routes while meeting 11h/14h/30m Hours of Service constraints across live trip workflows.",
@@ -80,7 +92,7 @@ const projects = [
     metric: "60% less work",
   },
   {
-    id: "07",
+    id: "08",
     title: "LINGO ABYSSINIA",
     subtitle: "Language Learning | Gamified Lessons | Mobile-first UX",
     challenge: "Making Amharic, Afan Oromoo, and Tigrinya learning accessible through short daily sessions.",
@@ -92,7 +104,7 @@ const projects = [
     metric: "3 languages",
   },
   {
-    id: "08",
+    id: "09",
     title: "LEARNABLEE",
     subtitle: "Learning Platform | Auth Flow | Student Workspace",
     challenge: "Making course access and learning workflows feel simple from the first login.",
@@ -104,7 +116,7 @@ const projects = [
     metric: "Learning UX",
   },
   {
-    id: "09",
+    id: "10",
     title: "YEDERA MART",
     subtitle: "Local Business Website | Ethiopian Market | Location UX",
     challenge: "Helping customers discover authentic Ethiopian groceries, coffee, cultural goods, hours, and location details quickly.",
@@ -116,7 +128,7 @@ const projects = [
     metric: "Store site",
   },
   {
-    id: "10",
+    id: "11",
     title: "STORY AI",
     subtitle: "Travel Media | AI Albums | Hospitality Workflows",
     challenge: "Turning raw guest photos and videos into structured, branded, shareable travel narratives.",
@@ -128,7 +140,7 @@ const projects = [
     metric: "AI albums",
   },
   {
-    id: "11",
+    id: "12",
     title: "TENINETE",
     subtitle: "Healthcare Platform | React | Laravel | High Availability",
     challenge: "Scaling a national healthcare platform for thousands of daily users and high-traffic production workflows.",
