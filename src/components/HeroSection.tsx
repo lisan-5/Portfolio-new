@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+﻿import { useEffect, useState, type CSSProperties } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, Code2, Download, Github, Linkedin, Mail, Phone, Send, Twitter } from "lucide-react";
 
@@ -10,13 +10,13 @@ const fadeUp = {
 };
 
 const heroSocials = [
-  { label: "GitHub", hint: "Code", href: "https://github.com/lisan-5", external: true, icon: Github, accent: "hover:border-violet-600 hover:bg-violet-600/10 hover:text-violet-700 dark:hover:border-violet-300 dark:hover:bg-violet-300/10 dark:hover:text-violet-100" },
-  { label: "LinkedIn", hint: "Profile", href: "https://linkedin.com/in/lisanegebriel-abay", external: true, icon: Linkedin, accent: "hover:border-sky-600 hover:bg-sky-600/10 hover:text-sky-700 dark:hover:border-sky-300 dark:hover:bg-sky-300/10 dark:hover:text-sky-100" },
-  { label: "Email", hint: "Contact", href: "mailto:lisan5abay@gmail.com", external: false, icon: Mail, accent: "hover:border-emerald-600 hover:bg-emerald-600/10 hover:text-emerald-700 dark:hover:border-emerald-300 dark:hover:bg-emerald-300/10 dark:hover:text-emerald-100" },
-  { label: "Telegram", hint: "Chat", href: "https://t.me/ligator", external: true, icon: Send, accent: "hover:border-cyan-600 hover:bg-cyan-600/10 hover:text-cyan-700 dark:hover:border-cyan-300 dark:hover:bg-cyan-300/10 dark:hover:text-cyan-100" },
-  { label: "LeetCode", hint: "DSA", href: "https://leetcode.com/u/lisanx/", external: true, icon: Code2, accent: "hover:border-amber-600 hover:bg-amber-600/10 hover:text-amber-700 dark:hover:border-amber-300 dark:hover:bg-amber-300/10 dark:hover:text-amber-100" },
-  { label: "X", hint: "Updates", href: "https://x.com/lisanabay", external: true, icon: Twitter, accent: "hover:border-slate-700 hover:bg-slate-700/10 hover:text-slate-900 dark:hover:border-slate-200 dark:hover:bg-slate-200/10 dark:hover:text-white" },
-  { label: "Phone", hint: "Call", href: "tel:+251964011087", external: false, icon: Phone, accent: "hover:border-rose-600 hover:bg-rose-600/10 hover:text-rose-700 dark:hover:border-rose-300 dark:hover:bg-rose-300/10 dark:hover:text-rose-100" },
+  { label: "GitHub", hint: "Code", href: "https://github.com/lisan-5", external: true, icon: Github, accent: "hover:border-violet-600 hover:text-violet-700 dark:hover:border-violet-300 dark:hover:text-violet-100", glow: "rgba(124,58,237,0.5)", glare: "rgba(167,139,250,0.55)" },
+  { label: "LinkedIn", hint: "Profile", href: "https://linkedin.com/in/lisanegebriel-abay", external: true, icon: Linkedin, accent: "hover:border-sky-600 hover:text-sky-700 dark:hover:border-sky-300 dark:hover:text-sky-100", glow: "rgba(2,132,199,0.5)", glare: "rgba(56,189,248,0.55)" },
+  { label: "Email", hint: "Contact", href: "mailto:lisan5abay@gmail.com", external: false, icon: Mail, accent: "hover:border-emerald-600 hover:text-emerald-700 dark:hover:border-emerald-300 dark:hover:text-emerald-100", glow: "rgba(5,150,105,0.5)", glare: "rgba(52,211,153,0.55)" },
+  { label: "Telegram", hint: "Chat", href: "https://t.me/ligator", external: true, icon: Send, accent: "hover:border-cyan-600 hover:text-cyan-700 dark:hover:border-cyan-300 dark:hover:text-cyan-100", glow: "rgba(8,145,178,0.5)", glare: "rgba(34,211,238,0.55)" },
+  { label: "LeetCode", hint: "DSA", href: "https://leetcode.com/u/lisanx/", external: true, icon: Code2, accent: "hover:border-amber-600 hover:text-amber-700 dark:hover:border-amber-300 dark:hover:text-amber-100", glow: "rgba(217,119,6,0.5)", glare: "rgba(251,191,36,0.55)" },
+  { label: "X", hint: "Updates", href: "https://x.com/lisanabay", external: true, icon: Twitter, accent: "hover:border-slate-700 hover:text-slate-900 dark:hover:border-slate-200 dark:hover:text-white", glow: "rgba(71,85,105,0.5)", glare: "rgba(148,163,184,0.55)" },
+  { label: "Phone", hint: "Call", href: "tel:+251964011087", external: false, icon: Phone, accent: "hover:border-rose-600 hover:text-rose-700 dark:hover:border-rose-300 dark:hover:text-rose-100", glow: "rgba(225,29,72,0.5)", glare: "rgba(251,113,133,0.55)" },
 ] as const;
 
 export function HeroSection() {
@@ -158,12 +158,22 @@ export function HeroSection() {
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                className={`group flex items-center justify-center gap-3 border border-border bg-card/40 px-2 py-2 text-left text-muted-foreground backdrop-blur-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(120,200,220,0.08)] sm:justify-start sm:px-3 sm:py-3 ${link.accent}`}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                style={{ "--glow": link.glow, "--glare": link.glare } as CSSProperties}
+                className={`group relative flex items-center justify-center gap-3 overflow-hidden rounded-xl border border-border bg-gradient-to-b from-card/70 to-card/25 px-2 py-2.5 text-left text-muted-foreground shadow-[0_5px_16px_-4px_rgba(2,20,30,0.28),inset_0_1px_0_rgba(255,255,255,0.35)] ring-1 ring-white/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_34px_-8px_var(--glow),inset_0_1px_0_rgba(255,255,255,0.5)] dark:shadow-[0_5px_16px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.10)] dark:hover:shadow-[0_16px_36px_-8px_var(--glow),inset_0_1px_0_rgba(255,255,255,0.16)] sm:justify-start sm:px-3 sm:py-3 ${link.accent}`}
+                whileHover={{ y: -4, scale: 1.035 }}
+                whileTap={{ scale: 0.96 }}
               >
-                <link.icon className="h-4 w-4 shrink-0" />
-                <span className="min-w-0 text-center sm:text-left">
+                {/* top edge highlight for the 3D lip */}
+                <span className="pointer-events-none absolute inset-x-3 top-0 h-px bg-white/50 dark:bg-white/25" />
+                {/* colored glare based on the link's own color */}
+                <span
+                  className="pointer-events-none absolute -inset-8 opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ background: "radial-gradient(90px circle at 28% -10%, var(--glare), transparent 70%)" }}
+                />
+                {/* sweeping sheen */}
+                <span className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full dark:via-white/15" />
+                <link.icon className="relative z-10 h-4 w-4 shrink-0" />
+                <span className="relative z-10 min-w-0 text-center sm:text-left">
                   <span className="hidden font-mono-tech text-[11px] font-bold tracking-[0.14em] text-foreground group-hover:text-inherit sm:block">
                     {link.label}
                   </span>

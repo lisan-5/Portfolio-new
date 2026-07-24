@@ -47,7 +47,7 @@ const COMMANDS: Record<string, string[]> = {
 
 export function TerminalConsole() {
   const [open, setOpen] = useState(false);
-  const [lines, setLines] = useState<string[]>(["lisanegebriel.dev v1.0.0", 'Type "help" for available commands.', ""]);
+  const [lines, setLines] = useState<string[]>(["lisan.dev v2.0.0", 'Type "help" for available commands.', ""]);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -117,7 +117,7 @@ export function TerminalConsole() {
                     <div className="h-3 w-3 rounded-full bg-green-500/80" />
                   </div>
                   <span className="ml-2 font-mono-tech text-[10px] tracking-[0.15em] text-muted-foreground">
-                    terminal - lisanegebriel.dev
+                    terminal - lisan.dev
                   </span>
                 </div>
               </div>
