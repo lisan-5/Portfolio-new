@@ -9,145 +9,210 @@ const fadeUp = {
 const projects = [
   {
     id: "01",
+    title: "ART AUCTION",
+    subtitle: "Premium Art Auction | Marketplace | Artist Platform",
+    challenge:
+      "Giving artists and collectors one trusted place to buy, sell, and auction premium paintings, drawings, and crafts online.",
+    solution:
+      "Built an art auction marketplace where artists sign up to sell their work and collectors browse and bid across painting, drawing, and craft categories, backed by editorial art blogs.",
+    outcome:
+      "Creates a warm, gallery-style commerce experience that turns art discovery into sales, artist sign-ups, and an engaged creative community.",
+    details:
+      "Features a premium arts storefront with artist and artwork search, painting/drawing/craft categories, sell-now onboarding, an art blog, newsletter capture, and full contact details for a Addis Ababa-based art business (info@haddisart.com, +251947839898).",
+    href: "https://haddisart.com/",
+    stack: ["ART AUCTION", "MARKETPLACE", "E-COMMERCE", "UX"],
+    metric: "Marketplace",
+  },
+  {
+    id: "02",
     title: "NEXUS",
-    subtitle: "Real-time Data Infrastructure | Event Pipelines | Reliable Delivery",
-    challenge: "Giving engineering teams one reliable layer to capture, transform, route, and deliver event data across a growing stack.",
-    solution: "Built a polished real-time data infrastructure platform that presents event capture, transformation, routing, and delivery as a clear operational workflow.",
-    outcome: "Creates a focused product experience for teams building dependable event pipelines across their services and destinations.",
-    details: "A Next.js and TypeScript platform interface for real-time event-data infrastructure, designed around data movement, transformations, routing controls, and reliable delivery workflows.",
+    subtitle:
+      "Real-time Data Infrastructure | Event Pipelines | Reliable Delivery",
+    challenge:
+      "Giving engineering teams one reliable layer to capture, transform, route, and deliver event data across a growing stack.",
+    solution:
+      "Built a polished real-time data infrastructure platform that presents event capture, transformation, routing, and delivery as a clear operational workflow.",
+    outcome:
+      "Creates a focused product experience for teams building dependable event pipelines across their services and destinations.",
+    details:
+      "A Next.js and TypeScript platform interface for real-time event-data infrastructure, designed around data movement, transformations, routing controls, and reliable delivery workflows.",
     href: "https://nexussx.netlify.app/",
     stack: ["NEXT.JS", "TYPESCRIPT", "EVENT DATA", "INFRASTRUCTURE"],
     metric: "Real-time data",
   },
   {
-    id: "02",
+    id: "03",
     title: "ZSIGNAL",
     subtitle: "Independent News Platform | Live Briefings | Editorial UX",
-    challenge: "Creating a premium news experience that feels trustworthy, focused, and fast in an era of noisy feeds.",
-    solution: "Built a responsive editorial platform with live-style ticker, category navigation, featured investigations, and newsletter capture.",
-    outcome: "Delivers a polished global-news homepage with opinion, data spotlight, and daily briefing flows ready for API-backed headlines.",
-    details: "Includes breaking-news ticker, section filters, featured story layouts, perspective cards, data modules, newsletter CTA, and GNews API integration guidance.",
+    challenge:
+      "Creating a premium news experience that feels trustworthy, focused, and fast in an era of noisy feeds.",
+    solution:
+      "Built a responsive editorial platform with live-style ticker, category navigation, featured investigations, and newsletter capture.",
+    outcome:
+      "Delivers a polished global-news homepage with opinion, data spotlight, and daily briefing flows ready for API-backed headlines.",
+    details:
+      "Includes breaking-news ticker, section filters, featured story layouts, perspective cards, data modules, newsletter CTA, and GNews API integration guidance.",
     href: "https://zsignal.netlify.app/",
     stack: ["REACT", "TYPESCRIPT", "NEWS UX", "API"],
     metric: "Live edition",
   },
   {
-    id: "03",
+    id: "04",
     title: "SONIQUE",
     subtitle: "Mood-to-Music Generator | Playlist UX | Creative Search",
-    challenge: "Turning vague moods, memories, scenes, and aesthetics into music discovery that feels immediate and expressive.",
-    solution: "Built an interactive mood prompt experience with example vibes, famous-song seeds, poster browsing, and curated atmospheric track outputs.",
-    outcome: "Creates a playful playlist discovery flow where users describe a feeling and receive original-feeling music recommendations.",
-    details: "Supports mood prompts, example chips, famous vibe seeds, cover interactions, curated fictional tracks, and a polished music-first landing experience.",
+    challenge:
+      "Turning vague moods, memories, scenes, and aesthetics into music discovery that feels immediate and expressive.",
+    solution:
+      "Built an interactive mood prompt experience with example vibes, famous-song seeds, poster browsing, and curated atmospheric track outputs.",
+    outcome:
+      "Creates a playful playlist discovery flow where users describe a feeling and receive original-feeling music recommendations.",
+    details:
+      "Supports mood prompts, example chips, famous vibe seeds, cover interactions, curated fictional tracks, and a polished music-first landing experience.",
     href: "https://soniquemusic.netlify.app/",
     stack: ["REACT", "NETLIFY", "MUSIC UX", "PROMPTS"],
     metric: "Mood music",
   },
   {
-    id: "04",
+    id: "05",
     title: "SNOWLINK",
     subtitle: "AI Agent | Snowflake Sync | LLM Schema Extraction",
-    challenge: "Eliminating manual documentation drift between Snowflake metadata and Jira/Confluence.",
-    solution: "Built a Python-based AI agent that synchronizes Jira and Confluence with Snowflake metadata.",
-    outcome: "Eliminated manual documentation workflows by extracting schemas, generating dbt models, and producing ER diagrams with production-grade reliability.",
-    details: "Includes incremental updates, error handling, schema extraction, dbt model generation, and automated ER diagram production for documentation-heavy data teams.",
+    challenge:
+      "Eliminating manual documentation drift between Snowflake metadata and Jira/Confluence.",
+    solution:
+      "Built a Python-based AI agent that synchronizes Jira and Confluence with Snowflake metadata.",
+    outcome:
+      "Eliminated manual documentation workflows by extracting schemas, generating dbt models, and producing ER diagrams with production-grade reliability.",
+    details:
+      "Includes incremental updates, error handling, schema extraction, dbt model generation, and automated ER diagram production for documentation-heavy data teams.",
     href: "https://github.com/lisan-5/Snowlink",
     stack: ["PYTHON", "LLM", "SNOWFLAKE", "DBT", "JIRA"],
     metric: "AI docs sync",
   },
   {
-    id: "05",
+    id: "06",
     title: "SHEMACH SHOP",
     subtitle: "E-commerce | Next.js | Checkout UX",
-    challenge: "Building a scalable commerce storefront with product discovery, cart flows, and secure checkout foundations.",
-    solution: "Developed a Next.js commerce system focused on performance, reusable UI, typed data, and a clean shopping journey.",
-    outcome: "Created a production-ready store experience optimized for speed, scalability, and real-world usability.",
-    details: "Features storefront architecture, product browsing, cart state, reusable components, responsive layout, and checkout-oriented user flows.",
+    challenge:
+      "Building a scalable commerce storefront with product discovery, cart flows, and secure checkout foundations.",
+    solution:
+      "Developed a Next.js commerce system focused on performance, reusable UI, typed data, and a clean shopping journey.",
+    outcome:
+      "Created a production-ready store experience optimized for speed, scalability, and real-world usability.",
+    details:
+      "Features storefront architecture, product browsing, cart state, reusable components, responsive layout, and checkout-oriented user flows.",
     href: "https://shemachshop.vercel.app/",
     stack: ["NEXT.JS", "TYPESCRIPT", "COMMERCE", "UX"],
     metric: "Storefront",
   },
   {
-    id: "06",
+    id: "07",
     title: "APPLYMATE",
     subtitle: "AI Scholarship Workspace | Dashboards | Application Insights",
-    challenge: "Helping students manage scholarship deadlines, application progress, and scattered requirements in one workspace.",
-    solution: "Built a full-stack AI-powered workspace with structured dashboards and AI-assisted scholarship parsing.",
-    outcome: "Improved application clarity, reduced missed deadlines, and generated useful insights for scholarship planning.",
-    details: "Organizes applications, deadlines, status, requirements, and AI-generated insights into one focused workflow for students applying to multiple programs.",
+    challenge:
+      "Helping students manage scholarship deadlines, application progress, and scattered requirements in one workspace.",
+    solution:
+      "Built a full-stack AI-powered workspace with structured dashboards and AI-assisted scholarship parsing.",
+    outcome:
+      "Improved application clarity, reduced missed deadlines, and generated useful insights for scholarship planning.",
+    details:
+      "Organizes applications, deadlines, status, requirements, and AI-generated insights into one focused workflow for students applying to multiple programs.",
     href: "https://applymate-new.vercel.app/",
     stack: ["REACT", "TYPESCRIPT", "AI", "DASHBOARDS"],
     metric: "AI workspace",
   },
   {
-    id: "07",
+    id: "08",
     title: "SPOTTER ATLAS",
     subtitle: "AI Logistics & Real-time Routing",
-    challenge: "Planning freight routes while meeting 11h/14h/30m Hours of Service constraints across live trip workflows.",
-    solution: "Developed synchronized backend modules for maps, logs, trip state, itinerary generation, and compliance tracking.",
-    outcome: "Reduced route planning time by ~50% and manual dispatch workload by ~60% while improving operational safety.",
-    details: "Supports live route visualization, HOS-compliant scheduling, itinerary generation, compliance snapshots, and operational planning workflows.",
+    challenge:
+      "Planning freight routes while meeting 11h/14h/30m Hours of Service constraints across live trip workflows.",
+    solution:
+      "Developed synchronized backend modules for maps, logs, trip state, itinerary generation, and compliance tracking.",
+    outcome:
+      "Reduced route planning time by ~50% and manual dispatch workload by ~60% while improving operational safety.",
+    details:
+      "Supports live route visualization, HOS-compliant scheduling, itinerary generation, compliance snapshots, and operational planning workflows.",
     href: "https://eld-trip-planner-drab.vercel.app/",
     stack: ["REACT", "LARAVEL", "ROUTING", "MAPS"],
     metric: "60% less work",
   },
   {
-    id: "08",
+    id: "09",
     title: "LINGO ABYSSINIA",
     subtitle: "Language Learning | Gamified Lessons | Mobile-first UX",
-    challenge: "Making Amharic, Afan Oromoo, and Tigrinya learning accessible through short daily sessions.",
-    solution: "Developed modular lessons with XP tracking, progress analytics, and a gamified learning flow.",
-    outcome: "Created a lightweight mobile-first platform designed for scalable lesson expansion and daily 5-minute learning.",
-    details: "Built around short lessons, XP progression, structured content delivery, and a mobile-first interface for consistent language practice.",
+    challenge:
+      "Making Amharic, Afan Oromoo, and Tigrinya learning accessible through short daily sessions.",
+    solution:
+      "Developed modular lessons with XP tracking, progress analytics, and a gamified learning flow.",
+    outcome:
+      "Created a lightweight mobile-first platform designed for scalable lesson expansion and daily 5-minute learning.",
+    details:
+      "Built around short lessons, XP progression, structured content delivery, and a mobile-first interface for consistent language practice.",
     href: "https://lingoeth.netlify.app/",
     stack: ["REACT", "TYPESCRIPT", "UX", "ANALYTICS"],
     metric: "3 languages",
   },
   {
-    id: "09",
+    id: "10",
     title: "LEARNABLEE",
     subtitle: "Learning Platform | Auth Flow | Student Workspace",
-    challenge: "Making course access and learning workflows feel simple from the first login.",
-    solution: "Built a clean learning-platform entry experience with authentication-first navigation and modern product UX.",
-    outcome: "Provides a focused foundation for learners to access content, manage sessions, and move quickly into study workflows.",
-    details: "Covers login-first routing, responsive interface patterns, account entry points, and a scalable product surface for education features.",
+    challenge:
+      "Making course access and learning workflows feel simple from the first login.",
+    solution:
+      "Built a clean learning-platform entry experience with authentication-first navigation and modern product UX.",
+    outcome:
+      "Provides a focused foundation for learners to access content, manage sessions, and move quickly into study workflows.",
+    details:
+      "Covers login-first routing, responsive interface patterns, account entry points, and a scalable product surface for education features.",
     href: "https://learnablee.vercel.app/login",
     stack: ["REACT", "VERCEL", "AUTH", "EDTECH"],
     metric: "Learning UX",
   },
   {
-    id: "10",
+    id: "11",
     title: "YEDERA MART",
     subtitle: "Local Business Website | Ethiopian Market | Location UX",
-    challenge: "Helping customers discover authentic Ethiopian groceries, coffee, cultural goods, hours, and location details quickly.",
-    solution: "Built a warm storefront website with product sections, gallery storytelling, coffee ceremony highlights, and visit-focused CTAs.",
-    outcome: "Gives the store a polished online presence that turns product discovery into calls, directions, and in-person visits.",
-    details: "Includes product category cards, store gallery, hours, location details, phone CTA, Yelp link, and mobile-friendly navigation.",
+    challenge:
+      "Helping customers discover authentic Ethiopian groceries, coffee, cultural goods, hours, and location details quickly.",
+    solution:
+      "Built a warm storefront website with product sections, gallery storytelling, coffee ceremony highlights, and visit-focused CTAs.",
+    outcome:
+      "Gives the store a polished online presence that turns product discovery into calls, directions, and in-person visits.",
+    details:
+      "Includes product category cards, store gallery, hours, location details, phone CTA, Yelp link, and mobile-friendly navigation.",
     href: "https://yedera.netlify.app/",
     stack: ["REACT", "NETLIFY", "LOCAL SEO", "UX"],
     metric: "Store site",
   },
   {
-    id: "11",
+    id: "12",
     title: "STORY AI",
     subtitle: "Travel Media | AI Albums | Hospitality Workflows",
-    challenge: "Turning raw guest photos and videos into structured, branded, shareable travel narratives.",
-    solution: "Designed an AI-powered content pipeline for media ingestion, tagging, auto-chapter generation, and story assembly.",
-    outcome: "Enabled hospitality-focused workflows that transform scattered media into cohesive guest memory outputs.",
-    details: "Combines media ingestion, AI tagging, chapter generation, branded album output, and shareable story experiences for hospitality teams.",
+    challenge:
+      "Turning raw guest photos and videos into structured, branded, shareable travel narratives.",
+    solution:
+      "Designed an AI-powered content pipeline for media ingestion, tagging, auto-chapter generation, and story assembly.",
+    outcome:
+      "Enabled hospitality-focused workflows that transform scattered media into cohesive guest memory outputs.",
+    details:
+      "Combines media ingestion, AI tagging, chapter generation, branded album output, and shareable story experiences for hospitality teams.",
     href: "https://story-ai-new.vercel.app/",
     stack: ["AI", "MEDIA", "PIPELINES", "STORYTELLING"],
     metric: "AI albums",
   },
   {
-    id: "12",
+    id: "13",
     title: "TENINETE",
     subtitle: "Healthcare Platform | React | Laravel | High Availability",
-    challenge: "Scaling a national healthcare platform for thousands of daily users and high-traffic production workflows.",
-    solution: "Developed core features, optimized frontend-backend integration, and helped re-architect database and CI/CD workflows.",
-    outcome: "Reduced data access latency by ~50% and supported 99.9% uptime across production systems.",
-    details: "Production healthcare platform work focused on React/Laravel delivery, database performance, CI/CD maintainability, and reliable high-traffic user flows.",
-    href: "https://haddisart.com/",
+    challenge:
+      "Scaling a national healthcare platform for thousands of daily users and high-traffic production workflows.",
+    solution:
+      "Developed core features, optimized frontend-backend integration, and helped re-architect database and CI/CD workflows.",
+    outcome:
+      "Reduced data access latency by ~50% and supported 99.9% uptime across production systems.",
+    details:
+      "Production healthcare platform work focused on React/Laravel delivery, database performance, CI/CD maintainability, and reliable high-traffic user flows.",
+    href: "https://teninete.et/",
     stack: ["REACT", "LARAVEL", "CI/CD", "DATABASES"],
     metric: "99.9% uptime",
   },

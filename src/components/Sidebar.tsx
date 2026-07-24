@@ -66,7 +66,7 @@ export function Sidebar() {
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" as const }}
             style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
           >
-            LISANEGEBRIEL.DEV
+            LISAN
           </motion.div>
 
           {/* Navigation */}
