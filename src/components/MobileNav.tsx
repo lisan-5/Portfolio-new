@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { num: "01", label: "INDEX", target: "hero" },
   { num: "02", label: "ABOUT", target: "about" },
-  { num: "03", label: "EXPERIENCE", target: "experience" },
-  { num: "04", label: "STACK", target: "skills" },
-  { num: "05", label: "PROJECTS", target: "projects" },
+  { num: "03", label: "PROJECTS", target: "projects" },
+  { num: "04", label: "EXPERIENCE", target: "experience" },
+  { num: "05", label: "STACK", target: "skills" },
   { num: "06", label: "EDUCATION", target: "education" },
   { num: "07", label: "CONTACT", target: "contact" },
 ];

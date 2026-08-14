@@ -41,9 +41,9 @@ function Index() {
       <main className="relative z-10 transition-[margin] duration-300">
         <HeroSection />
         <AboutSection />
+        <ProjectsSection />
         <ExperienceSection />
         <SkillsSection />
-        <ProjectsSection />
         <EducationSection />
         <TestimonialsSection />
         <ContactSection />

@@ -9,6 +9,7 @@ const fadeUp = {
 const projects = [
   {
     id: "01",
+    image: "/projects/art-auction.webp",
     title: "ART AUCTION",
     subtitle: "Premium Art Auction | Marketplace | Artist Platform",
     challenge:
@@ -25,6 +26,7 @@ const projects = [
   },
   {
     id: "02",
+    image: "/projects/nexus.webp",
     title: "NEXUS",
     subtitle:
       "Real-time Data Infrastructure | Event Pipelines | Reliable Delivery",
@@ -42,6 +44,7 @@ const projects = [
   },
   {
     id: "03",
+    image: "/projects/zsignal.webp",
     title: "ZSIGNAL",
     subtitle: "Independent News Platform | Live Briefings | Editorial UX",
     challenge:
@@ -58,6 +61,7 @@ const projects = [
   },
   {
     id: "04",
+    image: "/projects/sonique.webp",
     title: "SONIQUE",
     subtitle: "Mood-to-Music Generator | Playlist UX | Creative Search",
     challenge:
@@ -90,6 +94,7 @@ const projects = [
   },
   {
     id: "06",
+    image: "/projects/shemach-shop.webp",
     title: "SHEMACH SHOP",
     subtitle: "E-commerce | Next.js | Checkout UX",
     challenge:
@@ -106,6 +111,7 @@ const projects = [
   },
   {
     id: "07",
+    image: "/projects/applymate.webp",
     title: "APPLYMATE",
     subtitle: "AI Scholarship Workspace | Dashboards | Application Insights",
     challenge:
@@ -122,6 +128,7 @@ const projects = [
   },
   {
     id: "08",
+    image: "/projects/spotter-atlas.webp",
     title: "SPOTTER ATLAS",
     subtitle: "AI Logistics & Real-time Routing",
     challenge:
@@ -138,6 +145,7 @@ const projects = [
   },
   {
     id: "09",
+    image: "/projects/lingo-abyssinia.webp",
     title: "LINGO ABYSSINIA",
     subtitle: "Language Learning | Gamified Lessons | Mobile-first UX",
     challenge:
@@ -154,6 +162,7 @@ const projects = [
   },
   {
     id: "10",
+    image: "/projects/learnablee.webp",
     title: "LEARNABLEE",
     subtitle: "Learning Platform | Auth Flow | Student Workspace",
     challenge:
@@ -170,6 +179,7 @@ const projects = [
   },
   {
     id: "11",
+    image: "/projects/yedera-mart.webp",
     title: "YEDERA MART",
     subtitle: "Local Business Website | Ethiopian Market | Location UX",
     challenge:
@@ -186,6 +196,7 @@ const projects = [
   },
   {
     id: "12",
+    image: "/projects/story-ai.webp",
     title: "STORY AI",
     subtitle: "Travel Media | AI Albums | Hospitality Workflows",
     challenge:
@@ -202,6 +213,7 @@ const projects = [
   },
   {
     id: "13",
+    image: "/projects/teninete.webp",
     title: "TENINETE",
     subtitle: "Healthcare Platform | React | Laravel | High Availability",
     challenge:
@@ -220,8 +232,21 @@ const projects = [
 
 const INITIAL_PROJECT_COUNT = 6;
 
-function ProjectCard({ project, revealMarker = false }: { project: typeof projects[0]; revealMarker?: boolean }) {
+type Project = (typeof projects)[number];
+
+const overlayStagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.045, delayChildren: 0.06 } },
+};
+
+const overlayItem = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.32, ease: "easeOut" as const } },
+};
+
+function ProjectCard({ project, revealMarker = false }: { project: Project; revealMarker?: boolean }) {
   const [hovered, setHovered] = useState(false);
+  const image = "image" in project ? (project as { image: string }).image : undefined;
 
   return (
     <motion.a
@@ -229,77 +254,171 @@ function ProjectCard({ project, revealMarker = false }: { project: typeof projec
       href={project.href}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" as const }}
-      className="group relative block overflow-hidden border border-border bg-card/50 backdrop-blur-sm transition-all duration-300 hover:z-10 hover:border-cyber/60 hover:bg-card/75 hover:shadow-[0_24px_70px_rgba(120,200,220,0.10)]"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.45, ease: "easeOut" as const }}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur-sm transition-colors duration-300 hover:z-10 hover:border-cyber/60"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      whileHover={{ y: -8, scale: 1.025 }}
+      whileHover={{ y: -10, scale: 1.02 }}
+      whileTap={{ scale: 0.99 }}
+      style={{ boxShadow: hovered ? "0 28px 80px rgba(120,200,220,0.16)" : "0 0 0 rgba(0,0,0,0)" }}
     >
       {/* Top accent line */}
       <motion.div
-        className="absolute top-0 left-0 h-px bg-cyber"
+        className="absolute top-0 left-0 z-40 h-px bg-cyber"
         initial={{ width: "0%" }}
         animate={{ width: hovered ? "100%" : "0%" }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.35, ease: "easeOut" as const }}
       />
 
-      <div className="p-6">
-        <div className="mb-4 flex items-start justify-between">
+      {/* Ambient glow that blooms on hover */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -inset-px z-0 rounded-2xl"
+        initial={false}
+        animate={{ opacity: hovered ? 1 : 0 }}
+        transition={{ duration: 0.4 }}
+        style={{
+          background: "radial-gradient(120% 80% at 50% 0%, rgba(120,200,220,0.16), transparent 70%)",
+        }}
+      />
+
+      {/* Full-card image backdrop — stays visible (faded) behind the hover detail */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {image ? (
+          <motion.img
+            src={image}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="h-full w-full object-cover object-top"
+            initial={false}
+            animate={{ opacity: hovered ? 0.22 : 0, scale: hovered ? 1.06 : 1.01 }}
+            transition={{ duration: 0.55, ease: "easeOut" as const }}
+          />
+        ) : (
+          <motion.div
+            aria-hidden
+            className="h-full w-full bg-[radial-gradient(140%_100%_at_20%_0%,rgba(120,200,220,0.20),transparent_65%)]"
+            initial={false}
+            animate={{ opacity: hovered ? 0.5 : 0 }}
+            transition={{ duration: 0.5 }}
+          />
+        )}
+      </div>
+
+      {/* Preview thumbnail (resting state) */}
+      <div className="relative z-10 aspect-[16/10] w-full overflow-hidden border-b border-border bg-gradient-to-br from-cyber/10 via-background to-background">
+        {image ? (
+          <motion.img
+            src={image}
+            alt={`${project.title} landing page`}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover object-top"
+            initial={false}
+            animate={{ opacity: hovered ? 0 : 0.92, scale: hovered ? 1.08 : 1 }}
+            transition={{ duration: 0.5, ease: "easeOut" as const }}
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+            <motion.div
+              className="font-mono-tech text-2xl font-bold tracking-tight text-cyber/70"
+              animate={{ y: hovered ? -4 : 0 }}
+              transition={{ duration: 0.35 }}
+            >
+              {project.id}
+            </motion.div>
+            <span className="font-mono-tech text-[9px] tracking-[0.28em] text-muted-foreground">
+              SOURCE ONLY
+            </span>
+          </div>
+        )}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card via-card/15 to-transparent" />
+      </div>
+
+      {/* Hover detail overlay — translucent so the image reads through */}
+      <motion.div
+        initial={false}
+        variants={overlayStagger}
+        animate={hovered ? "visible" : "hidden"}
+        className={`absolute inset-0 z-30 flex flex-col overflow-y-auto bg-card/88 p-6 backdrop-blur-xl transition-opacity duration-300 ${hovered ? "opacity-100" : "pointer-events-none opacity-0"}`}
+      >
+        <motion.div variants={overlayItem} className="flex items-start justify-between gap-3">
+          <div>
+            <span className="font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">{project.id}</span>
+            <h3 className="mt-1 text-lg font-bold tracking-tight text-foreground">{project.title}</h3>
+          </div>
+          <span className="font-mono-tech text-sm font-bold text-cyber">{project.metric}</span>
+        </motion.div>
+
+        <motion.p variants={overlayItem} className="mt-2 font-mono-tech text-[10px] leading-relaxed tracking-wider text-cyber/70">
+          {project.subtitle}
+        </motion.p>
+
+        <div className="mt-4 space-y-3">
+          {([
+            ["CHALLENGE", project.challenge, "text-slate-mid"],
+            ["SOLUTION", project.solution, "text-slate-mid"],
+            ["OUTCOME", project.outcome, "text-foreground"],
+            ["DETAIL", project.details, "text-slate-mid"],
+          ] as const).map(([label, body, tone]) => (
+            <motion.div key={label} variants={overlayItem}>
+              <span className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">{label}</span>
+              <p className={`mt-1 text-[13px] leading-relaxed ${tone}`}>{body}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div variants={overlayItem} className="mt-4 flex flex-wrap gap-2">
+          {project.stack.map((tech) => (
+            <span key={tech} className="rounded border border-border/50 bg-background/60 px-2 py-1 font-mono-tech text-[10px] tracking-wider text-cyber">
+              {tech}
+            </span>
+          ))}
+        </motion.div>
+
+        <motion.div variants={overlayItem} className="group/cta relative mt-5 inline-flex self-start overflow-hidden rounded-xl border border-cyan-700/70 bg-gradient-to-r from-cyan-700 via-cyan-600 to-sky-600 px-4 py-2.5 font-mono-tech text-[10px] font-black tracking-[0.16em] text-white shadow-[0_12px_32px_rgba(14,116,144,0.18)] dark:border-cyan-100/45 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:text-slate-950">
+          <span className="pointer-events-none absolute inset-x-2 top-0 h-px bg-white/55 dark:bg-white/80" />
+          <span className="relative z-10 flex items-center gap-2">
+            <span className="transition-transform duration-300 group-hover/cta:translate-x-1">{"→"}</span>
+            OPEN PROJECT
+          </span>
+        </motion.div>
+      </motion.div>
+
+      {/* Resting content */}
+      <motion.div
+        className="relative z-10 flex flex-1 flex-col p-6"
+        initial={false}
+        animate={{ opacity: hovered ? 0 : 1 }}
+        transition={{ duration: 0.25 }}
+      >
+        <div className="mb-3 flex items-start justify-between gap-3">
           <div>
             <span className="font-mono-tech text-[10px] tracking-[0.2em] text-muted-foreground">{project.id}</span>
             <h3 className="mt-1 text-xl font-bold tracking-tight text-foreground">{project.title}</h3>
           </div>
-          <motion.div
-            className="font-mono-tech text-lg font-bold text-cyber"
-            animate={{ scale: hovered ? 1.1 : 1 }}
-            transition={{ duration: 0.2 }}
+          <div className="font-mono-tech text-base font-bold text-cyber">{project.metric}</div>
+        </div>
+
+        <p className="mb-3 font-mono-tech text-[11px] leading-relaxed tracking-wider text-cyber/70">{project.subtitle}</p>
+
+        <p className="text-sm leading-relaxed text-slate-mid">{project.outcome}</p>
+
+        <div className="mt-auto flex items-center gap-2 pt-4 font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">
+          HOVER FOR DETAIL
+          <motion.span
+            aria-hidden
+            animate={{ x: [0, 4, 0] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" as const }}
+            className="text-cyber"
           >
-            {project.metric}
-          </motion.div>
+            {"→"}
+          </motion.span>
         </div>
-
-        <p className="mb-4 font-mono-tech text-[11px] tracking-wider text-cyber/70">{project.subtitle}</p>
-
-        <div className="space-y-3">
-          <div>
-            <span className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">CHALLENGE</span>
-            <p className="mt-1 text-sm leading-relaxed text-slate-mid">{project.challenge}</p>
-          </div>
-          <div>
-            <span className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">OUTCOME</span>
-            <p className="mt-1 text-sm leading-relaxed text-foreground">{project.outcome}</p>
-          </div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: hovered ? 1 : 0, height: hovered ? "auto" : 0 }}
-          transition={{ duration: 0.28, ease: "easeOut" as const }}
-          className="overflow-hidden"
-        >
-          <div className="mt-4 border-t border-border pt-4">
-            <div className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">MORE DETAIL</div>
-            <p className="mt-2 text-sm leading-relaxed text-slate-mid">{project.details}</p>
-            <div className="font-mono-tech text-[9px] tracking-[0.2em] text-muted-foreground">ARCHITECTURE</div>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {project.stack.map((tech) => (
-                <span key={tech} className="border border-border/50 bg-background/50 px-2 py-1 font-mono-tech text-[10px] tracking-wider text-cyber">
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <div className="group/cta relative mt-4 inline-flex overflow-hidden rounded-xl border border-cyan-700/70 bg-gradient-to-r from-cyan-700 via-cyan-600 to-sky-600 px-4 py-2.5 font-mono-tech text-[10px] font-black tracking-[0.16em] text-white shadow-[0_12px_32px_rgba(14,116,144,0.18)] transition-all duration-300 hover:border-cyan-500 hover:shadow-[0_16px_40px_rgba(14,116,144,0.24)] dark:border-cyan-100/45 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:text-slate-950">
-              <span className="pointer-events-none absolute inset-x-2 top-0 h-px bg-white/55 dark:bg-white/80" />
-              <span className="relative z-10 flex items-center gap-2">
-                <span className="transition-transform duration-300 group-hover/cta:translate-x-0.5">{"\u2192"}</span>
-                OPEN PROJECT
-              </span>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+      </motion.div>
     </motion.a>
   );
 }
