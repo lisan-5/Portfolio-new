@@ -74,7 +74,6 @@ const deckPose = (position: number, direction: number, reduceMotion: boolean | n
       rotateX: 0,
       rotateY: 0,
       rotateZ: depth * 1.8,
-      filter: "blur(0px)",
     };
   }
 
@@ -87,7 +86,6 @@ const deckPose = (position: number, direction: number, reduceMotion: boolean | n
     rotateX: [0, 2.5, 5][depth],
     rotateY: [0, -12, -19][depth] * side,
     rotateZ: [0, 2.8, 5][depth] * side,
-    filter: `blur(${depth * 0.15}px)`,
   };
 };
 
@@ -181,7 +179,7 @@ function DeckCard({
           transformStyle: "preserve-3d",
         }}
         whileHover={isActive && !reduceMotion ? { scale: 1.018 } : undefined}
-        className={`relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border p-7 backdrop-blur-md transition-colors duration-300 sm:p-10 ${
+        className={`relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border p-7 transition-colors duration-300 sm:p-10 ${
           isActive
             ? "border-cyber/45 bg-card/90 shadow-[0_48px_100px_-28px_rgba(56,189,220,0.36)] hover:border-cyber/70"
             : "border-border/45 bg-card/20 shadow-[0_28px_70px_-44px_rgba(15,23,42,0.7)] hover:border-cyber/25"
@@ -369,7 +367,7 @@ export function TestimonialsSection() {
               type="button"
               onClick={() => paginate(-1)}
               aria-label="Previous testimonial"
-              className="group flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card/40 text-slate-mid backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-cyber hover:text-cyber hover:shadow-[0_10px_24px_-10px_rgba(56,189,220,0.5)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card/40 text-slate-mid transition-all duration-200 hover:-translate-y-0.5 hover:border-cyber hover:text-cyber hover:shadow-[0_10px_24px_-10px_rgba(56,189,220,0.5)]"
             >
               <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
             </button>
@@ -405,7 +403,7 @@ export function TestimonialsSection() {
               type="button"
               onClick={() => paginate(1)}
               aria-label="Next testimonial"
-              className="group flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card/40 text-slate-mid backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-cyber hover:text-cyber hover:shadow-[0_10px_24px_-10px_rgba(56,189,220,0.5)]"
+              className="group flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card/40 text-slate-mid transition-all duration-200 hover:-translate-y-0.5 hover:border-cyber hover:text-cyber hover:shadow-[0_10px_24px_-10px_rgba(56,189,220,0.5)]"
             >
               <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
             </button>

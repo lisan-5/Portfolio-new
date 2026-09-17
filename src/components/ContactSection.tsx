@@ -78,7 +78,7 @@ export function ContactSection() {
             onSubmit={handleSubmit}
             action="https://formspree.io/f/mnnqjkkb"
             method="POST"
-            className="space-y-4 border border-border bg-card/40 p-6 backdrop-blur-sm"
+            className="space-y-4 border border-border bg-card/40 p-6"
           >
             <div className="mb-2 border-b border-border pb-3">
               <div className="font-mono-tech text-[10px] tracking-[0.2em] text-cyber">DIRECT MESSAGE FORM</div>

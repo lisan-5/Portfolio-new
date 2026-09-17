@@ -5,9 +5,12 @@
 //     error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { devApiPlugin } from "./src/server/dev-api-plugin";
 
 export default defineConfig({
   cloudflare: false,
+  // Serves /api/chat locally; in production Vercel runs api/chat.ts instead.
+  plugins: [devApiPlugin()],
   tanstackStart: {
     spa: {
       enabled: true,

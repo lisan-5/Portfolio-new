@@ -16,21 +16,54 @@ export function Sidebar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight * 0.8);
+    // Section tops are measured once (and on resize) rather than per scroll
+    // event: calling getBoundingClientRect() while scrolling forces a
+    // synchronous layout on every frame, which is what made scrolling stutter.
+    let offsets: { target: string; top: number }[] = [];
+    const measure = () => {
+      offsets = navItems
+        .map((n) => {
+          const el = document.getElementById(n.target);
+          return el ? { target: n.target, top: el.offsetTop } : null;
+        })
+        .filter((v): v is { target: string; top: number } => v !== null);
+    };
 
-      // Scroll spy
-      const sections = navItems.map((n) => n.target);
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top < 200) {
-          setActive(sections[i]);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setScrolled(y > window.innerHeight * 0.8);
+
+      // offsetTop is document-relative, so compare against scroll position
+      // directly — no layout read required.
+      for (let i = offsets.length - 1; i >= 0; i--) {
+        if (y + 200 >= offsets[i].top) {
+          setActive(offsets[i].target);
           break;
         }
       }
     };
+
+    // Coalesce bursts of scroll events into one update per animation frame.
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+
+    measure();
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onResize);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   const scrollTo = (target: string) => {
@@ -43,9 +76,9 @@ export function Sidebar() {
     <AnimatePresence>
       {scrolled && (
         <motion.aside
-          initial={{ x: -80, opacity: 0, filter: "blur(10px)" }}
-          animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
-          exit={{ x: -80, opacity: 0, filter: "blur(10px)" }}
+          initial={{ x: -80, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -80, opacity: 0 }}
           transition={{ duration: 0.45, ease: "easeOut" as const }}
           className="fixed left-0 top-0 z-50 hidden h-screen w-16 flex-col items-center justify-between border-r border-cyan-200/15 bg-background/75 py-8 backdrop-blur-xl lg:flex"
         >

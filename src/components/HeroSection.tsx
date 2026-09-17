@@ -159,7 +159,7 @@ export function HeroSection() {
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
                 style={{ "--glow": link.glow, "--glare": link.glare } as CSSProperties}
-                className={`group relative flex items-center justify-center gap-3 overflow-hidden rounded-xl border border-border bg-gradient-to-b from-card/70 to-card/25 px-2 py-2.5 text-left text-muted-foreground shadow-[0_5px_16px_-4px_rgba(2,20,30,0.28),inset_0_1px_0_rgba(255,255,255,0.35)] ring-1 ring-white/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_34px_-8px_var(--glow),inset_0_1px_0_rgba(255,255,255,0.5)] dark:shadow-[0_5px_16px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.10)] dark:hover:shadow-[0_16px_36px_-8px_var(--glow),inset_0_1px_0_rgba(255,255,255,0.16)] sm:justify-start sm:px-3 sm:py-3 ${link.accent}`}
+                className={`group relative flex items-center justify-center gap-3 overflow-hidden rounded-xl border border-border bg-gradient-to-b from-card/70 to-card/25 px-2 py-2.5 text-left text-muted-foreground shadow-[0_5px_16px_-4px_rgba(2,20,30,0.28),inset_0_1px_0_rgba(255,255,255,0.35)] ring-1 ring-white/5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_34px_-8px_var(--glow),inset_0_1px_0_rgba(255,255,255,0.5)] dark:shadow-[0_5px_16px_-4px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.10)] dark:hover:shadow-[0_16px_36px_-8px_var(--glow),inset_0_1px_0_rgba(255,255,255,0.16)] sm:justify-start sm:px-3 sm:py-3 ${link.accent}`}
                 whileHover={{ y: -4, scale: 1.035 }}
                 whileTap={{ scale: 0.96 }}
               >

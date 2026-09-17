@@ -6,8 +6,8 @@ const fadeUp = {
 };
 
 const slideWide = {
-  hidden: { opacity: 0, x: -28, filter: "blur(8px)" },
-  visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.55, ease: "easeOut" as const } },
+  hidden: { opacity: 0, x: -28 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
 };
 
 export function AboutSection() {
@@ -47,7 +47,7 @@ export function AboutSection() {
           ].map((item) => (
             <motion.div
               key={item.title}
-              className="border border-border bg-card/30 p-6 backdrop-blur-sm"
+              className="border border-border bg-card/30 p-6"
               whileHover={{ y: -6, scale: 1.02 }}
               transition={{ duration: 0.2 }}
             >

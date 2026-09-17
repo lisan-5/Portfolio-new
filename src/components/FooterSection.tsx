@@ -1,11 +1,10 @@
 ﻿import { motion } from "framer-motion";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: { duration: 0.55, ease: "easeOut" as const },
   },
 };
@@ -70,7 +69,7 @@ export function FooterSection() {
             {footerStats.map((item, index) => (
               <motion.div
                 key={item.label}
-                className="border border-border/70 bg-card/30 p-4 backdrop-blur-sm"
+                className="border border-border/70 bg-card/30 p-4"
                 whileHover={{ y: -4, scale: 1.02 }}
                 animate={{ y: [0, -2, 0] }}
                 transition={{

@@ -79,7 +79,7 @@ export function EducationSection() {
           </motion.div>
         </div>
 
-        <motion.div variants={liftCard} className="mt-6 border border-border bg-card/30 p-6 backdrop-blur-sm" whileHover={{ y: -4 }}>
+        <motion.div variants={liftCard} className="mt-6 border border-border bg-card/30 p-6" whileHover={{ y: -4 }}>
           <div className="font-mono-tech text-[10px] tracking-[0.2em] text-cyber">CAPSTONE PROJECT</div>
           <h3 className="mt-2 text-lg font-bold text-foreground">Intelligent Code Analysis System</h3>
           <p className="mt-2 max-w-4xl text-sm leading-relaxed text-slate-mid">

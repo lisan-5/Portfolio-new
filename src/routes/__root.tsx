@@ -64,7 +64,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      {/* Browser extensions commonly stamp attributes onto <body> before React
+          hydrates (e.g. jf-observer-attached), which React reports as a
+          hydration mismatch. This suppresses that noise for body's own
+          attributes only — mismatches inside the app still warn. */}
+      <body suppressHydrationWarning>
         {children}
         <Scripts />
       </body>

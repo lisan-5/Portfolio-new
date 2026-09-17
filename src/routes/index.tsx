@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Sidebar } from "../components/Sidebar";
-import { SystemStatus } from "../components/SystemStatus";
+import { LogoMark } from "../components/LogoMark";
 import { HeroSection } from "../components/HeroSection";
 import { AboutSection } from "../components/AboutSection";
 import { SkillsSection } from "../components/SkillsSection";
@@ -11,6 +11,7 @@ import { TestimonialsSection } from "../components/TestimonialsSection";
 import { ContactSection } from "../components/ContactSection";
 import { FooterSection } from "../components/FooterSection";
 import { TerminalConsole } from "../components/TerminalConsole";
+import { AiAssistant } from "../components/AiAssistant";
 import { MobileNav } from "../components/MobileNav";
 import { OceanBackground } from "../components/OceanBackground";
 import { ThemeToggle } from "../components/ThemeToggle";
@@ -34,7 +35,7 @@ function Index() {
       <OceanBackground />
       <ScrollProgress />
       <Sidebar />
-      <SystemStatus />
+      <LogoMark />
       <MobileNav />
       <ThemeToggle />
 
@@ -51,6 +52,7 @@ function Index() {
       </main>
 
       <TerminalConsole />
+      <AiAssistant />
     </div>
   );
 }

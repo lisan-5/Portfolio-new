@@ -52,7 +52,7 @@ export function SkillsSection() {
             <motion.div
               key={stack.label}
               variants={floatIn}
-              className="group border border-border bg-card/30 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyber/40 hover:shadow-[0_14px_40px_rgba(120,200,220,0.05)]"
+              className="group border border-border bg-card/30 p-6 transition-all duration-300 hover:border-cyber/40 hover:shadow-[0_14px_40px_rgba(120,200,220,0.05)]"
               whileHover={{ y: -6, rotateX: 4 }}
             >
               <div className="mb-4 font-mono-tech text-[10px] tracking-[0.2em] text-cyber">

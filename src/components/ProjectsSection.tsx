@@ -258,7 +258,7 @@ function ProjectCard({ project, revealMarker = false }: { project: Project; reve
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.45, ease: "easeOut" as const }}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 backdrop-blur-sm transition-colors duration-300 hover:z-10 hover:border-cyber/60"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card/50 transition-colors duration-300 hover:z-10 hover:border-cyber/60"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       whileHover={{ y: -10, scale: 1.02 }}
@@ -343,7 +343,7 @@ function ProjectCard({ project, revealMarker = false }: { project: Project; reve
         initial={false}
         variants={overlayStagger}
         animate={hovered ? "visible" : "hidden"}
-        className={`absolute inset-0 z-30 flex flex-col overflow-y-auto bg-card/88 p-6 backdrop-blur-xl transition-opacity duration-300 ${hovered ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`absolute inset-0 z-30 flex flex-col overflow-y-auto bg-card/88 p-6 transition-opacity duration-300 ${hovered ? "opacity-100" : "pointer-events-none opacity-0"}`}
       >
         <motion.div variants={overlayItem} className="flex items-start justify-between gap-3">
           <div>

@@ -43,6 +43,22 @@ export function OceanBackground() {
     };
     window.addEventListener("mousemove", handleMouse, { passive: true });
 
+    // Freeze the canvas while the user is actively scrolling. This is ambient
+    // motion behind content; holding the last frame for a few hundred
+    // milliseconds is imperceptible, and it hands the whole frame budget to
+    // scrolling, which is what the user actually feels.
+    let scrolling = false;
+    let scrollTimer = 0;
+    const onScroll = () => {
+      scrolling = true;
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        scrolling = false;
+        last = 0;
+      }, 140);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     // Pause entirely when the tab is hidden or the hero is scrolled well out of view.
     let visible = !document.hidden;
     const onVisibility = () => {
@@ -124,7 +140,7 @@ export function OceanBackground() {
 
     const animate = (t: number) => {
       animRef.current = requestAnimationFrame(animate);
-      if (!visible) return;
+      if (!visible || scrolling) return;
       if (t - last < frameInterval) return;
       last = t;
 
@@ -237,6 +253,8 @@ export function OceanBackground() {
     return () => {
       cancelAnimationFrame(animRef.current);
       window.clearTimeout(resizeTimer);
+      window.clearTimeout(scrollTimer);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouse);
       document.removeEventListener("visibilitychange", onVisibility);
