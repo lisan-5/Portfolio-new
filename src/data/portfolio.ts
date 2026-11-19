@@ -20,6 +20,24 @@ export const projects = [
     metric: "Real-time ops",
   },
   {
+    id: "00b",
+    image: "/projects/askbase.webp",
+    title: "ASKBASE",
+    subtitle: "AI Data Analyst | Plain English → SQL | Runs in Your Browser",
+    challenge:
+      "Small businesses sit on Stripe, Shopify and spreadsheet exports they can't query. Dashboards are rigid, analysts are expensive, and uploading customer data to an AI is a privacy risk.",
+    solution:
+      "Built an AI analyst that runs a real database (DuckDB compiled to WebAssembly) inside the browser tab. Claude Opus 5.5 turns a question into a validated query plan via structured outputs; the SQL is guarded as read-only, runs locally, and repairs itself once if DuckDB rejects it. Only the question and column names ever leave the machine.",
+    outcome:
+      "Every answer comes back as the right chart with the exact SQL, its assumptions and follow-up questions — checkable, editable and private. A built-in question engine keeps the live demo working without an API key.",
+    details:
+      "React 19, TypeScript, TanStack Start (SSR + server functions), DuckDB-WASM, Anthropic SDK with Zod structured outputs and prompt caching, Recharts, Motion and Vitest. The landing page runs a query choreography over 12,983 real rows and prints answers as receipts.",
+    href: "https://github.com/lisan-5/Askbase",
+    repo: "https://github.com/lisan-5/Askbase",
+    stack: ["DUCKDB-WASM", "CLAUDE API", "TYPESCRIPT", "TEXT-TO-SQL"],
+    metric: "AI data analyst",
+  },
+  {
     id: "01",
     image: "/projects/art-auction.webp",
     title: "ART AUCTION",

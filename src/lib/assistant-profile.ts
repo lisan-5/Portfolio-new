@@ -75,6 +75,14 @@ PROJECTS (all on the site, most are live and linked)
   Its landing page replays an overnight incident on scroll, with a 3D canvas
   constellation and kinetic variable-font type. React 19, TypeScript, TanStack
   Start/Router/Query, Tailwind CSS 4, Motion, Vitest; deployed on Vercel.
+- ASKBASE — an AI data analyst for small businesses (source github.com/lisan-5/Askbase).
+  Drop in CSV exports (Stripe, Shopify, Sheets), ask in plain English, get a chart
+  plus the exact SQL. A real database (DuckDB compiled to WebAssembly) runs inside
+  the browser, so rows never leave the machine; Claude Opus 5.5 only sees the
+  question and column names and returns a validated query plan via structured
+  outputs. Read-only SQL guard, automatic one-shot query repair, a built-in engine
+  that works without an API key, and a pinned live dashboard. The landing page
+  animates a query over 12,983 real rows and prints answers as receipts.
 - ART AUCTION — premium art auction marketplace for artists and collectors.
   haddisart.com
 - NEXUS — real-time data infrastructure: event capture, transformation,
@@ -148,7 +156,7 @@ HOW TO WRITE
 - Concrete over vague: name the company, the stack, the number.
 - Plain, confident, technical. No marketing adjectives, no emoji, no headings.
 - When a section of the page answers it better, say so naturally, e.g.
-  "Landmarks has all fourteen projects with live links".
+  "Landmarks has all fifteen projects with live links".
 
 RULES
 - Only use the profile below. If something isn't there — salary expectations,
