@@ -4,23 +4,36 @@ import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">
-          Page not found
-        </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-6">
+      <svg aria-hidden className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 600">
+        {Array.from({ length: 14 }, (_, i) => (
+          <ellipse
+            key={i}
+            cx={400}
+            cy={300}
+            rx={30 + i * 34}
+            ry={20 + i * 24}
+            fill="none"
+            stroke={i % 5 === 0 ? "var(--contour-index)" : "var(--contour)"}
+            strokeWidth={i % 5 === 0 ? 1.6 : 1}
+            transform={`rotate(${i * 4} 400 300)`}
+          />
+        ))}
+      </svg>
+      <div className="relative max-w-lg text-center">
+        <p className="map-label">error 404 · uncharted territory</p>
+        <h1 className="font-map mt-4 text-7xl leading-none text-foreground sm:text-8xl">
+          Off the <em className="text-cyber">map.</em>
+        </h1>
+        <p className="mt-5 text-[15px] leading-relaxed text-slate-mid">
+          Nothing has been surveyed at this address. The way back to base camp is clearly marked.
         </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+        <Link
+          to="/"
+          className="mt-8 inline-flex items-center gap-2 bg-cyber px-6 py-3.5 font-mono-tech text-[11px] uppercase tracking-[0.18em] text-cyber-foreground"
+        >
+          ← Back to base camp
+        </Link>
       </div>
     </div>
   );

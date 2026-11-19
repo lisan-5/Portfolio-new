@@ -1,39 +1,34 @@
-import { useState, useEffect } from "react";
-import { Sun, Moon } from "lucide-react";
-import { motion } from "framer-motion";
+import { Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
 
+/** Night survey ↔ survey paper. Stays in sync when the field console switches themes. */
 export function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
+  const [light, setLight] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored === "light") {
-      setIsDark(false);
-      document.documentElement.classList.add("light");
-    }
+    if (localStorage.getItem("theme") === "light") document.documentElement.classList.add("light");
+    const sync = () => setLight(document.documentElement.classList.contains("light"));
+    sync();
+    const mo = new MutationObserver(sync);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => mo.disconnect();
   }, []);
 
   const toggle = () => {
-    const next = !isDark;
-    setIsDark(next);
-    if (next) {
-      document.documentElement.classList.remove("light");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.add("light");
-      localStorage.setItem("theme", "light");
-    }
+    const next = !light;
+    document.documentElement.classList.toggle("light", next);
+    localStorage.setItem("theme", next ? "light" : "dark");
   };
 
   return (
-    <motion.button
+    <button
+      type="button"
       onClick={toggle}
-      className="fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/80 backdrop-blur-sm transition-colors hover:border-cyber hover:text-cyber sm:bottom-6 sm:right-6"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.95 }}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      className="group fixed bottom-4 right-4 z-50 grid h-[50px] w-10 place-items-center border border-input bg-background/90 text-muted-foreground backdrop-blur-md transition-colors hover:border-cyber hover:text-cyber sm:bottom-6 sm:right-6"
+      aria-label={light ? "Switch to the night survey" : "Switch to survey paper"}
+      title={light ? "Night survey" : "Survey paper"}
     >
-      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-    </motion.button>
+      {light ? <Moon className="h-4 w-4 transition-transform group-hover:-rotate-12" /> : <Sun className="h-4 w-4 transition-transform group-hover:rotate-45" />}
+    </button>
   );
 }

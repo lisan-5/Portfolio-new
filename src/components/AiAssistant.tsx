@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, ArrowUp, X, RotateCcw } from "lucide-react";
+import { ArrowUp, X, RotateCcw } from "lucide-react";
 import { SUGGESTED_PROMPTS } from "../lib/assistant-profile";
 
 type Role = "user" | "assistant";
@@ -8,7 +8,7 @@ type Message = { id: string; role: Role; content: string };
 type Status = "idle" | "streaming" | "offline";
 
 const GREETING =
-  "Ask me anything about Lisan — his experience, the projects on this page, or how to get in touch.";
+  "Ask me anything about Lisan — his experience, any landmark on this map, or how to reach him.";
 
 let idCounter = 0;
 const nextId = () => `m${++idCounter}`;
@@ -157,42 +157,47 @@ export function AiAssistant() {
     inputRef.current?.focus();
   };
 
+
+  // The field console can hand questions over: `ask what is vigil?`
+  const sendRef = useRef(send);
+  sendRef.current = send;
+  useEffect(() => {
+    const onAsk = (e: Event) => {
+      const q = (e as CustomEvent<string>).detail;
+      setOpen(true);
+      if (q) setTimeout(() => sendRef.current(q), 250);
+    };
+    window.addEventListener("atlas:ask", onAsk);
+    return () => window.removeEventListener("atlas:ask", onAsk);
+  }, []);
+
   return (
     <>
-      {!open && (
-        <motion.button
-          onClick={() => setOpen(true)}
-          aria-label="Open the AI assistant"
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-          whileHover={{ scale: 1.04, y: -1 }}
-          whileTap={{ scale: 0.96 }}
-          className="group fixed bottom-4 right-16 z-[100] overflow-hidden rounded-full border border-lime-700/50 bg-gradient-to-r from-lime-700 via-lime-600 to-lime-600 p-[1px] shadow-[0_12px_36px_-8px_rgba(101,163,13,0.45)] transition-shadow duration-300 hover:shadow-[0_16px_44px_-6px_rgba(101,163,13,0.55)] sm:bottom-6 sm:right-20 dark:border-lime-100/35 dark:from-lime-200 dark:via-lime-100 dark:to-lime-200 dark:shadow-[0_12px_36px_-8px_rgba(200,245,58,0.22)]"
-        >
-          <span className="relative flex items-center gap-2.5 rounded-full bg-obsidian/95 px-3.5 py-2.5 backdrop-blur-md sm:px-4 dark:bg-obsidian/90">
-            <span className="relative flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-lime-600/30 to-lime-500/10 dark:from-lime-200/25 dark:to-lime-200/10">
-              <Sparkles className="h-3.5 w-3.5 text-cyber transition-transform duration-300 group-hover:rotate-12" />
-              <motion.span
-                className="absolute inset-0 rounded-full border border-cyber/40"
-                animate={{ scale: [1, 1.35, 1], opacity: [0.55, 0, 0.55] }}
-                transition={{ duration: 2.4, repeat: Infinity, ease: "easeOut" }}
-              />
+      <AnimatePresence>
+        {!open && (
+          <motion.button
+            key="guide-chip"
+            onClick={() => setOpen(true)}
+            aria-label="Open the guide"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="group fixed bottom-4 right-16 z-[100] flex items-center gap-3 border border-cyber/60 bg-background/90 py-2 pl-2 pr-4 backdrop-blur-md transition-colors hover:border-cyber sm:bottom-6 sm:right-20"
+          >
+            <span className="relative grid h-8 w-8 place-items-center bg-cyber text-cyber-foreground">
+              <CompassGlyph spinning={false} className="h-5 w-5 transition-transform duration-700 group-hover:rotate-[200deg]" />
+              {unseen && <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full bg-[var(--water)] ring-2 ring-background" />}
             </span>
             <span className="flex flex-col items-start leading-none">
-              <span className="font-mono-tech text-[10px] font-bold tracking-[0.18em] text-foreground sm:tracking-[0.2em]">
-                ASK AI
-              </span>
-              <span className="mt-0.5 font-mono-tech text-[8px] tracking-[0.16em] text-muted-foreground">
-                ABOUT LISAN
+              <span className="font-map text-[17px] text-foreground">Ask the guide</span>
+              <span className="mt-1 font-mono-tech text-[8.5px] uppercase tracking-[0.18em] text-muted-foreground">
+                ai · about lisan
               </span>
             </span>
-            {unseen && (
-              <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-cyber shadow-[0_0_10px_var(--color-cyber)] ring-2 ring-obsidian" />
-            )}
-          </span>
-        </motion.button>
-      )}
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {open && (
@@ -201,121 +206,122 @@ export function AiAssistant() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[99] bg-background/50 backdrop-blur-[3px] sm:bg-background/20 sm:backdrop-blur-[1px]"
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-[99] bg-background/55 backdrop-blur-[2px]"
               onClick={() => setOpen(false)}
             />
 
-            <motion.div
-              initial={{ opacity: 0, y: 28, scale: 0.94 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 18, scale: 0.96 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-x-3 bottom-4 z-[100] flex max-h-[80svh] flex-col overflow-hidden rounded-2xl border border-lime-700/30 bg-obsidian/95 shadow-[0_28px_90px_-20px_rgba(0,0,0,0.55),0_0_0_1px_rgba(160,200,60,0.06)] backdrop-blur-xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[440px] sm:max-w-[calc(100vw-3rem)] dark:border-lime-100/20 dark:shadow-[0_28px_90px_-20px_rgba(0,0,0,0.7),0_0_40px_-12px_rgba(160,200,60,0.12)]"
+            <motion.section
+              aria-label="The guide"
+              initial={{ opacity: 0, x: 40, clipPath: "inset(0 0 0 100%)" }}
+              animate={{ opacity: 1, x: 0, clipPath: "inset(0 0 0 0%)" }}
+              exit={{ opacity: 0, x: 30, clipPath: "inset(0 0 0 100%)" }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-3 bottom-3 top-20 z-[100] flex flex-col border border-input bg-background/95 shadow-[0_30px_90px_-30px_rgba(0,0,0,0.65)] backdrop-blur-xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:top-auto sm:h-[min(640px,82svh)] sm:w-[460px]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Soft atmosphere behind the UI */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(101,163,13,0.14),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(160,200,60,0.06),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(200,245,58,0.1),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(160,200,60,0.05),transparent_50%)]"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyber/70 to-transparent"
-              />
+              {/* faint contour study behind the notebook */}
+              <svg aria-hidden className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.35]" preserveAspectRatio="none" viewBox="0 0 460 640">
+                {Array.from({ length: 9 }, (_, i) => (
+                  <ellipse
+                    key={i}
+                    cx={430}
+                    cy={40}
+                    rx={40 + i * 46}
+                    ry={30 + i * 38}
+                    fill="none"
+                    stroke={i % 5 === 0 ? "var(--contour-index)" : "var(--contour)"}
+                    strokeWidth={i % 5 === 0 ? 1.4 : 0.8}
+                  />
+                ))}
+              </svg>
+              {["-left-px -top-px border-l-2 border-t-2", "-right-px -top-px border-r-2 border-t-2", "-bottom-px -left-px border-b-2 border-l-2", "-bottom-px -right-px border-b-2 border-r-2"].map((c) => (
+                <span key={c} className={`pointer-events-none absolute h-3 w-3 border-cyber ${c}`} />
+              ))}
 
               {/* Header */}
-              <div className="relative flex shrink-0 items-center justify-between border-b border-border/70 px-4 py-3.5">
-                <div className="flex items-center gap-3">
-                  <div className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-lime-700/35 bg-gradient-to-br from-lime-700/25 via-lime-600/10 to-transparent dark:border-lime-100/25 dark:from-lime-200/20">
-                    <Sparkles className="h-4 w-4 text-cyber" />
-                    <span
-                      className={
-                        status === "offline"
-                          ? "absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-muted-foreground ring-2 ring-obsidian"
-                          : "absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-cyber shadow-[0_0_8px_var(--color-cyber)] ring-2 ring-obsidian"
-                      }
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="font-mono-tech text-[11px] font-bold tracking-[0.18em] text-foreground">
-                      ASK.AI
-                    </div>
-                    <div className="mt-0.5 font-mono-tech text-[9px] tracking-[0.14em] text-muted-foreground">
-                      {status === "offline"
-                        ? "OFFLINE"
-                        : busy
-                          ? "THINKING…"
-                          : "LISAN'S PORTFOLIO GUIDE"}
+              <header className="relative flex shrink-0 items-start justify-between gap-3 border-b border-border px-5 pb-4 pt-5">
+                <div className="flex items-center gap-3.5">
+                  <span className="grid h-11 w-11 place-items-center border border-input text-cyber">
+                    <CompassGlyph spinning={busy} className="h-7 w-7" />
+                  </span>
+                  <div>
+                    <div className="font-map text-[26px] leading-none text-foreground">The guide</div>
+                    <div className="mt-1.5 flex items-center gap-2 font-mono-tech text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
+                      <span
+                        className={
+                          status === "offline" ? "h-1.5 w-1.5 rounded-full bg-muted-foreground" : "h-1.5 w-1.5 rounded-full bg-cyber shadow-[0_0_8px_var(--color-cyber)]"
+                        }
+                      />
+                      {status === "offline" ? "offline" : busy ? "taking a bearing…" : "knows every landmark on this map"}
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-0.5">
+                <div className="flex items-center gap-1">
                   {messages.length > 0 && (
                     <button
                       onClick={reset}
                       aria-label="Clear conversation"
-                      title="Clear conversation"
-                      className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-card/60 hover:text-cyber"
+                      title="New page"
+                      className="grid h-8 w-8 place-items-center text-muted-foreground transition-colors hover:text-cyber"
                     >
                       <RotateCcw className="h-3.5 w-3.5" />
                     </button>
                   )}
                   <button
                     onClick={() => setOpen(false)}
-                    aria-label="Close the assistant"
-                    className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-card/60 hover:text-cyber"
+                    aria-label="Close the guide"
+                    className="grid h-8 w-8 place-items-center text-muted-foreground transition-colors hover:text-cyber"
                   >
                     <X className="h-4 w-4" />
                   </button>
                 </div>
-              </div>
+              </header>
 
               {/* Transcript */}
-              <div
-                ref={scrollRef}
-                className="relative min-h-[14rem] flex-1 space-y-4 overflow-y-auto px-4 py-5 sm:min-h-[16rem]"
-              >
+              <div ref={scrollRef} className="relative min-h-0 flex-1 space-y-5 overflow-y-auto px-5 py-5">
                 {messages.length === 0 ? (
                   <div>
                     <motion.p
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-[13px] leading-relaxed text-slate-mid"
+                      transition={{ duration: 0.4 }}
+                      className="font-map text-[22px] leading-snug text-foreground"
                     >
                       {GREETING}
                     </motion.p>
-                    <div className="mt-5 flex flex-col gap-2">
+                    <div className="map-label mt-7 text-[9px]">suggested waypoints</div>
+                    <ol className="relative mt-3 space-y-1 border-l border-dashed border-input pl-5">
                       {SUGGESTED_PROMPTS.map((prompt, i) => (
-                        <motion.button
+                        <motion.li
                           key={prompt}
                           initial={{ opacity: 0, x: -8 }}
                           animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.28, delay: 0.08 + i * 0.05 }}
-                          onClick={() => send(prompt)}
-                          className="group flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/25 px-3.5 py-2.5 text-left font-mono-tech text-[11px] text-slate-mid transition-all duration-200 hover:border-cyber/50 hover:bg-card/55 hover:text-foreground hover:shadow-[0_8px_24px_-12px_rgba(160,200,60,0.35)]"
+                          transition={{ duration: 0.35, delay: 0.1 + i * 0.07 }}
+                          className="relative"
                         >
-                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-border/50 bg-background/40 font-mono-tech text-[10px] text-cyber/70 transition-colors group-hover:border-cyber/40 group-hover:text-cyber">
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          {prompt}
-                        </motion.button>
+                          <span className="absolute -left-[25px] top-1/2 h-2 w-2 -translate-y-1/2 rotate-45 border border-cyber bg-background" />
+                          <button
+                            onClick={() => send(prompt)}
+                            className="group flex w-full items-center justify-between gap-3 py-2 text-left text-[14px] text-slate-mid transition-colors hover:text-foreground"
+                          >
+                            <span>{prompt}</span>
+                            <span className="font-mono-tech text-[10px] text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-cyber">
+                              ↗
+                            </span>
+                          </button>
+                        </motion.li>
                       ))}
-                    </div>
+                    </ol>
                   </div>
                 ) : (
                   messages.map((message, i) => (
-                    <MessageRow
-                      key={message.id}
-                      message={message}
-                      active={busy && i === messages.length - 1}
-                    />
+                    <MessageRow key={message.id} message={message} index={i} active={busy && i === messages.length - 1} />
                   ))
                 )}
 
                 {error && (
-                  <div className="rounded-xl border border-destructive/30 bg-destructive/5 px-3.5 py-2.5 font-mono-tech text-[11px] leading-relaxed text-destructive">
+                  <div className="border border-destructive/40 bg-destructive/5 px-3.5 py-2.5 font-mono-tech text-[11px] leading-relaxed text-destructive">
                     {error}
                   </div>
                 )}
@@ -323,14 +329,13 @@ export function AiAssistant() {
 
               {/* Composer */}
               <form
-                className="relative shrink-0 border-t border-border/70 bg-background/20 px-3 pb-3.5 pt-3"
+                className="relative shrink-0 border-t border-border px-5 pb-4 pt-3"
                 onSubmit={(e) => {
                   e.preventDefault();
                   send(input);
                 }}
               >
-                <div className="flex items-end gap-2 rounded-xl border border-border/80 bg-card/40 px-3 py-2 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)] transition-colors focus-within:border-cyber/45 focus-within:bg-card/55">
-                  <span className="pb-1.5 font-mono-tech text-[12px] text-cyber">&gt;</span>
+                <div className="flex items-end gap-3 border-b border-input pb-2 transition-colors focus-within:border-cyber">
                   <textarea
                     ref={inputRef}
                     rows={1}
@@ -347,27 +352,25 @@ export function AiAssistant() {
                         send(input);
                       }
                     }}
-                    placeholder={
-                      status === "offline" ? "assistant offline" : "ask about his work..."
-                    }
-                    className="max-h-24 flex-1 resize-none border-none bg-transparent py-1.5 font-mono-tech text-[12px] leading-relaxed text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
-                    spellCheck={false}
+                    placeholder={status === "offline" ? "the guide is offline" : "Ask about his work, a project, availability…"}
+                    className="max-h-24 flex-1 resize-none border-none bg-transparent py-1.5 text-[14px] leading-relaxed text-foreground outline-none placeholder:text-muted-foreground/70 disabled:cursor-not-allowed"
                   />
                   <motion.button
                     type="submit"
                     disabled={!input.trim() || busy || status === "offline"}
-                    aria-label="Send message"
-                    whileTap={{ scale: 0.9 }}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-lime-700/50 bg-gradient-to-br from-lime-700 via-lime-600 to-lime-600 text-white shadow-[0_6px_16px_-4px_rgba(101,163,13,0.45)] transition-opacity enabled:hover:brightness-110 disabled:opacity-35 dark:border-lime-100/40 dark:from-lime-200 dark:via-lime-100 dark:to-lime-200 dark:text-slate-950 dark:shadow-[0_6px_16px_-4px_rgba(200,245,58,0.3)]"
+                    aria-label="Send"
+                    whileTap={{ scale: 0.92 }}
+                    className="flex h-9 shrink-0 items-center gap-1.5 bg-cyber px-3 font-mono-tech text-[10px] uppercase tracking-[0.16em] text-cyber-foreground transition-opacity disabled:opacity-30"
                   >
-                    <ArrowUp className="h-3.5 w-3.5" strokeWidth={2.5} />
+                    Plot <ArrowUp className="h-3.5 w-3.5" strokeWidth={2.5} />
                   </motion.button>
                 </div>
-                <div className="mt-2 px-1 font-mono-tech text-[8px] tracking-[0.14em] text-muted-foreground/65">
-                  AI-GENERATED — VERIFY ANYTHING THAT MATTERS
+                <div className="mt-2 flex justify-between font-mono-tech text-[8.5px] uppercase tracking-[0.14em] text-muted-foreground/70">
+                  <span>ai-generated · verify what matters</span>
+                  <span className="hidden sm:inline">↵ send · esc close</span>
                 </div>
               </form>
-            </motion.div>
+            </motion.section>
           </>
         )}
       </AnimatePresence>
@@ -375,59 +378,67 @@ export function AiAssistant() {
   );
 }
 
-function MessageRow({ message, active }: { message: Message; active: boolean }) {
+function CompassGlyph({ spinning, className }: { spinning: boolean; className?: string }) {
+  return (
+    <motion.svg
+      viewBox="-12 -12 24 24"
+      className={className}
+      animate={spinning ? { rotate: [0, 40, -25, 360] } : { rotate: 0 }}
+      transition={spinning ? { duration: 2.2, repeat: Infinity, ease: "easeInOut" } : { duration: 0.6 }}
+      aria-hidden
+    >
+      <circle r="10.5" fill="none" stroke="currentColor" strokeOpacity="0.45" />
+      <path d="M0 -8 L2.4 0 L0 1.5 L-2.4 0 Z" fill="currentColor" />
+      <path d="M0 8 L2.4 0 L0 -1.5 L-2.4 0 Z" fill="currentColor" fillOpacity="0.35" />
+    </motion.svg>
+  );
+}
+
+function MessageRow({ message, active, index }: { message: Message; active: boolean; index: number }) {
   if (message.role === "user") {
     return (
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2 }}
-        className="flex justify-end"
+        transition={{ duration: 0.25 }}
+        className="ml-8 border-l-2 border-cyber pl-3"
       >
-        <div className="max-w-[88%] rounded-2xl rounded-br-md border border-lime-700/25 bg-gradient-to-br from-lime-700/15 via-card/60 to-card/40 px-3.5 py-2.5 text-[13px] leading-relaxed text-foreground dark:border-lime-100/20 dark:from-lime-200/10">
-          {message.content}
+        <div className="font-mono-tech text-[9px] uppercase tracking-[0.18em] text-muted-foreground">
+          query {String(Math.floor(index / 2) + 1).padStart(2, "0")}
         </div>
+        <div className="mt-1 text-[14px] leading-relaxed text-foreground">{message.content}</div>
       </motion.div>
     );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2 }}
-      className="rounded-xl border border-border/40 bg-card/20 px-3.5 py-3"
-    >
-      <div className="mb-1.5 flex items-center gap-2">
-        <span className="flex h-4 w-4 items-center justify-center rounded-sm bg-cyber/15">
-          <Sparkles className="h-2.5 w-2.5 text-cyber" />
-        </span>
-        <span className="font-mono-tech text-[9px] tracking-[0.18em] text-cyber/85">
-          LISAN.AI
-        </span>
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+      <div className="mb-2 flex items-center gap-2 font-mono-tech text-[9px] uppercase tracking-[0.18em] text-cyber">
+        <CompassGlyph spinning={active} className="h-3.5 w-3.5" />
+        field note
       </div>
-      <div className="text-[13px] leading-[1.75] text-slate-mid">
-        {active && !message.content ? (
-          <ThinkingDots />
-        ) : (
-          <RichText text={message.content} caret={active} />
-        )}
+      <div className="text-[14px] leading-[1.75] text-slate-mid">
+        {active && !message.content ? <Bearing /> : <RichText text={message.content} caret={active} />}
       </div>
     </motion.div>
   );
 }
 
-function ThinkingDots() {
+/** "Thinking" as concentric survey rings sweeping out. */
+function Bearing() {
   return (
-    <span className="flex items-center gap-1.5 py-1">
+    <span className="relative inline-flex h-6 w-24 items-center">
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="h-1.5 w-1.5 rounded-full bg-cyber"
-          animate={{ opacity: [0.25, 1, 0.25], scale: [0.85, 1.1, 0.85] }}
-          transition={{ duration: 1.05, repeat: Infinity, delay: i * 0.16 }}
+          className="absolute left-2 h-3 w-3 rotate-45 border border-cyber"
+          animate={{ scale: [0.4, 2.2], opacity: [0.9, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, delay: i * 0.5, ease: "easeOut" }}
         />
       ))}
+      <span className="ml-8 font-mono-tech text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+        taking a bearing
+      </span>
     </span>
   );
 }
