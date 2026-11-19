@@ -25,6 +25,8 @@ uniform float uTime;
 uniform vec2 uMouse;
 uniform float uLift;
 uniform float uScroll;
+uniform float uZoom;
+uniform float uVel;
 uniform vec3 uBg;
 uniform vec3 uLine;
 uniform vec3 uIndex;
@@ -46,19 +48,22 @@ float fbm(vec2 p) {
 }
 float height(vec2 q) {
   vec2 drift = vec2(uTime * 0.012, uTime * 0.007 - uScroll * 0.55);
-  return fbm(q * 1.35 + drift);
+  return fbm(q * 1.35 * uZoom + drift);
 }
 
 void main() {
   vec2 q = gl_FragCoord.xy / uRes.y;
   vec2 m = uMouse / uRes.y;
-  float h = height(q);
+  // fast scrolling stretches the land along the direction of travel
+  vec2 c = vec2(0.5 * uRes.x / uRes.y, 0.5);
+  vec2 qs = c + (q - c) * vec2(1.0, 1.0 / (1.0 + uVel));
+  float h = height(qs);
   // the pointer pushes up a hill
   float d = distance(q, m);
   float hill = exp(-d * d / 0.018);
   h += hill * 0.32 * uLift;
 
-  float levels = 26.0;
+  float levels = 26.0 / mix(1.0, 2.4, clamp((uZoom - 1.0) / 7.0, 0.0, 1.0));
   float v = h * levels;
   float f = fract(v);
   float w = fwidth(v);
@@ -115,12 +120,15 @@ function fbm(x: number, y: number) {
 export const topo = {
   time: 0,
   scroll: 0,
+  /** Terrain zoom (1 = street level); the flyover scene drives this. */
+  zoom: 1,
   res: { w: 1, h: 1 },
   /** Normalised height (≈0..1) at a client-space point. */
   heightAt(cx: number, cy: number) {
     const x = cx / this.res.h;
     const y = (this.res.h - cy) / this.res.h;
-    return fbm(x * 1.35 + this.time * 0.012, y * 1.35 + this.time * 0.007 - this.scroll * 0.55);
+    const z = 1.35 * this.zoom;
+    return fbm(x * z + this.time * 0.012, y * z + this.time * 0.007 - this.scroll * 0.55);
   },
 };
 
@@ -170,6 +178,8 @@ export function TopoField({ className }: { className?: string }) {
       mouse: u("uMouse"),
       lift: u("uLift"),
       scroll: u("uScroll"),
+      zoom: u("uZoom"),
+      vel: u("uVel"),
       bg: u("uBg"),
       line: u("uLine"),
       index: u("uIndex"),
@@ -216,12 +226,21 @@ export function TopoField({ className }: { className?: string }) {
 
     let raf = 0;
     const t0 = performance.now();
+    let lastScroll = window.scrollY;
+    let vel = 0;
+    let zoom = 1;
     const frame = (now: number) => {
       const t = reduced ? 40 : (now - t0) / 1000 + 40;
       mouse.x += (mouse.tx - mouse.x) * 0.08;
       mouse.y += (mouse.ty - mouse.y) * 0.08;
       mouse.lift += (mouse.tlift - mouse.lift) * 0.04;
       const scroll = window.scrollY / Math.max(1, window.innerHeight);
+      const dy = Math.abs(window.scrollY - lastScroll);
+      lastScroll = window.scrollY;
+      vel += (Math.min(1.2, dy / 60) - vel) * 0.12;
+      zoom += (topo.zoom - zoom) * 0.12;
+      gl.uniform1f(U.vel, reduced ? 0 : vel);
+      gl.uniform1f(U.zoom, zoom);
       topo.time = t;
       topo.scroll = scroll;
       gl.uniform1f(U.time, t);

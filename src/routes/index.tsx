@@ -3,6 +3,7 @@ import { AiAssistant } from "../components/AiAssistant";
 import { TerminalConsole } from "../components/TerminalConsole";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { Locator, Neatline, Readout, TopBar } from "../components/atlas/Collar";
+import { Flyover } from "../components/atlas/Flyover";
 import { Hero } from "../components/atlas/Hero";
 import { Landmarks } from "../components/atlas/Landmarks";
 import { Route as RouteSection } from "../components/atlas/Route";
@@ -38,6 +39,7 @@ function Index() {
 
       <main className="relative z-10">
         <Hero />
+        <Flyover />
         <Landmarks />
         <RouteSection />
         <Legend />
