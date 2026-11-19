@@ -32,7 +32,7 @@ export const projects = [
       "Every answer comes back as the right chart with the exact SQL, its assumptions and follow-up questions — checkable, editable and private. A built-in question engine keeps the live demo working without an API key.",
     details:
       "React 19, TypeScript, TanStack Start (SSR + server functions), DuckDB-WASM, Anthropic SDK with Zod structured outputs and prompt caching, Recharts, Motion and Vitest. The landing page runs a query choreography over 12,983 real rows and prints answers as receipts.",
-    href: "https://github.com/lisan-5/Askbase",
+    href: "https://askbaze.vercel.app/",
     repo: "https://github.com/lisan-5/Askbase",
     stack: ["DUCKDB-WASM", "CLAUDE API", "TYPESCRIPT", "TEXT-TO-SQL"],
     metric: "AI data analyst",

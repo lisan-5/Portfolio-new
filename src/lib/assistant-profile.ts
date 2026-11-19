@@ -75,7 +75,7 @@ PROJECTS (all on the site, most are live and linked)
   Its landing page replays an overnight incident on scroll, with a 3D canvas
   constellation and kinetic variable-font type. React 19, TypeScript, TanStack
   Start/Router/Query, Tailwind CSS 4, Motion, Vitest; deployed on Vercel.
-- ASKBASE — an AI data analyst for small businesses (source github.com/lisan-5/Askbase).
+- ASKBASE — an AI data analyst for small businesses (askbaze.vercel.app, source github.com/lisan-5/Askbase).
   Drop in CSV exports (Stripe, Shopify, Sheets), ask in plain English, get a chart
   plus the exact SQL. A real database (DuckDB compiled to WebAssembly) runs inside
   the browser, so rows never leave the machine; Claude Opus 5.5 only sees the
