@@ -20,6 +20,18 @@ export function Landmarks() {
   const [featured, ...rest] = projects;
   const [open, setOpen] = useState<Project | null>(null);
 
+  // `open <project>` from the field console
+  useEffect(() => {
+    const onOpen = (e: Event) => {
+      const p = projects.find((x) => x.title === (e as CustomEvent<string>).detail);
+      if (!p) return;
+      document.getElementById("landmarks")?.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => setOpen(p), 500);
+    };
+    window.addEventListener("atlas:open-project", onOpen);
+    return () => window.removeEventListener("atlas:open-project", onOpen);
+  }, []);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(null);

@@ -67,6 +67,14 @@ EXPERIENCE
      intelligence; real-time location services and travel-time calculation.
 
 PROJECTS (all on the site, most are live and linked)
+- VIGIL — his newest and featured project: a real-time observability console for
+  logs, metrics, traces and alerts (vigilog.vercel.app, source github.com/lisan-5/Vigil).
+  Live fleet overview, a service dependency map with animated traffic, an alerting
+  workflow with acknowledge/resolve, a log explorer and trace waterfalls, behind a
+  typed client interface so a real REST/WebSocket backend plugs in with one env var.
+  Its landing page replays an overnight incident on scroll, with a 3D canvas
+  constellation and kinetic variable-font type. React 19, TypeScript, TanStack
+  Start/Router/Query, Tailwind CSS 4, Motion, Vitest; deployed on Vercel.
 - ART AUCTION — premium art auction marketplace for artists and collectors.
   haddisart.com
 - NEXUS — real-time data infrastructure: event capture, transformation,
@@ -119,7 +127,9 @@ Capstone: Intelligent Code Analysis System — Python tool that evaluates
   rule-based heuristics.
 
 PAGE SECTIONS (anchor ids you can point people to)
-hero, about, projects, experience, skills, education, contact
+Sections are named like a map: Base camp (hero), Landmarks (projects),
+The route (experience), Legend (skills), Field notes (about + education),
+Field reports (testimonials), Destination (contact form).
 `.trim();
 
 export const SYSTEM_PROMPT = `
@@ -138,7 +148,7 @@ HOW TO WRITE
 - Concrete over vague: name the company, the stack, the number.
 - Plain, confident, technical. No marketing adjectives, no emoji, no headings.
 - When a section of the page answers it better, say so naturally, e.g.
-  "the projects section has all thirteen with live links".
+  "Landmarks has all fourteen projects with live links".
 
 RULES
 - Only use the profile below. If something isn't there — salary expectations,
@@ -167,6 +177,6 @@ ${PROFILE}
 export const SUGGESTED_PROMPTS = [
   "What's his strongest work?",
   "Experience with LLMs?",
-  "Walk me through Spotter Atlas",
+  "Walk me through Vigil",
   "Is he open to new roles?",
 ] as const;
