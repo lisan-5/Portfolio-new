@@ -1,29 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Sidebar } from "../components/Sidebar";
-import { LogoMark } from "../components/LogoMark";
-import { HeroSection } from "../components/HeroSection";
-import { AboutSection } from "../components/AboutSection";
-import { SkillsSection } from "../components/SkillsSection";
-import { ProjectsSection } from "../components/ProjectsSection";
-import { ExperienceSection } from "../components/ExperienceSection";
-import { EducationSection } from "../components/EducationSection";
-import { TestimonialsSection } from "../components/TestimonialsSection";
-import { ContactSection } from "../components/ContactSection";
-import { FooterSection } from "../components/FooterSection";
-import { TerminalConsole } from "../components/TerminalConsole";
 import { AiAssistant } from "../components/AiAssistant";
-import { MobileNav } from "../components/MobileNav";
-import { OceanBackground } from "../components/OceanBackground";
+import { TerminalConsole } from "../components/TerminalConsole";
 import { ThemeToggle } from "../components/ThemeToggle";
-import { ScrollProgress } from "../components/ScrollProgress";
+import { Locator, Neatline, Readout, TopBar } from "../components/atlas/Collar";
+import { Hero } from "../components/atlas/Hero";
+import { Landmarks } from "../components/atlas/Landmarks";
+import { Route as RouteSection } from "../components/atlas/Route";
+import { Destination, FieldNotes, Legend, Reports } from "../components/atlas/Sections";
+import { TopoField } from "../components/atlas/TopoField";
+
+const TITLE = "Lisanegebriel Abay — Full-Stack & AI Engineer";
+const DESCRIPTION =
+  "Full-Stack & AI Engineer in Addis Ababa building scalable backend systems, LLM applications, intelligent automation and production-grade software.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lisanegebriel Abay — Full-Stack & AI Engineer" },
-      { name: "description", content: "Full-Stack & AI Engineer building scalable backend systems, LLM applications, intelligent automation, and production-grade software." },
-      { property: "og:title", content: "Lisanegebriel Abay — Full-Stack & AI Engineer" },
-      { property: "og:description", content: "Building scalable backend systems, AI-powered applications, REST APIs, and high-performance web platforms." },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:url", content: "https://www.ligator.tech/" },
     ],
   }),
   component: Index,
@@ -32,23 +29,21 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="relative min-h-screen bg-background">
-      <OceanBackground />
-      <ScrollProgress />
-      <Sidebar />
-      <LogoMark />
-      <MobileNav />
+      <TopoField className="fixed inset-0 h-full w-full" />
+      <Neatline />
+      <TopBar />
+      <Locator />
+      <Readout />
       <ThemeToggle />
 
-      <main className="relative z-10 transition-[margin] duration-300">
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <SkillsSection />
-        <EducationSection />
-        <TestimonialsSection />
-        <ContactSection />
-        <FooterSection />
+      <main className="relative z-10">
+        <Hero />
+        <Landmarks />
+        <RouteSection />
+        <Legend />
+        <FieldNotes />
+        <Reports />
+        <Destination />
       </main>
 
       <TerminalConsole />
