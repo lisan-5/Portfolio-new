@@ -1,5 +1,4 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
-import { RightSocialRail } from "../components/RightSocialRail";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
 
@@ -32,20 +31,26 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Lisanegebriel Abay — Full-Stack & AI Engineer" },
+      { name: "description", content: "Full-Stack & AI Engineer building scalable backend systems, LLM applications and production-grade software." },
+      { name: "author", content: "Lisanegebriel Abay" },
+      { name: "theme-color", content: "#0a1311" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "Lisanegebriel Abay" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:creator", content: "@lisanabay" },
     ],
     links: [
       {
         rel: "icon",
         type: "image/png",
         href: "/favicon.png",
+      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -77,13 +82,5 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const isHome = pathname === "/";
-
-  return (
-    <>
-      {!isHome && <RightSocialRail />}
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 }

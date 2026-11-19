@@ -168,10 +168,10 @@ export function AiAssistant() {
           transition={{ duration: 0.35, ease: "easeOut" }}
           whileHover={{ scale: 1.04, y: -1 }}
           whileTap={{ scale: 0.96 }}
-          className="group fixed bottom-4 right-16 z-[100] overflow-hidden rounded-full border border-cyan-700/50 bg-gradient-to-r from-cyan-700 via-cyan-600 to-sky-600 p-[1px] shadow-[0_12px_36px_-8px_rgba(14,116,144,0.45)] transition-shadow duration-300 hover:shadow-[0_16px_44px_-6px_rgba(14,116,144,0.55)] sm:bottom-6 sm:right-20 dark:border-cyan-100/35 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:shadow-[0_12px_36px_-8px_rgba(125,211,252,0.22)]"
+          className="group fixed bottom-4 right-16 z-[100] overflow-hidden rounded-full border border-lime-700/50 bg-gradient-to-r from-lime-700 via-lime-600 to-lime-600 p-[1px] shadow-[0_12px_36px_-8px_rgba(101,163,13,0.45)] transition-shadow duration-300 hover:shadow-[0_16px_44px_-6px_rgba(101,163,13,0.55)] sm:bottom-6 sm:right-20 dark:border-lime-100/35 dark:from-lime-200 dark:via-lime-100 dark:to-lime-200 dark:shadow-[0_12px_36px_-8px_rgba(200,245,58,0.22)]"
         >
           <span className="relative flex items-center gap-2.5 rounded-full bg-obsidian/95 px-3.5 py-2.5 backdrop-blur-md sm:px-4 dark:bg-obsidian/90">
-            <span className="relative flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-cyan-600/30 to-sky-500/10 dark:from-cyan-200/25 dark:to-sky-200/10">
+            <span className="relative flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-lime-600/30 to-lime-500/10 dark:from-lime-200/25 dark:to-lime-200/10">
               <Sparkles className="h-3.5 w-3.5 text-cyber transition-transform duration-300 group-hover:rotate-12" />
               <motion.span
                 className="absolute inset-0 rounded-full border border-cyber/40"
@@ -211,13 +211,13 @@ export function AiAssistant() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 18, scale: 0.96 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed inset-x-3 bottom-4 z-[100] flex max-h-[80svh] flex-col overflow-hidden rounded-2xl border border-cyan-700/30 bg-obsidian/95 shadow-[0_28px_90px_-20px_rgba(0,0,0,0.55),0_0_0_1px_rgba(56,189,220,0.06)] backdrop-blur-xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[440px] sm:max-w-[calc(100vw-3rem)] dark:border-cyan-100/20 dark:shadow-[0_28px_90px_-20px_rgba(0,0,0,0.7),0_0_40px_-12px_rgba(56,189,220,0.12)]"
+              className="fixed inset-x-3 bottom-4 z-[100] flex max-h-[80svh] flex-col overflow-hidden rounded-2xl border border-lime-700/30 bg-obsidian/95 shadow-[0_28px_90px_-20px_rgba(0,0,0,0.55),0_0_0_1px_rgba(160,200,60,0.06)] backdrop-blur-xl sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[440px] sm:max-w-[calc(100vw-3rem)] dark:border-lime-100/20 dark:shadow-[0_28px_90px_-20px_rgba(0,0,0,0.7),0_0_40px_-12px_rgba(160,200,60,0.12)]"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Soft atmosphere behind the UI */}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(14,116,144,0.14),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(56,189,220,0.06),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(125,211,252,0.1),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(56,189,220,0.05),transparent_50%)]"
+                className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(101,163,13,0.14),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(160,200,60,0.06),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top_right,rgba(200,245,58,0.1),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(160,200,60,0.05),transparent_50%)]"
               />
               <div
                 aria-hidden
@@ -227,7 +227,7 @@ export function AiAssistant() {
               {/* Header */}
               <div className="relative flex shrink-0 items-center justify-between border-b border-border/70 px-4 py-3.5">
                 <div className="flex items-center gap-3">
-                  <div className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-700/35 bg-gradient-to-br from-cyan-700/25 via-cyan-600/10 to-transparent dark:border-cyan-100/25 dark:from-cyan-200/20">
+                  <div className="relative flex h-9 w-9 items-center justify-center rounded-xl border border-lime-700/35 bg-gradient-to-br from-lime-700/25 via-lime-600/10 to-transparent dark:border-lime-100/25 dark:from-lime-200/20">
                     <Sparkles className="h-4 w-4 text-cyber" />
                     <span
                       className={
@@ -294,7 +294,7 @@ export function AiAssistant() {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.28, delay: 0.08 + i * 0.05 }}
                           onClick={() => send(prompt)}
-                          className="group flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/25 px-3.5 py-2.5 text-left font-mono-tech text-[11px] text-slate-mid transition-all duration-200 hover:border-cyber/50 hover:bg-card/55 hover:text-foreground hover:shadow-[0_8px_24px_-12px_rgba(56,189,220,0.35)]"
+                          className="group flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/25 px-3.5 py-2.5 text-left font-mono-tech text-[11px] text-slate-mid transition-all duration-200 hover:border-cyber/50 hover:bg-card/55 hover:text-foreground hover:shadow-[0_8px_24px_-12px_rgba(160,200,60,0.35)]"
                         >
                           <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-border/50 bg-background/40 font-mono-tech text-[10px] text-cyber/70 transition-colors group-hover:border-cyber/40 group-hover:text-cyber">
                             {String(i + 1).padStart(2, "0")}
@@ -358,7 +358,7 @@ export function AiAssistant() {
                     disabled={!input.trim() || busy || status === "offline"}
                     aria-label="Send message"
                     whileTap={{ scale: 0.9 }}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-cyan-700/50 bg-gradient-to-br from-cyan-700 via-cyan-600 to-sky-600 text-white shadow-[0_6px_16px_-4px_rgba(14,116,144,0.45)] transition-opacity enabled:hover:brightness-110 disabled:opacity-35 dark:border-cyan-100/40 dark:from-cyan-200 dark:via-cyan-100 dark:to-sky-200 dark:text-slate-950 dark:shadow-[0_6px_16px_-4px_rgba(125,211,252,0.3)]"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-lime-700/50 bg-gradient-to-br from-lime-700 via-lime-600 to-lime-600 text-white shadow-[0_6px_16px_-4px_rgba(101,163,13,0.45)] transition-opacity enabled:hover:brightness-110 disabled:opacity-35 dark:border-lime-100/40 dark:from-lime-200 dark:via-lime-100 dark:to-lime-200 dark:text-slate-950 dark:shadow-[0_6px_16px_-4px_rgba(200,245,58,0.3)]"
                   >
                     <ArrowUp className="h-3.5 w-3.5" strokeWidth={2.5} />
                   </motion.button>
@@ -384,7 +384,7 @@ function MessageRow({ message, active }: { message: Message; active: boolean }) 
         transition={{ duration: 0.2 }}
         className="flex justify-end"
       >
-        <div className="max-w-[88%] rounded-2xl rounded-br-md border border-cyan-700/25 bg-gradient-to-br from-cyan-700/15 via-card/60 to-card/40 px-3.5 py-2.5 text-[13px] leading-relaxed text-foreground dark:border-cyan-100/20 dark:from-cyan-200/10">
+        <div className="max-w-[88%] rounded-2xl rounded-br-md border border-lime-700/25 bg-gradient-to-br from-lime-700/15 via-card/60 to-card/40 px-3.5 py-2.5 text-[13px] leading-relaxed text-foreground dark:border-lime-100/20 dark:from-lime-200/10">
           {message.content}
         </div>
       </motion.div>
