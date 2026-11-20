@@ -264,7 +264,9 @@ export const experiences: {
   role: string;
   company: string;
   href?: string;
+  /** "MM/YYYY - MM/YYYY", "MM/YYYY - Present", or just "MM/YYYY" when no end date is shown */
   period: string;
+  location?: string;
   stack: string[];
   highlights: string[];
 }[] = [
@@ -284,6 +286,22 @@ export const experiences: {
     stack: ["Full-stack", "E-commerce", "Fundraising"],
     highlights: [
       "Full-stack engineering on Spirit Hero's ecommerce and fundraising technology platform.",
+    ],
+  },
+  {
+    role: "AI & Full-Stack Engineer",
+    company: "Vivid Insights",
+    period: "07/2026",
+    location: "Uppsala County, Sweden · Remote",
+    stack: ["LLM agents", "React", "TypeScript", "FastAPI", "PostgreSQL"],
+    highlights: [
+      "Building AI-powered conversational systems and developer tools that automate the workflow from structured storyboards to deployable chatbot applications.",
+      "Developing AI agents that transform product requirements and structured storyboards into runnable full-stack conversational applications.",
+      "Building backend services, API integrations, database workflows, and deployment pipelines for AI-powered applications.",
+      "Developed an internal User Tester platform for evaluating conversational bots, collecting structured tester feedback, and validating responses against defined use cases.",
+      "Integrating LLMs and external APIs while improving generated applications through structured storyboard parsing, multi-persona support, routing, and reliable LLM response handling.",
+      "Working across the AI application lifecycle, from requirements and generation through implementation, deployment, and automated testing.",
+      "Deployed and integrated production chatbots, including Ask Afya and Counterpoint, on Render and Vercel.",
     ],
   },
   {

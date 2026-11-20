@@ -6,6 +6,7 @@
  * (`ask …`). History with ↑/↓, Tab completion, and ` (backtick) toggles it anywhere.
  */
 import { AnimatePresence, motion } from "framer-motion";
+import { periodLabel } from "@/lib/period";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { experiences, projects, stacks } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
@@ -194,7 +195,7 @@ export function TerminalConsole() {
         out.push(L("  ◉ depart · AAU & A2SV", "muted"));
         stops.forEach((e, i) => {
           out.push(L("  │", "muted"));
-          out.push(L(`  ${i === stops.length - 1 ? "◆" : "◇"} ${e.company.padEnd(24)} ${e.period}`, i === stops.length - 1 ? "accent" : "fg"));
+          out.push(L(`  ${i === stops.length - 1 ? "◆" : "◇"} ${e.company.padEnd(24)} ${periodLabel(e.period)}`, i === stops.length - 1 ? "accent" : "fg"));
           out.push(L(`  │   ${e.role}`, "muted"));
         });
                 break;

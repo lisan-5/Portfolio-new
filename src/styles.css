@@ -118,6 +118,13 @@
   --spirit: #8a5cf0;
   --spirit-deep: #2a1858;
   --spirit-gold: #f7c548;
+  /* one colour per team on the route and the globe */
+  --co-ambalay: #5fa8c4;
+  --co-brana: #4fd1a5;
+  --co-haddis: #f08a6c;
+  --co-spotter: #ffb347;
+  --co-theseus: #a3b4ff;
+  --co-vivid: #ff7ab6;
 }
 
 .light {
@@ -154,6 +161,12 @@
   --spirit: #5b2bb5;
   --spirit-deep: #e6dcf7;
   --spirit-gold: #8f5e00;
+  --co-ambalay: #2f7499;
+  --co-brana: #1f7a5c;
+  --co-haddis: #b0452a;
+  --co-spotter: #a35f00;
+  --co-theseus: #3f51b5;
+  --co-vivid: #c2185b;
 }
 
 @layer base {

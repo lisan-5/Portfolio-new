@@ -7,24 +7,12 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef, useState } from "react";
 import { experiences } from "@/data/portfolio";
+import { fmtSpan, isCurrent, isStartOnly, periodLabel, periodMonths as months } from "@/lib/period";
 import { cn } from "@/lib/utils";
 import { EASE, Reveal, SheetHead } from "./shared";
+import { TEAMS, teamColor } from "./teams";
 
 type Exp = (typeof experiences)[number];
-
-function months(period: string) {
-  const [a, b] = period.split("-").map((s) => s.trim());
-  const parse = (s: string) => {
-    if (/present/i.test(s)) {
-      const d = new Date();
-      return d.getFullYear() * 12 + d.getMonth();
-    }
-    const [m, y] = s.split("/").map(Number);
-    return y * 12 + (m - 1);
-  };
-  return Math.max(1, parse(b) - parse(a) + 1);
-}
-const fmtSpan = (n: number) => (n >= 12 ? `${Math.floor(n / 12)} yr ${n % 12 ? `${n % 12} mo` : ""}`.trim() : `${n} mo`);
 
 export function Route() {
   const stops = [...experiences].reverse();
@@ -44,7 +32,7 @@ export function Route() {
           aside={
             <>
               {stops.length} stops, {fmtSpan(total)} on the road — geospatial backends, a national
-              healthcare platform, freight routing, AI systems and now CTO at Spirit Hero. Scroll to drive it.
+              healthcare platform, freight routing, AI chatbot systems and now CTO at Spirit Hero. Scroll to drive it.
             </>
           }
         />
@@ -98,7 +86,9 @@ function Segment({ side }: { side: "left" | "right" }) {
 function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promoted: boolean; side: "left" | "right" }) {
   const [more, setMore] = useState(false);
   const span = months(e.period);
-  const present = /present/i.test(e.period);
+  const present = isCurrent(e.period);
+  const theme = TEAMS[e.company];
+  const co = teamColor(e.company);
   const spirit = present && e.company === "Spirit Hero";
   const turn = side === "left" ? "↰" : "↱";
   return (
@@ -130,12 +120,13 @@ function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promo
         ) : (
           <span
             className={cn(
-              "absolute top-1/2 grid h-5 w-5 -translate-y-1/2 rotate-45 place-items-center border-2 border-cyber bg-background",
+              "absolute top-1/2 grid h-5 w-5 -translate-y-1/2 rotate-45 place-items-center border-2 bg-background",
               "-left-[35px] md:left-auto",
               side === "left" ? "md:-right-[10px]" : "md:-left-[10px]",
             )}
+            style={{ borderColor: co }}
           >
-            <span className="h-1.5 w-1.5 bg-cyber" />
+            <span className="h-1.5 w-1.5" style={{ background: co }} />
           </span>
         )}
 
@@ -143,13 +134,28 @@ function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promo
           className={cn(
             "relative p-6 backdrop-blur-sm sm:p-7",
             spirit ? "border-2 border-spirit bg-spirit-deep/55" : "border border-input bg-card/70",
+            !spirit && (side === "left" ? "md:border-r-[3px]" : "md:border-l-[3px]"),
             side === "left" && "md:text-right",
           )}
+          style={spirit ? undefined : { [side === "left" ? "borderRightColor" : "borderLeftColor"]: co }}
         >
           {spirit && <SpiritDressing side={side} />}
+          {!spirit && theme && (
+            <svg
+              aria-hidden
+              viewBox="0 0 64 64"
+              className={cn("pointer-events-none absolute top-5 h-14 w-14 opacity-60", side === "left" ? "left-5" : "right-5")}
+              style={{ color: co }}
+            >
+              {theme.motif}
+            </svg>
+          )}
           <div className={cn("map-label flex items-center gap-2", side === "left" && "md:justify-end")}>
-            <span className={cn("text-base leading-none", spirit ? "text-spirit-gold" : "text-cyber")}>{turn}</span>
-            waypoint {String(index + 1).padStart(2, "0")} · {e.period} · {fmtSpan(span)}
+            <span className="text-base leading-none" style={{ color: spirit ? "var(--spirit-gold)" : co }}>
+              {turn}
+            </span>
+            waypoint {String(index + 1).padStart(2, "0")} · {periodLabel(e.period)}
+            {!isStartOnly(e.period) && <> · {fmtSpan(span)}</>}
           </div>
           <p className="mt-3 font-mono-tech text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
             {index === 0 ? "Head out to" : promoted ? "Promoted at" : "Continue to"}
@@ -163,13 +169,14 @@ function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promo
               e.company
             )}
           </h3>
-          <p className={cn("mt-1 text-sm", spirit ? "text-spirit-gold" : "text-cyber")}>
+          <p className="mt-1 text-sm" style={{ color: spirit ? "var(--spirit-gold)" : co }}>
             {e.role}
             {present && <span className="ml-2 font-mono-tech text-[10px] uppercase tracking-[0.16em]">· current position</span>}
           </p>
+          {e.location && <p className="mt-1 font-mono-tech text-[10.5px] text-muted-foreground">{e.location}</p>}
           <ul className={cn("mt-4 flex flex-wrap gap-1.5", side === "left" && "md:justify-end")}>
             {e.stack.map((s) => (
-              <li key={s} className={cn("border px-2 py-0.5 font-mono-tech text-[9.5px] tracking-[0.12em] text-muted-foreground", spirit ? "border-spirit/70" : "border-border")}>
+              <li key={s} className={cn("border px-2 py-0.5 font-mono-tech text-[9.5px] tracking-[0.12em] text-muted-foreground", spirit ? "border-spirit/70" : "border-border")} style={spirit ? undefined : { borderColor: `color-mix(in srgb, ${co} 45%, transparent)` }}>
                 {s}
               </li>
             ))}
@@ -183,7 +190,7 @@ function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promo
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4, ease: EASE }}
               >
-                <span className="mt-[7px] h-1 w-1 shrink-0 bg-cyber" />
+                <span className="mt-[7px] h-1 w-1 shrink-0" style={{ background: spirit ? "var(--spirit-gold)" : co }} />
                 {h}
               </motion.li>
             ))}

@@ -14,9 +14,11 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform }
 import { useEffect, useMemo, useRef, useState } from "react";
 import countriesUrl from "world-atlas/countries-110m.json?url";
 import { experiences, projects } from "@/data/portfolio";
+import { periodLabel } from "@/lib/period";
 import { cn } from "@/lib/utils";
 import { topo } from "./TopoField";
 import { EASE, HOME } from "./shared";
+import { TEAMS } from "./teams";
 
 type Exp = (typeof experiences)[number];
 type Site = {
@@ -36,6 +38,7 @@ const PLACES: Record<string, { place: string; lat: number; lon: number; label: L
   "Spirit Hero": { place: "United States", lat: 38.5, lon: -97, label: "above" },
   "Theseus Group": { place: "Los Angeles", lat: 34.05, lon: -118.24, label: "left" },
   "Spotter AI": { place: "Wilmington", lat: 39.74, lon: -75.55, label: "below" },
+  "Vivid Insights": { place: "Uppsala", lat: 59.86, lon: 17.64, label: "right" },
 };
 const HOME_PLACE = { place: "Addis Ababa", lat: HOME.lat, lon: HOME.lon, label: "right" as Label };
 
@@ -155,6 +158,9 @@ export function Flyover() {
         bg: v("--background"),
         spirit: v("--spirit"),
         gold: v("--spirit-gold"),
+        team: Object.fromEntries(
+          Object.entries(TEAMS).map(([k, t]) => [k, v(t.color.slice(4, -1))]),
+        ) as Record<string, string>,
       };
     };
     let col = css();
@@ -238,6 +244,8 @@ export function Flyover() {
     c.addEventListener("pointerleave", onLeave);
 
     let raf = 0;
+    const siteColor = (site: Site) =>
+      site.companies.length === 1 ? col.team[site.companies[0].company] || col.accent : col.accent;
     const draw = (now: number) => {
       const v = p.get();
       const appear = Math.min(1, Math.max(0, (v - 0.18) / 0.3));
@@ -366,7 +374,7 @@ export function Flyover() {
         const o = toVec(HOME.lat, HOME.lon);
         const abroad = sites.filter((s) => s.id !== HOME_PLACE.place);
         abroad.forEach((site, k2) => {
-          const t = Math.min(1, Math.max(0, reveal * 1.6 - k2 * 0.3));
+          const t = Math.min(1, Math.max(0, reveal * (1 + 0.3 * abroad.length) - k2 * 0.3));
           if (t <= 0) return;
           const b = toVec(site.lat, site.lon);
           const pts = Array.from({ length: 90 }, (_, i) => {
@@ -389,7 +397,7 @@ export function Flyover() {
             ctx.setLineDash([]);
             ctx.lineDashOffset = 0;
           } else {
-            ctx.strokeStyle = col.accent;
+            ctx.strokeStyle = siteColor(site);
             ctx.lineWidth = lit ? 2.6 : 1.8;
             stroke(pts);
           }
@@ -402,7 +410,7 @@ export function Flyover() {
           shown.push({ id: site.id, x: q.x, y: q.y, vis: q.vis });
           const isHome = site.id === HOME_PLACE.place;
           const idx = abroad.indexOf(site);
-          const arrived = isHome || Math.min(1, Math.max(0, reveal * 1.6 - idx * 0.3)) > 0.99;
+          const arrived = isHome || Math.min(1, Math.max(0, reveal * (1 + 0.3 * abroad.length) - idx * 0.3)) > 0.99;
           if (!q.vis || !arrived) continue;
           const lit = hv === site.id || f === site.id;
           ctx.globalAlpha = ease;
@@ -448,12 +456,12 @@ export function Flyover() {
               ctx.stroke();
               ctx.globalAlpha = ease;
             }
-            ctx.fillStyle = col.accent;
+            ctx.fillStyle = siteColor(site);
             ctx.beginPath();
             ctx.arc(q.x, q.y, lit ? 5 : 3.5, 0, Math.PI * 2);
             ctx.fill();
             if (lit) {
-              ctx.strokeStyle = col.accent;
+              ctx.strokeStyle = siteColor(site);
               ctx.beginPath();
               ctx.arc(q.x, q.y, 9, 0, Math.PI * 2);
               ctx.stroke();
@@ -482,7 +490,7 @@ export function Flyover() {
           ctx.strokeText(sub, lx, ly + 14);
           ctx.fillStyle = col.fg;
           ctx.fillText(site.place.toUpperCase(), lx, ly);
-          ctx.fillStyle = site.spirit ? col.gold : col.accent;
+          ctx.fillStyle = site.spirit ? col.gold : siteColor(site);
           ctx.fillText(sub, lx, ly + 14);
         }
         pinsOnScreen = shown;
@@ -628,9 +636,10 @@ function SiteCard({ site }: { site: Site }) {
         {site.companies.map((c) => (
           <li key={c.company}>
             <div className="font-map text-xl leading-tight text-foreground">{c.company}</div>
+            {c.roles[0].location && <div className="font-mono-tech text-[10px] text-muted-foreground">{c.roles[0].location}</div>}
             {c.roles.map((r) => (
               <div key={r.role} className="font-mono-tech text-[10.5px] text-muted-foreground">
-                <span className="text-cyber">{r.role}</span> · {r.period}
+                <span style={{ color: TEAMS[c.company]?.color ?? "var(--cyber)" }}>{r.role}</span> · {periodLabel(r.period)}
               </div>
             ))}
           </li>
@@ -658,7 +667,7 @@ function SpiritCard({ site }: { site: Site }) {
           {roles.map((r) => (
             <li key={r.role} className="flex items-baseline justify-between gap-3 font-mono-tech text-[10.5px]">
               <span className={/present/i.test(r.period) ? "text-spirit-gold" : "text-foreground/70"}>{r.role}</span>
-              <span className="shrink-0 text-foreground/55">{r.period}</span>
+              <span className="shrink-0 text-foreground/55">{periodLabel(r.period)}</span>
             </li>
           ))}
         </ol>

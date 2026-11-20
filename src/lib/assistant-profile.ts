@@ -36,7 +36,21 @@ EXPERIENCE
    Before that: Software Developer at Spirit Hero, 08/2026 - 10/2026 — full-stack
    engineering on the same platform.
 
-1b. Software Engineer — Theseus Group (adaptwith.us), 01/2026 - 08/2026.
+1b. AI & Full-Stack Engineer — Vivid Insights, Uppsala County, Sweden (remote),
+   from 07/2026. (Only the start date is public; don't state or guess an end date.)
+   Stack: React, TypeScript, FastAPI, PostgreSQL, LLM agents, Render, Vercel.
+   - AI agents that turn product requirements and structured storyboards into
+     runnable full-stack chatbot applications (the "Conversor Implementer").
+   - Built User Tester, an internal full-stack platform for evaluating
+     conversational bots: connects live chatbots, collects structured tester
+     feedback and ratings, A/B tests, and validates responses against use cases.
+   - REST APIs, authentication, database models and integrations with external
+     chatbot APIs; storyboard parsing, multi-persona support, routing and
+     reliable LLM response handling.
+   - Deployed and integrated chatbots including Ask Afya and Counterpoint on
+     Render and Vercel.
+
+1c. Software Engineer — Theseus Group (adaptwith.us), 01/2026 - 08/2026.
    Stack: LLMOps, Docker, APIs, Automation.
    - Scalable AI-powered backend systems and automation workflows for internal
      business operations and intelligent decision-making.
