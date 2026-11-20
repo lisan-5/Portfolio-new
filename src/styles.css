@@ -72,6 +72,9 @@
   --color-contour: var(--contour);
   --color-contour-index: var(--contour-index);
   --color-paper: var(--paper);
+  --color-spirit: var(--spirit);
+  --color-spirit-deep: var(--spirit-deep);
+  --color-spirit-gold: var(--spirit-gold);
 }
 
 /*
@@ -111,6 +114,10 @@
   --contour-index: #3f6b5c;
   --paper: #0a1311;
   --water: #5fa8c4;
+  /* the current post: varsity purple + gold, for the Spirit Hero stop */
+  --spirit: #8a5cf0;
+  --spirit-deep: #2a1858;
+  --spirit-gold: #f7c548;
 }
 
 .light {
@@ -144,6 +151,9 @@
   --contour-index: #b39062;
   --paper: #efe8d6;
   --water: #2f7499;
+  --spirit: #5b2bb5;
+  --spirit-deep: #e6dcf7;
+  --spirit-gold: #8f5e00;
 }
 
 @layer base {

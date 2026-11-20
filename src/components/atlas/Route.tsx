@@ -99,6 +99,7 @@ function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promo
   const [more, setMore] = useState(false);
   const span = months(e.period);
   const present = /present/i.test(e.period);
+  const spirit = present && e.company === "Spirit Hero";
   const turn = side === "left" ? "↰" : "↱";
   return (
     <div className="relative grid min-h-[340px] grid-cols-[48px_1fr] md:grid-cols-2 md:gap-32">
@@ -116,19 +117,38 @@ function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promo
         className={cn("relative py-10 md:py-16", side === "right" ? "md:col-start-2" : "md:col-start-1 md:row-start-1")}
       >
         {/* waypoint marker */}
-        <span
+        {spirit ? (
+          <span
+            className={cn(
+              "absolute top-1/2 z-10 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-full border-2 border-spirit-gold bg-spirit text-[15px] leading-none text-spirit-gold",
+              "-left-[42px] md:left-auto",
+              side === "left" ? "md:-right-[16px]" : "md:-left-[16px]",
+            )}
+          >
+            <span className="absolute inset-0 animate-ping-ring rounded-full border border-spirit-gold" />★
+          </span>
+        ) : (
+          <span
+            className={cn(
+              "absolute top-1/2 grid h-5 w-5 -translate-y-1/2 rotate-45 place-items-center border-2 border-cyber bg-background",
+              "-left-[35px] md:left-auto",
+              side === "left" ? "md:-right-[10px]" : "md:-left-[10px]",
+            )}
+          >
+            <span className="h-1.5 w-1.5 bg-cyber" />
+          </span>
+        )}
+
+        <article
           className={cn(
-            "absolute top-1/2 grid h-5 w-5 -translate-y-1/2 rotate-45 place-items-center border-2 border-cyber bg-background",
-            "-left-[35px] md:left-auto",
-            side === "left" ? "md:-right-[10px]" : "md:-left-[10px]",
+            "relative p-6 backdrop-blur-sm sm:p-7",
+            spirit ? "border-2 border-spirit bg-spirit-deep/55" : "border border-input bg-card/70",
+            side === "left" && "md:text-right",
           )}
         >
-          <span className="h-1.5 w-1.5 bg-cyber" />
-        </span>
-
-        <article className={cn("border border-input bg-card/70 p-6 backdrop-blur-sm sm:p-7", side === "left" && "md:text-right")}>
+          {spirit && <SpiritDressing side={side} />}
           <div className={cn("map-label flex items-center gap-2", side === "left" && "md:justify-end")}>
-            <span className="text-base leading-none text-cyber">{turn}</span>
+            <span className={cn("text-base leading-none", spirit ? "text-spirit-gold" : "text-cyber")}>{turn}</span>
             waypoint {String(index + 1).padStart(2, "0")} · {e.period} · {fmtSpan(span)}
           </div>
           <p className="mt-3 font-mono-tech text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
@@ -143,13 +163,13 @@ function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promo
               e.company
             )}
           </h3>
-          <p className="mt-1 text-sm text-cyber">
+          <p className={cn("mt-1 text-sm", spirit ? "text-spirit-gold" : "text-cyber")}>
             {e.role}
             {present && <span className="ml-2 font-mono-tech text-[10px] uppercase tracking-[0.16em]">· current position</span>}
           </p>
           <ul className={cn("mt-4 flex flex-wrap gap-1.5", side === "left" && "md:justify-end")}>
             {e.stack.map((s) => (
-              <li key={s} className="border border-border px-2 py-0.5 font-mono-tech text-[9.5px] tracking-[0.12em] text-muted-foreground">
+              <li key={s} className={cn("border px-2 py-0.5 font-mono-tech text-[9.5px] tracking-[0.12em] text-muted-foreground", spirit ? "border-spirit/70" : "border-border")}>
                 {s}
               </li>
             ))}
@@ -202,4 +222,105 @@ function Endpoint({ kind }: { kind: "depart" | "arrive" }) {
       </div>
     </Reveal>
   );
+}
+
+/**
+ * The current post, dressed as spirit wear: a stitched seam inside the card, a chenille
+ * varsity patch, a pennant, and a little burst of stars when it scrolls into view.
+ */
+function SpiritDressing({ side }: { side: "left" | "right" }) {
+  const outer = side === "left" ? "-left-6" : "-right-6";
+  return (
+    <>
+      <span aria-hidden className="pointer-events-none absolute inset-1.5 border border-dashed border-spirit-gold/60" />
+
+      {/* chenille patch */}
+      <motion.svg
+        aria-hidden
+        viewBox="0 0 120 120"
+        className={cn("pointer-events-none absolute -top-12 h-24 w-24 drop-shadow-xl", outer)}
+        initial={{ scale: 0.4, rotate: side === "left" ? -30 : 30, opacity: 0 }}
+        whileInView={{ scale: 1, rotate: side === "left" ? -9 : 9, opacity: 1 }}
+        viewport={{ once: true, margin: "0px 0px -25% 0px" }}
+        transition={{ type: "spring", stiffness: 260, damping: 14, delay: 0.35 }}
+      >
+        <defs>
+          <filter id="chenille" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="7" result="n" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" />
+          </filter>
+        </defs>
+        <circle cx="60" cy="60" r="56" fill="var(--spirit-gold)" />
+        <circle cx="60" cy="60" r="49" fill="var(--spirit)" filter="url(#chenille)" />
+        <circle cx="60" cy="60" r="52.5" fill="none" stroke="var(--spirit-deep)" strokeWidth="1.4" strokeDasharray="3 3" />
+        <circle cx="60" cy="60" r="42" fill="none" stroke="var(--spirit-gold)" strokeWidth="1" strokeDasharray="2 3" opacity=".8" />
+        <text x="60" y="71" textAnchor="middle" fontFamily="'Young Serif', Georgia, serif" fontSize="34" fill="var(--spirit-gold)" stroke="#fff" strokeOpacity=".9" strokeWidth="1.1" paintOrder="stroke">
+          CTO
+        </text>
+        {[[33, 40], [87, 40]].map(([x, y]) => (
+          <path key={x} d={starPath(x, y, 6)} fill="#fff" />
+        ))}
+        <text x="60" y="94" textAnchor="middle" fontFamily="'JetBrains Mono', monospace" fontSize="8" letterSpacing="2" fill="#fff">
+          EST · 2026
+        </text>
+      </motion.svg>
+
+      {/* pennant */}
+      <motion.svg
+        aria-hidden
+        viewBox="0 0 90 34"
+        className={cn("pointer-events-none absolute -bottom-4 h-8 w-[84px]", side === "left" ? "left-5" : "right-5")}
+        initial={{ x: side === "left" ? -14 : 14, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: true, margin: "0px 0px -25% 0px" }}
+        transition={{ duration: 0.6, ease: EASE, delay: 0.6 }}
+        style={{ transform: side === "right" ? "scaleX(-1)" : undefined }}
+      >
+        <path d="M2 2 L88 17 L2 32 Z" fill="var(--spirit)" stroke="var(--spirit-gold)" strokeWidth="1.5" />
+        <path d="M2 2 L2 32" stroke="var(--spirit-gold)" strokeWidth="4" />
+        <text
+          x="34"
+          y="21"
+          textAnchor="middle"
+          fontFamily="'JetBrains Mono', monospace"
+          fontSize="9"
+          letterSpacing="2"
+          fill="var(--spirit-gold)"
+          transform={side === "right" ? "translate(68 0) scale(-1 1)" : undefined}
+        >
+          NOW
+        </text>
+      </motion.svg>
+
+      {/* star burst */}
+      <span aria-hidden className={cn("pointer-events-none absolute -top-2 h-0 w-0", side === "left" ? "left-6" : "right-6")}>
+        {Array.from({ length: 9 }, (_, i) => {
+          const a = (-150 + i * 15) * (Math.PI / 180) * (side === "left" ? 1 : -1) + (side === "left" ? 0 : Math.PI);
+          const d = 46 + (i % 3) * 18;
+          return (
+            <motion.span
+              key={i}
+              className={cn("absolute text-[11px] leading-none", i % 2 ? "text-spirit-gold" : "text-spirit")}
+              initial={{ x: 0, y: 0, opacity: 0, scale: 0.4 }}
+              whileInView={{ x: Math.cos(a) * d, y: Math.sin(a) * d, opacity: [0, 1, 0], scale: [0.4, 1.1, 0.8] }}
+              viewport={{ once: true, margin: "0px 0px -25% 0px" }}
+              transition={{ duration: 1.3, ease: "easeOut", delay: 0.45 + i * 0.03 }}
+            >
+              ★
+            </motion.span>
+          );
+        })}
+      </span>
+    </>
+  );
+}
+
+function starPath(cx: number, cy: number, r: number) {
+  let d = "";
+  for (let i = 0; i < 10; i++) {
+    const a = -Math.PI / 2 + (i * Math.PI) / 5;
+    const rr = i % 2 ? r * 0.45 : r;
+    d += `${i ? "L" : "M"}${(cx + Math.cos(a) * rr).toFixed(1)} ${(cy + Math.sin(a) * rr).toFixed(1)}`;
+  }
+  return `${d}Z`;
 }
