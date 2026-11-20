@@ -44,8 +44,8 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lisanegebriel Abay — Full-Stack & AI Engineer" },
-      { name: "description", content: "Full-Stack & AI Engineer building scalable backend systems, LLM applications and production-grade software." },
+      { title: "Lisanegebriel Abay — CTO · Full-Stack & AI Engineer" },
+      { name: "description", content: "CTO at Spirit Hero and Full-Stack & AI Engineer building scalable backend systems, LLM applications and production-grade software." },
       { name: "author", content: "Lisanegebriel Abay" },
       { name: "theme-color", content: "#0a1311" },
       { property: "og:type", content: "website" },

@@ -313,7 +313,7 @@ export function Destination() {
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5">
             <p className="font-map text-4xl leading-tight text-foreground">
-              Open to full-time, contract and remote work. <em className="text-cyber">Let's build something worth mapping.</em>
+              Got a hard problem or an idea worth building? <em className="text-cyber">Let's map it out.</em>
             </p>
             <ul className="mt-8 divide-y divide-border border-y border-border">
               {[...SOCIALS, { label: "Phone", href: "tel:+251964011087" }, { label: "Résumé", href: RESUME_URL }].map((s) => (

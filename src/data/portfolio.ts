@@ -260,12 +260,37 @@ export const projects = [
   },
 ];
 
-export const experiences = [
+export const experiences: {
+  role: string;
+  company: string;
+  href?: string;
+  period: string;
+  stack: string[];
+  highlights: string[];
+}[] = [
+  {
+    role: "Chief Technology Officer (CTO)",
+    company: "Spirit Hero",
+    period: "10/2026 - Present",
+    stack: ["Leadership", "Architecture", "E-commerce", "Full-stack"],
+    highlights: [
+      "Leading technology strategy, architecture, and full-stack engineering for a growing ecommerce and fundraising technology platform.",
+    ],
+  },
+  {
+    role: "Software Developer",
+    company: "Spirit Hero",
+    period: "08/2026 - 10/2026",
+    stack: ["Full-stack", "E-commerce", "Fundraising"],
+    highlights: [
+      "Full-stack engineering on Spirit Hero's ecommerce and fundraising technology platform.",
+    ],
+  },
   {
     role: "Software Engineer",
     company: "Theseus Group",
     href: "https://adaptwith.us/",
-    period: "01/2026 - Present",
+    period: "01/2026 - 08/2026",
     stack: ["LLMOps", "Docker", "APIs", "Automation"],
     highlights: [
       "Built scalable AI-powered backend systems and automation workflows supporting internal business operations and intelligent decision-making processes.",
@@ -356,7 +381,7 @@ export const footerStats = [
   { label: "FOCUS", value: "Full-stack + AI" },
   { label: "LOCATED IN", value: "Addis Ababa" },
   { label: "CONTACT", value: "Open via email" },
-  { label: "STATUS", value: "Available" },
+  { label: "ROLE", value: "CTO · Spirit Hero" },
 ];
 
 export type Testimonial = {

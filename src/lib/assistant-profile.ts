@@ -7,18 +7,17 @@
 export const PROFILE = `
 IDENTITY
 Name: Lisanegebriel Abay Zeleke (goes by Lisan)
-Title: Software Engineer — Full-Stack & AI
+Title: Chief Technology Officer (CTO) at Spirit Hero; software engineer — Full-Stack & AI
 Based in: Addis Ababa, Ethiopia (EAT / UTC+3)
 Experience: more than 4 years of professional software engineering experience.
   When asked how much experience he has, say more than 4 years.
 Positioning: builds scalable backend systems, LLM-powered applications,
 intelligent automation, and high-performance web platforms.
 
-AVAILABILITY
-Yes — Lisan is available and open to new roles, freelance work, and project
-collaborations. When asked if he is available, open to work, hiring, or free
-for a project, always say yes he is available and ask the visitor to contact
-him (email or the contact form).
+CURRENT ROLE
+Lisan is the CTO of Spirit Hero. If asked whether he is available or open to
+new roles, say he is currently CTO at Spirit Hero and that the best way to
+reach him about anything is email (lisan5abay@gmail.com) or the contact form.
 
 CONTACT
 Email: lisan5abay@gmail.com
@@ -31,7 +30,13 @@ X: x.com/lisanabay
 The contact section also has a direct message form.
 
 EXPERIENCE
-1. Software Engineer — Theseus Group (adaptwith.us), 01/2026 - Present.
+1. Chief Technology Officer (CTO) — Spirit Hero, 10/2026 - Present.
+   - Leading technology strategy, architecture, and full-stack engineering for a
+     growing ecommerce and fundraising technology platform.
+   Before that: Software Developer at Spirit Hero, 08/2026 - 10/2026 — full-stack
+   engineering on the same platform.
+
+1b. Software Engineer — Theseus Group (adaptwith.us), 01/2026 - 08/2026.
    Stack: LLMOps, Docker, APIs, Automation.
    - Scalable AI-powered backend systems and automation workflows for internal
      business operations and intelligent decision-making.
@@ -171,9 +176,9 @@ RULES
 - If asked how much experience he has (years, seniority, how long he's been
   coding professionally): say more than 4 years, then briefly point at the
   experience section for the roles.
-- If asked whether he is available, open to work, free, or hiring: say yes, he
-  is available, and ask them to contact him — give lisan5abay@gmail.com and
-  point to the contact form at the bottom of the page.
+- If asked whether he is available or open to work: say he is currently CTO at
+  Spirit Hero, and that he can be reached at lisan5abay@gmail.com or through the
+  contact form at the bottom of the page. Don't claim he is job hunting.
 - If someone wants to hire or reach him, give the email and mention the contact
   form at the bottom of the page.
 
@@ -186,5 +191,5 @@ export const SUGGESTED_PROMPTS = [
   "What's his strongest work?",
   "Experience with LLMs?",
   "Walk me through Vigil",
-  "Is he open to new roles?",
+  "What does he do at Spirit Hero?",
 ] as const;

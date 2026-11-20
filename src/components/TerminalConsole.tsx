@@ -102,7 +102,7 @@ export function TerminalConsole() {
       ...projects.map((p) => `open ${slug(p.title)}`),
       "theme dark",
       "theme light",
-      "sudo hire-me",
+      "sudo contact",
     ],
     [],
   );
@@ -156,8 +156,8 @@ export function TerminalConsole() {
         break;
       case "whoami":
         out.push(L("Lisanegebriel Abay", "fg"));
-        out.push(L("Full-Stack & AI Engineer · Addis Ababa, Ethiopia", "muted"));
-        out.push(L(`${projects.length} landmarks · ${experiences.length} waypoints · open to work`, "accent"));
+        out.push(L("CTO at Spirit Hero · Full-Stack & AI Engineer · Addis Ababa", "muted"));
+        out.push(L(`${projects.length} landmarks · ${experiences.length} waypoints · CTO at Spirit Hero`, "accent"));
         break;
       case "ls":
         SECTIONS.forEach((s, i) => out.push(L(`  0${i + 1}  ${s.id.padEnd(12)} ${s.label}`, "muted")));
@@ -197,9 +197,7 @@ export function TerminalConsole() {
           out.push(L(`  ${i === stops.length - 1 ? "◆" : "◇"} ${e.company.padEnd(24)} ${e.period}`, i === stops.length - 1 ? "accent" : "fg"));
           out.push(L(`  │   ${e.role}`, "muted"));
         });
-        out.push(L("  ┊", "muted"));
-        out.push(L("  ◎ next stop · yours?", "accent"));
-        break;
+                break;
       }
       case "skills":
         stacks.forEach((s) => {
@@ -259,8 +257,8 @@ export function TerminalConsole() {
         break;
       }
       case "sudo":
-        if (slug(arg) === "hire-me") {
-          out.push(L("[sudo] password for recruiter: ********", "muted"));
+        if (slug(arg) === "contact") {
+          out.push(L("[sudo] password for visitor: ********", "muted"));
           out.push(L("access granted. plotting a route to the contact form…", "accent"));
           setTimeout(() => document.getElementById("destination")?.scrollIntoView({ behavior: "smooth" }), 600);
         } else out.push(L("nice try.", "err"));
@@ -399,7 +397,7 @@ export function TerminalConsole() {
               />
             </form>
             <div className="flex gap-1.5 overflow-x-auto border-t border-border px-4 py-2">
-              {["help", "projects", "route", "map", "open vigil", "sudo hire-me"].map((c) => (
+              {["help", "projects", "route", "map", "open vigil", "sudo contact"].map((c) => (
                 <button
                   key={c}
                   type="button"

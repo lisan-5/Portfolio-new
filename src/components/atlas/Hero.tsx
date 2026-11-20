@@ -59,7 +59,7 @@ export function Hero() {
         </motion.div>
 
         {/* the name, engraved along a curve */}
-        <h1 className="sr-only">Lisanegebriel Abay — Full-Stack & AI Engineer</h1>
+        <h1 className="sr-only">Lisanegebriel Abay — CTO at Spirit Hero · Full-Stack & AI Engineer</h1>
         <div className="relative -mx-2 mt-6 sm:mt-2" aria-hidden>
           <svg viewBox="0 0 1200 260" className="w-full overflow-visible">
             <path id="name-curve" d={NAME_PATH} fill="none" />
@@ -210,7 +210,7 @@ function Cartouche() {
     <div className="border border-input bg-background/70 p-5 backdrop-blur-sm">
       <div className="map-label">Atlas of work · Vol. {new Date().getFullYear()}</div>
       <div className="font-map mt-2 text-3xl leading-none text-foreground">Lisanegebriel Abay</div>
-      <div className="mt-1 text-sm text-slate-mid">Full-Stack &amp; AI Engineer</div>
+      <div className="mt-1 text-sm text-slate-mid">CTO at Spirit Hero · Full-Stack &amp; AI Engineer</div>
       <dl className="mt-4 grid grid-cols-2 gap-y-1.5 font-mono-tech text-[10.5px] text-muted-foreground">
         <dt>Surveyed</dt>
         <dd className="text-right text-foreground">2022 — present</dd>
@@ -218,8 +218,8 @@ function Cartouche() {
         <dd className="text-right text-foreground">{projects.length} projects</dd>
         <dt>Contour interval</dt>
         <dd className="text-right text-foreground">20 m</dd>
-        <dt>Status</dt>
-        <dd className="text-right text-cyber">open to work</dd>
+        <dt>Role</dt>
+        <dd className="text-right text-cyber">CTO · Spirit Hero</dd>
       </dl>
       {/* scale bar */}
       <div className="mt-4">

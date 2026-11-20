@@ -10,9 +10,9 @@ import { Route as RouteSection } from "../components/atlas/Route";
 import { Destination, FieldNotes, Legend, Reports } from "../components/atlas/Sections";
 import { TopoField } from "../components/atlas/TopoField";
 
-const TITLE = "Lisanegebriel Abay — Full-Stack & AI Engineer";
+const TITLE = "Lisanegebriel Abay — CTO · Full-Stack & AI Engineer";
 const DESCRIPTION =
-  "Full-Stack & AI Engineer in Addis Ababa building scalable backend systems, LLM applications, intelligent automation and production-grade software.";
+  "CTO at Spirit Hero and Full-Stack & AI Engineer in Addis Ababa building scalable backend systems, LLM applications, intelligent automation and production-grade software.";
 
 export const Route = createFileRoute("/")({
   head: () => ({

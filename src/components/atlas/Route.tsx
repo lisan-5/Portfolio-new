@@ -44,7 +44,7 @@ export function Route() {
           aside={
             <>
               {stops.length} stops, {fmtSpan(total)} on the road — geospatial backends, a national
-              healthcare platform, freight routing and AI systems. Scroll to drive it.
+              healthcare platform, freight routing, AI systems and now CTO at Spirit Hero. Scroll to drive it.
             </>
           }
         />
@@ -52,7 +52,7 @@ export function Route() {
         <div ref={ref} className="relative">
           <Endpoint kind="depart" />
           {stops.map((e, i) => (
-            <Leg key={e.company} exp={e} index={i} side={i % 2 ? "right" : "left"} />
+            <Leg key={`${e.company}-${e.role}`} exp={e} index={i} promoted={i > 0 && stops[i - 1].company === e.company} side={i % 2 ? "right" : "left"} />
           ))}
           <Endpoint kind="arrive" />
 
@@ -95,7 +95,7 @@ function Segment({ side }: { side: "left" | "right" }) {
   );
 }
 
-function Leg({ exp: e, index, side }: { exp: Exp; index: number; side: "left" | "right" }) {
+function Leg({ exp: e, index, promoted, side }: { exp: Exp; index: number; promoted: boolean; side: "left" | "right" }) {
   const [more, setMore] = useState(false);
   const span = months(e.period);
   const present = /present/i.test(e.period);
@@ -132,12 +132,16 @@ function Leg({ exp: e, index, side }: { exp: Exp; index: number; side: "left" | 
             waypoint {String(index + 1).padStart(2, "0")} · {e.period} · {fmtSpan(span)}
           </div>
           <p className="mt-3 font-mono-tech text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-            {index === 0 ? "Head out to" : "Continue to"}
+            {index === 0 ? "Head out to" : promoted ? "Promoted at" : "Continue to"}
           </p>
           <h3 className="font-map text-[2.6rem] leading-[0.95] text-foreground">
-            <a href={e.href} target="_blank" rel="noopener noreferrer" className="underline-offset-[6px] hover:underline">
-              {e.company}
-            </a>
+            {e.href ? (
+              <a href={e.href} target="_blank" rel="noopener noreferrer" className="underline-offset-[6px] hover:underline">
+                {e.company}
+              </a>
+            ) : (
+              e.company
+            )}
           </h3>
           <p className="mt-1 text-sm text-cyber">
             {e.role}
@@ -190,10 +194,10 @@ function Endpoint({ kind }: { kind: "depart" | "arrive" }) {
       <div className="md:mt-3">
         <div className="map-label">{depart ? "Depart · 2022" : "Arrive · now"}</div>
         <p className="font-map mt-1 text-2xl text-foreground">
-          {depart ? "Addis Ababa University & A2SV" : "Open to the next stop"}
+          {depart ? "Addis Ababa University & A2SV" : "Chief Technology Officer · Spirit Hero"}
         </p>
         <p className="mt-1 font-mono-tech text-[11px] text-muted-foreground">
-          {depart ? "BSc Computer Science · 1,000+ algorithmic challenges" : "Full-time, contract or remote — let's plot it"}
+          {depart ? "BSc Computer Science · 1,000+ algorithmic challenges" : "Leading technology strategy, architecture and engineering"}
         </p>
       </div>
     </Reveal>
