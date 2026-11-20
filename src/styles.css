@@ -264,6 +264,8 @@
   0% { transform: scale(0.6); opacity: 0.9; }
   100% { transform: scale(2.6); opacity: 0; }
 }
+@keyframes report-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.report-progress { animation-name: report-progress; animation-timing-function: linear; animation-fill-mode: forwards; }
 .animate-ping-ring { animation: ping-ring 2.2s cubic-bezier(0.2, 0.6, 0.3, 1) infinite; }
 
 @media (prefers-reduced-motion: reduce) {

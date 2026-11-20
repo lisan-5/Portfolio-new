@@ -1,8 +1,8 @@
 /** Legend (skills), Field notes (about + education), Field reports (testimonials), Destination (contact + footer). */
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Check, Loader2 } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
-import { certifications, coursework, footerStats, projects, stacks, testimonials } from "@/data/portfolio";
+import { useState, type ReactNode } from "react";
+import { certifications, coursework, footerStats, projects, stacks } from "@/data/portfolio";
 import { cn } from "@/lib/utils";
 import { EASE, HOME, RESUME_URL, Reveal, SOCIALS, SheetHead, fmtLat, fmtLon } from "./shared";
 
@@ -150,90 +150,8 @@ function Note({ n, title, meta, children }: { n: string; title: string; meta: st
   );
 }
 
-/* ───────────────────────── field reports ───────────────────────── */
-
-export function Reports() {
-  const [i, setI] = useState(0);
-  const [paused, setPaused] = useState(false);
-  useEffect(() => {
-    if (paused) return;
-    const t = setInterval(() => setI((x) => (x + 1) % testimonials.length), 9000);
-    return () => clearInterval(t);
-  }, [paused]);
-  const t = testimonials[i];
-  return (
-    <section id="reports" className="relative px-5 py-28 sm:px-10 lg:px-20 lg:py-40">
-      <div className="mx-auto max-w-7xl">
-        <SheetHead
-          sheet="06"
-          grid="G1"
-          title="Field"
-          italic="reports."
-          aside="What the people I have worked with filed after the trip."
-        />
-        <div
-          className="relative border border-input bg-card/60 p-6 backdrop-blur-sm sm:p-12"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <span aria-hidden className="font-map absolute -top-10 left-6 text-[9rem] leading-none text-cyber/30">
-            “
-          </span>
-          <AnimatePresence mode="wait">
-            <motion.figure
-              key={t.name}
-              initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={{ opacity: 0, y: -16, filter: "blur(6px)" }}
-              transition={{ duration: 0.6, ease: EASE }}
-            >
-              <blockquote className="font-map text-[clamp(1.5rem,2.6vw,2.3rem)] leading-[1.25] text-foreground">
-                {t.quote}
-              </blockquote>
-              <figcaption className="mt-8 flex flex-wrap items-center gap-4">
-                <span className="grid h-12 w-12 place-items-center border border-cyber font-mono-tech text-sm text-cyber">
-                  {t.initials}
-                </span>
-                <div>
-                  <div className="text-foreground">{t.name}</div>
-                  <div className="text-sm text-slate-mid">
-                    {t.role} · {t.org}
-                  </div>
-                </div>
-                <a
-                  href={t.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ml-auto inline-flex items-center gap-1 font-mono-tech text-[10.5px] uppercase tracking-[0.16em] text-muted-foreground hover:text-cyber"
-                >
-                  {t.link.label} <ArrowUpRight className="h-3 w-3" />
-                </a>
-              </figcaption>
-            </motion.figure>
-          </AnimatePresence>
-          <div className="mt-10 flex items-center gap-2" role="tablist" aria-label="Reports">
-            {testimonials.map((x, j) => (
-              <button
-                key={x.name}
-                type="button"
-                role="tab"
-                aria-selected={j === i}
-                aria-label={`Report from ${x.name}`}
-                onClick={() => setI(j)}
-                className="group flex items-center gap-2 py-2"
-              >
-                <span className={cn("h-px transition-all duration-500", j === i ? "w-12 bg-cyber" : "w-6 bg-border group-hover:bg-muted-foreground")} />
-                <span className={cn("font-mono-tech text-[10px] uppercase tracking-[0.14em]", j === i ? "text-foreground" : "text-muted-foreground")}>
-                  {x.org}
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+/* field reports live in ./Reports */
+export { Reports } from "./Reports";
 
 /* ───────────────────────── destination ───────────────────────── */
 
