@@ -94,6 +94,16 @@ PROJECTS (all on the site, most are live and linked)
   Its landing page replays an overnight incident on scroll, with a 3D canvas
   constellation and kinetic variable-font type. React 19, TypeScript, TanStack
   Start/Router/Query, Tailwind CSS 4, Motion, Vitest; deployed on Vercel.
+- MURMUR — a real-time collaborative whiteboard (mur-murs.vercel.app, source
+  github.com/lisan-5/Murmur). He wrote the sync engine by hand instead of using Yjs: a
+  CRDT of last-writer-wins registers under Lamport clocks, version vectors for delta
+  sync and anti-entropy to recover lost messages. Two tabs sync with no server
+  (BroadcastChannel); a WebSocket server that is just another replica carries it across
+  devices; IndexedDB keeps boards offline. Property tests (fast-check) prove every copy
+  converges; 2,000 of 2,000 random lossy histories converge and 100,000 ops merge in
+  64 ms. A weather panel adds lag, message loss or a full disconnect live, a dusk
+  timeline replays the board, cursors fly as birds, and the landing page is a 1,500
+  bird murmuration. React, TypeScript, Canvas, Vitest.
 - ASKBASE — an AI data analyst for small businesses (askbaze.vercel.app, source github.com/lisan-5/Askbase).
   Drop in CSV exports (Stripe, Shopify, Sheets), ask in plain English, get a chart
   plus the exact SQL. A real database (DuckDB compiled to WebAssembly) runs inside

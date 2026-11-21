@@ -20,6 +20,24 @@ export const projects = [
     metric: "Real-time ops",
   },
   {
+    id: "00a",
+    image: "/projects/murmur.webp",
+    title: "MURMUR",
+    subtitle: "Real-time Collaborative Whiteboard | Hand-written CRDT | Offline First",
+    challenge:
+      "Collaborative apps break exactly when the network does: lag, lost messages, a laptop closed on a train. Most whiteboards hide that behind a library and a server that decides who wins.",
+    solution:
+      "Wrote the sync engine by hand: every field is a last-writer-wins register under Lamport clocks, version vectors send each copy only what it is missing, and anti-entropy recovers anything dropped. Tabs sync with no server; a WebSocket server, itself just another replica, carries it across devices. Edits live in IndexedDB, so boards work offline.",
+    outcome:
+      "Property tests prove convergence under any order, duplication and partial delivery (2,000 of 2,000 lossy histories converge; 100,000 ops merge in 64 ms). A weather panel breaks the network live, a dusk timeline replays the board from its history, and the landing page is a 1,500 bird murmuration that tells the story on scroll.",
+    details:
+      "React 18, TypeScript, Canvas 2D, BroadcastChannel, WebSockets (ws), IndexedDB, Vitest and fast-check; shapes, pinned arrows, pen, notes, multi-select, undo and live cursors drawn as birds.",
+    href: "https://mur-murs.vercel.app/",
+    repo: "https://github.com/lisan-5/Murmur",
+    stack: ["CRDT", "TYPESCRIPT", "REAL-TIME SYNC", "CANVAS"],
+    metric: "Proven sync",
+  },
+  {
     id: "00b",
     image: "/projects/askbase.webp",
     title: "ASKBASE",
