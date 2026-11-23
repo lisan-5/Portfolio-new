@@ -8,7 +8,7 @@ export const EASE = [0.16, 1, 0.3, 1] as const;
 export const HOME = { lat: 9.03, lon: 38.74, elev: 2355 };
 
 export const RESUME_URL =
-  "https://drive.google.com/file/d/1sZyjxk_ByVfn66EWzgaWsMHMoNVkYu5q/view?usp=sharing";
+  "https://drive.google.com/file/d/1bXtmiK2cAKqjiOqjN8zsaG4ovhD1YTRH/view?usp=sharing";
 
 export const SOCIALS = [
   { label: "GitHub", href: "https://github.com/lisan-5" },
